@@ -1,5 +1,5 @@
 # Minecloud
-**Note: Minecloud is a temporary project name, feel free to come up with other name ideas.**
+**Note: Minecloud is a temporary project name, please let me know if you have any good idea.**
 
 ## Background-ish
 * Around 1~2 year ago, we try to find an on-demand hosting solution but didn't find one we like.
@@ -12,7 +12,7 @@
     * When you want to start the server, type `/mc_start` in the Discord channel.
     * The server will auto spin up (took around 15 sec ~ 1 min) and send the server IP address to the channel
     * When no one is online, the server will auto-shutdown.
-    * Cost is almost negotiable, with ~20 hours of playtime, the cost is around 56 cents each month (20 * 0.0278 (t2.large spot instance) ≈ 0.556)
+    * Cost is almost negligible, with ~20 hours of playtime, the cost is around 56 cents each month (20 * 0.0278 (t2.large spot instance) ≈ 0.556)
     * No maintaining cost - won't cost any if we didn't play it.  
     * We also added some other features like restart, auto backup...etc
     * One small (?) benefit here is that the IP address is different every time the server start. (better-ish security, also, fixed IP is quite expensive)
