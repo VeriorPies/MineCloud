@@ -24,4 +24,5 @@
     *  The Minecraft server is packed as a Linux service, running on EC2. When the service starts, it will send a message to the Discord channel.
 *  **The goal of this project is to convert this into IAC (Infrastructure as Code), probably CDK, so people in the future can spin up their low-cost, on-demand Minecraft server with minimal time.**
    * Here's some code/script we've used in the project: 
-     *   
+     *   ---
+   * We should be able to make this solution generic enough for most multi-player server hosting.
