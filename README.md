@@ -23,6 +23,10 @@
     *  Lambda will start the EC2 instance.
     *  The Minecraft server is packed as a Linux service, running on EC2. When the service starts, it will send a message to the Discord channel.
 *  **The goal of this project is to convert this into IAC (Infrastructure as Code), probably CDK, so people in the future can spin up their low-cost, on-demand Minecraft server with minimal time.**
-   * Here's some code/script we've used in the project: 
-     *   ---
+   * Here's some spaghetti code/script we've used in the project: 
+     *  https://gist.github.com/314pies/ac0aa3aa4e42e83363b6ca1a6c426564
+     *  https://gist.github.com/314pies/47fdeb45ada66a674a6d95f7644ec94c
+     *  https://gist.github.com/314pies/45800b70faeb5b6dfa0fed5a3d9b6828
+     *  https://gist.github.com/314pies/ec8cbb706b103690ac0efda1f0219bd1
+     *  https://gist.github.com/314pies/7d7c1252f3bf964ec312967a1e32d7cb
    * We should be able to make this solution generic enough for most multi-player server hosting.
