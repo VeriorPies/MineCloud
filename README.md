@@ -1,6 +1,20 @@
 # Minecloud
 **Note: Minecloud is a temporary project name, please feel free to come up with any other name.**
 
+This is a blank project for CDK development with TypeScript.
+
+The `cdk.json` file tells the CDK Toolkit how to execute your app.
+
+## Useful commands
+
+* `npm run build`   compile typescript to js
+* `npm run watch`   watch for changes and compile
+* `npm run test`    perform the jest unit tests
+* `cdk deploy`      deploy this stack to your default AWS account/region
+* `cdk diff`        compare deployed stack with current state
+* `cdk synth`       emits the synthesized CloudFormation template
+
+
 ## Background-ish
 * Around 1~2 year ago, we tried to find an on-demand hosting solution.
 * This project, [minecraft-ondemand](https://github.com/doctorray117/minecraft-ondemand) got 1.5k stars on GitHub. But I'm NOT happy with this solution due to:
