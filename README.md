@@ -49,7 +49,7 @@ The `cdk.json` file tells the CDK Toolkit how to execute your app.
 *  **The goal of this project is to convert this into IAC (Infrastructure as Code), probably CDK, so people in the future can spin up their low-cost, on-demand Minecraft server with minimal effort.**
    * Here's some spaghetti code/script we've used in the project: 
      *  [check_user_conn.sh](https://gist.github.com/314pies/ac0aa3aa4e42e83363b6ca1a6c426564)
-     *  [backup.sh](https://gist.github.com/314pies/47fdeb45ada66a674a6d95f7644ec94c)
+     *  [backup.sh](https://gist.github.com/314pies/40339beb3c5caa904af63e9b282b95ac)
      *  [baclup_manual.sh](https://gist.github.com/314pies/45800b70faeb5b6dfa0fed5a3d9b6828)
      *  [start_service.sh](https://gist.github.com/314pies/ec8cbb706b103690ac0efda1f0219bd1)
      *  [minecraft_start.sh](https://gist.github.com/314pies/7d7c1252f3bf964ec312967a1e32d7cb)
