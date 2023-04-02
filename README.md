@@ -7,8 +7,7 @@ The `cdk.json` file tells the CDK Toolkit how to execute your app.
 
 ## Getting start
 1. Follow this tutorial to setup AWS CLI: https://aws.amazon.com/getting-started/guides/setup-environment/module-three/
-2. Setup Node/NPM
-https://aws.amazon.com/getting-started/guides/setup-cdk/module-one/
+2. Setup Node/NPM: https://aws.amazon.com/getting-started/guides/setup-cdk/module-one/
 3. Use the following commands to confirm CDK is properlly set-up
     - `cdk --version`
     - `aws sts get-caller-identity`
