@@ -2,7 +2,7 @@
 **Note: Minecloud is a temporary project name, please feel free to come up with any other name.**
 
 ## Background-ish
-* Around 1~2 year ago, we try to find an on-demand hosting solution.
+* Around 1~2 year ago, we tried to find an on-demand hosting solution.
 * This project, [minecraft-ondemand](https://github.com/doctorray117/minecraft-ondemand) got 1.5k stars on GitHub. But I'm NOT happy with this solution due to:
   *  It spins up the server by doing DNS query. That is, the server might spin up randomly (see: [Server starts randomly](https://github.com/doctorray117/minecraft-ondemand#server-starts-randomly))
   *  Lack of permission control  
