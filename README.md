@@ -4,7 +4,7 @@
 ## Background-ish
 * Around 1~2 year ago, we try to find an on-demand hosting solution.
 * This project, [minecraft-ondemand](https://github.com/doctorray117/minecraft-ondemand) got 1.5k stars on GitHub. But I'm NOT happy with this solution due to:
-  *  It spins up the server by doing DNS query. That is, the server might spin up randomly (see: [Server starts randomly](https://github.com/doctorray117/minecraft-ondemand))
+  *  It spins up the server by doing DNS query. That is, the server might spin up randomly (see: [Server starts randomly](https://github.com/doctorray117/minecraft-ondemand#server-starts-randomly))
   *  Lack of permission control  
   *  Over complicated - It took me a decent amount of time to spin it up :p - many of the components aren't necessary for us.
 
