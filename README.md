@@ -5,6 +5,17 @@ This is a blank project for CDK development with TypeScript.
 
 The `cdk.json` file tells the CDK Toolkit how to execute your app.
 
+## Getting start
+1. Follow this tutorial to setup AWS CLI: https://aws.amazon.com/getting-started/guides/setup-environment/module-three/
+2. Setup Node/NPM
+https://aws.amazon.com/getting-started/guides/setup-cdk/module-one/
+3. Use the following commands to confirm CDK is properlly set-up
+    - `cdk --version`
+    - `aws sts get-caller-identity`
+4. Run `cdk bootstrap aws://<ACCOUNT-NUMBER>/<REGION>`
+5. Clone this project, cd to the directory and build the project by running `npm run build`
+6. Run `cdk deploy` to deploy to your CloudFormation. Verify the stack in your CloudFormation dashboard.
+
 ## Useful commands
 
 * `npm run build`   compile typescript to js
