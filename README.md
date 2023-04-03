@@ -7,8 +7,7 @@ The `cdk.json` file tells the CDK Toolkit how to execute your app.
 
 ## Getting start
 1. Follow this tutorial to setup AWS CLI: https://aws.amazon.com/getting-started/guides/setup-environment/module-three/
-2. Setup Node/NPM
-https://aws.amazon.com/getting-started/guides/setup-cdk/module-one/
+2. Setup Node/NPM: https://aws.amazon.com/getting-started/guides/setup-cdk/module-one/
 3. Use the following commands to confirm CDK is properlly set-up
     - `cdk --version`
     - `aws sts get-caller-identity`
@@ -50,10 +49,10 @@ https://aws.amazon.com/getting-started/guides/setup-cdk/module-one/
 *  **The goal of this project is to convert this into IAC (Infrastructure as Code), probably CDK, so people in the future can spin up their low-cost, on-demand Minecraft server with minimal effort.**
    * Here's some spaghetti code/script we've used in the project: 
      *  [check_user_conn.sh](https://gist.github.com/314pies/ac0aa3aa4e42e83363b6ca1a6c426564)
-     *  [backup.sh](https://gist.github.com/314pies/47fdeb45ada66a674a6d95f7644ec94c)
+     *  [backup.sh](https://gist.github.com/314pies/40339beb3c5caa904af63e9b282b95ac)
      *  [baclup_manual.sh](https://gist.github.com/314pies/45800b70faeb5b6dfa0fed5a3d9b6828)
      *  [start_service.sh](https://gist.github.com/314pies/ec8cbb706b103690ac0efda1f0219bd1)
      *  [minecraft_start.sh](https://gist.github.com/314pies/7d7c1252f3bf964ec312967a1e32d7cb)
-     *  [handler.js](https://gist.github.com/314pies/e93a46e48dcede75447e0e0b9502de42)
+     *  [handler.js](https://gist.github.com/314pies/3aa3a559cc1c665c796ea9b0e4c0f50a)
    * We should be able to make this solution generic enough for most multi-player server hosting.
    * For task/issue, please visit the project board (https://github.com/orgs/VeriorPies/projects/1/views/1?layout=board)
