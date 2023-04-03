@@ -72,3 +72,5 @@ export class MCloudStack extends Stack {
         maxPrice: MAX_PRICE,
       },
     });
+  }
+}
