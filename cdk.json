@@ -1,5 +1,5 @@
 {
-  "app": "npx ts-node --prefer-ts-exts bin/m_cloud.ts",
+  "app": "npx ts-node --prefer-ts-exts bin/mine-cloud.ts",
   "watch": {
     "include": [
       "**"

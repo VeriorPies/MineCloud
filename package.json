@@ -1,8 +1,8 @@
 {
-  "name": "m_cloud",
+  "name": "mine-cloud",
   "version": "0.1.0",
   "bin": {
-    "m_cloud": "bin/m_cloud.js"
+    "mine-cloud": "bin/mine-cloud.js"
   },
   "scripts": {
     "build": "tsc",
