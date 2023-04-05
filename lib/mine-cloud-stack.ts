@@ -3,21 +3,35 @@ import { SpotInstance } from './spot-instance';
 import { Stack, StackProps } from 'aws-cdk-lib';
 import { Role, ServicePrincipal } from 'aws-cdk-lib/aws-iam';
 import { AmazonLinuxGeneration, AmazonLinuxImage, CfnKeyPair, InstanceClass, InstanceSize, InstanceType, Peer, Port, SecurityGroup, SpotInstanceInterruption, SpotRequestType, SubnetType, Vpc } from 'aws-cdk-lib/aws-ec2';
+import { DiscordInteractionsEndpointConstruct } from './lambda/discord-interactions-endpoint-construct';
 
-const STACK_PREFIX = 'MineCloud';
+export const STACK_PREFIX = 'MineCloud';
+
 const MAX_PRICE = 0.1; // EC2 max price
 const EC2_INSTANCE_TYPE = InstanceType.of(
   InstanceClass.T2,
   InstanceSize.LARGE
 );
+const DISCORD_PUBLIC_KEY = "";
 
 export class MineCloud extends Stack {
 
   readonly ec2Instance;
+  readonly  discordInteractionsEndpointLambda;
 
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
     this.ec2Instance = this.setupEC2Instance();
+    this.discordInteractionsEndpointLambda = new DiscordInteractionsEndpointConstruct(
+      this,  
+      `${STACK_PREFIX}_discord_interactions_endpoint_construct`,
+      {
+        instanceId: this.ec2Instance.instanceId,
+        region: this.region,
+        discordPublicKey: DISCORD_PUBLIC_KEY
+      }
+    );
+    this.discordInteractionsEndpointLambda.node.addDependency(this.ec2Instance);
   }
 
   setupEC2Instance(): SpotInstance {
