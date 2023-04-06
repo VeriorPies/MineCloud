@@ -3,7 +3,8 @@ import { SpotInstance } from './spot-instance';
 import { Stack, StackProps } from 'aws-cdk-lib';
 import { Role, ServicePrincipal } from 'aws-cdk-lib/aws-iam';
 import { AmazonLinuxGeneration, AmazonLinuxImage, CfnKeyPair, InstanceClass, InstanceSize, InstanceType, Peer, Port, SecurityGroup, SpotInstanceInterruption, SpotRequestType, SubnetType, Vpc } from 'aws-cdk-lib/aws-ec2';
-import { DiscordInteractionsEndpointConstruct } from './lambda/discord-interactions-endpoint-construct';
+import { DiscordInteractionsEndpointConstruct } from './discord-interactions-endpoint-construct';
+
 
 export const STACK_PREFIX = 'MineCloud';
 
