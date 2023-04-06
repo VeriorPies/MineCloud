@@ -1,0 +1,11 @@
+// These json can be used to test the lambda from the AWS console
+
+// Start the EC2 instance
+{
+  "body": "{\"data\": {\"name\": \"mc_start\"}}"
+}
+
+// Stop the EC2 instance
+{
+  "body": "{\"data\": {\"name\": \"mc_stop\"}}"
+}

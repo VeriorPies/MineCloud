@@ -1,8 +1,9 @@
 import { Construct } from "constructs/lib/construct";
-import { STACK_PREFIX } from "../mine-cloud-stack";
+import { STACK_PREFIX } from "./mine-cloud-stack";
 import {Function,Runtime,Code, FunctionUrlAuthType} from "aws-cdk-lib/aws-lambda"
 import path = require("path");
 import {PolicyStatement, Policy} from 'aws-cdk-lib/aws-iam';
+import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
 
   export interface DiscordInteractionsEndpointConstructProps {
     instanceId: string;
@@ -17,11 +18,10 @@ import {PolicyStatement, Policy} from 'aws-cdk-lib/aws-iam';
     constructor(scope: Construct, id: string, props: DiscordInteractionsEndpointConstructProps) {
       super(scope, id);
       
-      this.lambdaFunction = new Function(this, `${STACK_PREFIX}_discord_interactions_endpoint_lambda`, {
+      this.lambdaFunction = new NodejsFunction(this, `${STACK_PREFIX}_discord_interactions_endpoint_lambda`, {
         runtime: Runtime.NODEJS_14_X, // We will want to upgrade this later
         handler: 'index.handler',
-        // code: Code.fromAsset(path.join(__dirname, 'index.js')),
-        code: Code.fromInline('exports.handler = async (event, context, callback) => {return {status: 200};}'),
+        entry: path.join(__dirname, '/../lambda/discord_interactions_endpoint/index.js'),
         environment:{
           PUBLIC_KEY: props.discordPublicKey,
           INSTANCE_ID: props.instanceId,
@@ -30,7 +30,7 @@ import {PolicyStatement, Policy} from 'aws-cdk-lib/aws-iam';
       });
 
       const ec2Policy = new PolicyStatement({
-        actions: ['ec2:*'], // We probably will want some more refined access later
+        actions: ['ec2:*'], // May want some more refined access later
         resources: ['arn:aws:ec2:*'],
       });
 
