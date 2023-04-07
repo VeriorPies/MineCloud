@@ -1,8 +1,32 @@
-import { Construct } from 'constructs';
-import { SpotInstance } from './spot-instance';
-import { Stack, StackProps } from 'aws-cdk-lib';
-import { Role, ServicePrincipal } from 'aws-cdk-lib/aws-iam';
-import { AmazonLinuxGeneration, AmazonLinuxImage, CfnKeyPair, InstanceClass, InstanceSize, InstanceType, Peer, Port, SecurityGroup, SpotInstanceInterruption, SpotRequestType, SubnetType, Vpc } from 'aws-cdk-lib/aws-ec2';
+import { Construct } from "constructs";
+import { SpotInstance } from "./spot-instance";
+import { Duration, Stack, StackProps } from "aws-cdk-lib";
+import { Role, ServicePrincipal } from "aws-cdk-lib/aws-iam";
+import {
+  AmazonLinuxGeneration,
+  AmazonLinuxImage,
+  CfnKeyPair,
+  CloudFormationInit,
+  InitCommand,
+  InitConfig,
+  InitGroup,
+  InitPackage,
+  InitService,
+  InitServiceRestartHandle,
+  InitUser,
+  Instance,
+  InstanceClass,
+  InstanceSize,
+  InstanceType,
+  Peer,
+  Port,
+  SecurityGroup,
+  ServiceManager,
+  SpotInstanceInterruption,
+  SpotRequestType,
+  SubnetType,
+  Vpc,
+} from "aws-cdk-lib/aws-ec2";
 import { DiscordInteractionsEndpointConstruct } from './discord-interactions-endpoint-construct';
 
 
@@ -14,6 +38,12 @@ const EC2_INSTANCE_TYPE = InstanceType.of(
   InstanceSize.LARGE
 );
 const DISCORD_PUBLIC_KEY = "";
+
+const MINECRAFT_USER = "minecraft";
+// Not the same name since cfn-init can't figure it out for some reason
+const MINECRAFT_GROUP = "minecraft-group";
+const MINECRAFT_BASE_DIR = "/opt/minecraft";
+const MINECRAFT_SERVER_DIR = `${MINECRAFT_BASE_DIR}/server`;
 
 export class MineCloud extends Stack {
 
@@ -85,6 +115,87 @@ export class MineCloud extends Stack {
         interruptionBehavior: SpotInstanceInterruption.STOP,
         requestType: SpotRequestType.PERSISTENT,
         maxPrice: MAX_PRICE,
+      },
+      initOptions: {
+        ignoreFailures: false,
+        timeout: Duration.minutes(10),
+        configSets: ["default"],
+      },
+      // use init over user data commands since changes to user data will replace the EC2 instance...
+      init: this.getInstanceInit(),
+    });
+  }
+
+  getInstanceInit(): CloudFormationInit {
+    const handle = new InitServiceRestartHandle();
+
+    return CloudFormationInit.fromConfigSets({
+      configSets: {
+        default: [
+          "yumPreinstall",
+          "serverSetup",
+          "createEula",
+          "createMcServerSystem",
+          "serverStart",
+        ],
+      },
+      configs: {
+        yumPreinstall: new InitConfig([
+          // Install an Amazon Linux package using yum
+          InitPackage.yum("java-17-amazon-corretto-headless"),
+        ]),
+        serverSetup: new InitConfig([
+          InitGroup.fromName(MINECRAFT_GROUP),
+          InitUser.fromName(MINECRAFT_USER, {
+            groups: [MINECRAFT_GROUP],
+          }),
+
+          // Setup directories
+          InitCommand.shellCommand(`mkdir -p ${MINECRAFT_SERVER_DIR}`),
+          InitCommand.shellCommand(
+            "wget https://piston-data.mojang.com/v1/objects/8f3112a1049751cc472ec13e397eade5336ca7ae/server.jar",
+            {
+              cwd: MINECRAFT_SERVER_DIR,
+            }
+          ),
+          InitCommand.shellCommand(
+            `chown -R ${MINECRAFT_USER}:${MINECRAFT_GROUP} ${MINECRAFT_BASE_DIR}`
+          ),
+        ]),
+        createMcServerSystem: new InitConfig([
+          // Create
+          InitService.systemdConfigFile("mcserver", {
+            command: '/usr/bin/env java -Xmx6144M -Xms1024M -jar server.jar nogui',
+            cwd: MINECRAFT_SERVER_DIR,
+            group: MINECRAFT_GROUP,
+            user: MINECRAFT_USER,
+            afterNetwork: true,
+          }),
+        ]),
+        serverStart: new InitConfig([
+          // Start the server using SystemD
+          InitService.enable("mcserver", {
+            serviceManager: ServiceManager.SYSTEMD,
+            serviceRestartHandle: handle,
+          }),
+        ]),
+        // Currently unused
+        editEula: new InitConfig([
+          InitCommand.shellCommand(
+            "sed -i 's/^eula=false$/eula=true/g' eula.txt",
+            {
+              cwd: MINECRAFT_SERVER_DIR,
+            }
+          ),
+        ]),
+        createEula: new InitConfig([
+          InitCommand.shellCommand(
+            "echo 'eula=true' > eula.txt",
+            {
+              cwd: MINECRAFT_SERVER_DIR,
+            }
+          ),
+        ]),
       },
     });
   }
