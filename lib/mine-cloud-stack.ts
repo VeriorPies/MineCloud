@@ -9,6 +9,7 @@ import {
   CloudFormationInit,
   InitCommand,
   InitConfig,
+  InitFile,
   InitGroup,
   InitPackage,
   InitService,
@@ -36,6 +37,7 @@ import path = require("path");
 const DISCORD_PUBLIC_KEY = "";
 const DISCORD_APP_ID = "";
 const DISCORD_BOT_TOKEN = "";
+const DISCORD_CHANNEL_WEB_HOOK = "";
 
 export const STACK_PREFIX = 'MineCloud';
 
@@ -153,6 +155,7 @@ export class MineCloud extends Stack {
           "createEula",
           "createMcServerSystem",
           "serverStart",
+          "setupDiscordMessaging"
         ],
       },
       configs: {
@@ -211,6 +214,16 @@ export class MineCloud extends Stack {
               cwd: MINECRAFT_SERVER_DIR,
             }
           ),
+        ]),
+        setupDiscordMessaging: new InitConfig([
+          InitGroup.fromName(MINECRAFT_GROUP),
+          InitUser.fromName(MINECRAFT_USER, {
+            groups: [MINECRAFT_GROUP],
+          }),
+          InitCommand.shellCommand(
+            `echo 'DISCORD_WEB_HOOK=${DISCORD_CHANNEL_WEB_HOOK}' >> /etc/environment`
+          ),
+          InitFile.fromFileInline(`${MINECRAFT_BASE_DIR}/send_discord_message_to_webhook.sh`,'server_init_assets/send_discord_message_to_webhook.sh')
         ]),
       },
     });
