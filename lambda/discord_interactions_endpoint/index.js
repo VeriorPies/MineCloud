@@ -16,40 +16,39 @@ exports.handler = async (event, context, callback) => {
   const server_instance_id = process.env.INSTANCE_ID;
   const ec2_instance_region = process.env.REGION;
 
-// By pass all discord authendication step for now
-//   const signature = event.headers['x-signature-ed25519'];
-//   const timestamp = event.headers['x-signature-timestamp'];
-     const strBody = event.body;
+  const signature = event.headers['x-signature-ed25519'];
+  const timestamp = event.headers['x-signature-timestamp'];
+  const strBody = event.body;
 
-//   const isVerified = nacl.sign.detached.verify(
-//     Buffer.from(timestamp + strBody),
-//     Buffer.from(signature, 'hex'),
-//     Buffer.from(PUBLIC_KEY, 'hex')
-//   );
-//   if (!isVerified) {
-//     return {
-//       statusCode: 401,
-//       body: JSON.stringify('invalid request signature'),
-//     };
-//   }
+  const isVerified = nacl.sign.detached.verify(
+    Buffer.from(timestamp + strBody),
+    Buffer.from(signature, 'hex'),
+    Buffer.from(PUBLIC_KEY, 'hex')
+  );
+  if (!isVerified) {
+    return {
+      statusCode: 401,
+      body: JSON.stringify('invalid request signature'),
+    };
+  }
 
-//   // Replying to ping (requirement 2.)
-     console.log('strB ',strBody)
-     const body = JSON.parse(strBody);
-     console.log(body)
-//   if (body.type == 1) {
-//     return {
-//       statusCode: 200,
-//       body: JSON.stringify({ "type": 1 }),
-//     }
-//   }
+  // Replying to ping (requirement 2.)
+    console.log('strB ',strBody)
+    const body = JSON.parse(strBody);
+    console.log(body)
+    if (body.type == 1) {
+      return {
+        statusCode: 200,
+        body: JSON.stringify({ "type": 1 }),
+      }
+    }
 
   //-------------Start processing discord commands-------------
   if(coldStart){
       coldStart = false;
       return JSON.stringify({ 
         "type": 4,
-        "data": { "content": "Cold Start...\n Try again please?" }
+        "data": { "content": "Just woke up...\n Can you try again?" }
       })
   }
   

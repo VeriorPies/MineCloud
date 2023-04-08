@@ -1,6 +1,6 @@
 import { Construct } from "constructs/lib/construct";
 import { STACK_PREFIX } from "./mine-cloud-stack";
-import {Function,Runtime,Code, FunctionUrlAuthType} from "aws-cdk-lib/aws-lambda"
+import {Function,Runtime,Code, FunctionUrlAuthType, FunctionUrl} from "aws-cdk-lib/aws-lambda"
 import path = require("path");
 import {PolicyStatement, Policy} from 'aws-cdk-lib/aws-iam';
 import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
@@ -14,6 +14,7 @@ import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
   export class DiscordInteractionsEndpointConstruct extends Construct {
 
     readonly lambdaFunction;
+    readonly lambdaFunctionURL: FunctionUrl;
 
     constructor(scope: Construct, id: string, props: DiscordInteractionsEndpointConstructProps) {
       super(scope, id);
@@ -40,7 +41,7 @@ import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
         }),
       );
 
-      this.lambdaFunction.addFunctionUrl(
+      this.lambdaFunctionURL = this.lambdaFunction.addFunctionUrl(
         {
           authType: FunctionUrlAuthType.NONE
         }
