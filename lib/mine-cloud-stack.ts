@@ -224,7 +224,7 @@ export class MineCloud extends Stack {
           InitFile.fromFileInline(`${MINECRAFT_BASE_DIR}/check_user_conn.sh`,'server_init_assets/check_user_conn.sh'),
           InitCommand.shellCommand(`sudo chmod +x check_user_conn.sh`, {cwd: MINECRAFT_BASE_DIR}),
           // Setup crontab scheduler, run every 30 min
-          InitCommand.shellCommand(`(crontab -l 2>/dev/null; echo "*/2 * * * * ${MINECRAFT_BASE_DIR}/check_user_conn.sh") | crontab -`),
+          InitCommand.shellCommand(`(crontab -l 2>/dev/null; echo "*/30 * * * * ${MINECRAFT_BASE_DIR}/check_user_conn.sh") | crontab -`),
         ])
       },
     });
