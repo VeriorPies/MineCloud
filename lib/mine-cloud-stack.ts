@@ -216,10 +216,6 @@ export class MineCloud extends Stack {
           ),
         ]),
         setupDiscordMessaging: new InitConfig([
-          InitGroup.fromName(MINECRAFT_GROUP),
-          InitUser.fromName(MINECRAFT_USER, {
-            groups: [MINECRAFT_GROUP],
-          }),
           InitCommand.shellCommand(
             `echo 'DISCORD_WEB_HOOK=${DISCORD_CHANNEL_WEB_HOOK}' >> /etc/environment`
           ),
