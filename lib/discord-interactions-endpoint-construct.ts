@@ -35,9 +35,14 @@ import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
         resources: ['arn:aws:ec2:*'],
       });
 
+      const ec2SSMPolicy = new PolicyStatement({
+        actions: ['ssm:SendCommand'], 
+        resources: ['*'],
+      });
+
       this.lambdaFunction.role?.attachInlinePolicy(
         new Policy(this, `${STACK_PREFIX}_discord_interactions_endpoint_lambda_policy`, {
-          statements: [ec2Policy],
+          statements: [ec2Policy, ec2SSMPolicy],
         }),
       );
 
