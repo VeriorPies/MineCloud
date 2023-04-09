@@ -31,7 +31,7 @@ import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
       });
 
       const ec2Policy = new PolicyStatement({
-        actions: ['ec2:*'], // May want some more refined access later
+        actions: ['ec2:*'],
         resources: ['arn:aws:ec2:*'],
       });
 
