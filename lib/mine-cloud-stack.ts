@@ -33,11 +33,7 @@ import * as cr from 'aws-cdk-lib/custom-resources'
 import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
 import { Runtime } from "aws-cdk-lib/aws-lambda";
 import path = require("path");
-
-const DISCORD_PUBLIC_KEY = "";
-const DISCORD_APP_ID = "";
-const DISCORD_BOT_TOKEN = "";
-const DISCORD_CHANNEL_WEB_HOOK = "";
+import { DISCORD_PUBLIC_KEY, DISCORD_APP_ID, DISCORD_BOT_TOKEN, DISCORD_CHANNEL_WEB_HOOK } from "../MineCloud-Configs";
 
 export const STACK_PREFIX = 'MineCloud';
 
@@ -151,11 +147,11 @@ export class MineCloud extends Stack {
       configSets: {
         default: [
           "yumPreinstall",
-          "serverSetup",
+          "minecraftServerJarSetup",
           "createEula",
-          "createMcServerSystem",
-          "serverStart",
-          "setupDiscordMessaging"
+          "setupDiscordMessaging",
+          "createMinecraftService",
+          "startMinecraftService"
         ],
       },
       configs: {
@@ -163,7 +159,7 @@ export class MineCloud extends Stack {
           // Install an Amazon Linux package using yum
           InitPackage.yum("java-17-amazon-corretto-headless"),
         ]),
-        serverSetup: new InitConfig([
+        minecraftServerJarSetup: new InitConfig([
           InitGroup.fromName(MINECRAFT_GROUP),
           InitUser.fromName(MINECRAFT_USER, {
             groups: [MINECRAFT_GROUP],
@@ -181,22 +177,25 @@ export class MineCloud extends Stack {
             `chown -R ${MINECRAFT_USER}:${MINECRAFT_GROUP} ${MINECRAFT_BASE_DIR}`
           ),
         ]),
-        createMcServerSystem: new InitConfig([
-          // Create
-          InitService.systemdConfigFile("mcserver", {
-            command: '/usr/bin/env java -Xmx6144M -Xms1024M -jar server.jar nogui',
-            cwd: MINECRAFT_SERVER_DIR,
-            group: MINECRAFT_GROUP,
-            user: MINECRAFT_USER,
-            afterNetwork: true,
+        setupDiscordMessaging: new InitConfig([
+          InitGroup.fromName(MINECRAFT_GROUP),
+          InitUser.fromName(MINECRAFT_USER, {
+            groups: [MINECRAFT_GROUP],
           }),
+          InitCommand.shellCommand(
+            `echo 'DISCORD_WEB_HOOK=${DISCORD_CHANNEL_WEB_HOOK}' >> /etc/environment`
+          ),
+          InitFile.fromFileInline(`${MINECRAFT_BASE_DIR}/send_discord_message_to_webhook.sh`,'server_init_assets/send_discord_message_to_webhook.sh'),
+          InitCommand.shellCommand(`sudo chmod +x send_discord_message_to_webhook.sh`, {cwd: MINECRAFT_BASE_DIR}),
         ]),
-        serverStart: new InitConfig([
-          // Start the server using SystemD
-          InitService.enable("mcserver", {
-            serviceManager: ServiceManager.SYSTEMD,
-            serviceRestartHandle: handle,
-          }),
+        createMinecraftService: new InitConfig([
+          InitFile.fromFileInline(`${MINECRAFT_BASE_DIR}/start_service.sh`,'server_init_assets/start_service.sh'),
+          InitCommand.shellCommand(`sudo chmod +x start_service.sh`, {cwd: MINECRAFT_BASE_DIR}),
+          InitFile.fromFileInline('/etc/systemd/system/minecraft.service','server_init_assets/minecraft.service'),
+        ]),
+        startMinecraftService: new InitConfig([
+          InitCommand.shellCommand("systemctl enable minecraft.service"),
+          InitCommand.shellCommand("systemctl start minecraft.service"),
         ]),
         // Currently unused
         editEula: new InitConfig([
@@ -214,16 +213,6 @@ export class MineCloud extends Stack {
               cwd: MINECRAFT_SERVER_DIR,
             }
           ),
-        ]),
-        setupDiscordMessaging: new InitConfig([
-          InitGroup.fromName(MINECRAFT_GROUP),
-          InitUser.fromName(MINECRAFT_USER, {
-            groups: [MINECRAFT_GROUP],
-          }),
-          InitCommand.shellCommand(
-            `echo 'DISCORD_WEB_HOOK=${DISCORD_CHANNEL_WEB_HOOK}' >> /etc/environment`
-          ),
-          InitFile.fromFileInline(`${MINECRAFT_BASE_DIR}/send_discord_message_to_webhook.sh`,'server_init_assets/send_discord_message_to_webhook.sh')
         ]),
       },
     });
