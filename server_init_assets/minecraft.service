@@ -1,0 +1,23 @@
+[Unit]
+Description=Minecraft Server
+After=network.target
+
+[Install]
+WantedBy=multi-user.target
+
+[Service]
+WorkingDirectory=/opt/minecraft
+EnvironmentFile=/etc/environment
+
+Restart=always
+
+
+ExecStart=/usr/bin/screen -DmS mc_server ./start_service.sh
+
+ExecStop=/usr/bin/screen -S mc_server -X stuff 'say Server shutting down (closing by the system service)^M'
+ExecStop=/usr/bin/screen -S mc_server -X stuff 'save-all^M'
+ExecStop=/bin/sleep 10
+ExecStop=/usr/bin/screen -S mc_server -X stuff 'stop^M'
+ExecStop=/opt/minecraft/send_discord_message_to_webhook.sh "Shutting down the server >w<~"
+ExecStop=/bin/sleep 10
+ExecStop=/opt/minecraft/send_discord_message_to_webhook.sh "Server shut down"
