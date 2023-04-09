@@ -5,19 +5,19 @@ import {
   } from 'aws-lambda';
 import axios from 'axios';
 
+// The deployment will fail if exception was thrown.
 exports.handler = async (event: CdkCustomResourceEvent,
     context: Context,) => {
     
     if (event.RequestType !== 'Delete') {
         const apiEndpoint = `https://discord.com/api/v10/applications/${process.env.APP_ID}/commands`;
-        await registerCommand("mc_start", "Start the minecraft server", apiEndpoint);
-        await registerCommand("mc_stop", "Start the minecraft server", apiEndpoint);
-        await registerCommand("mc_backup", "Start the minecraft server", apiEndpoint);
-        await registerCommand("mc_restart", "Start the minecraft server", apiEndpoint);
+        await registerCommand("mc_start", "Start the Minecraft server", apiEndpoint);
+        await registerCommand("mc_stop", "Stop the Minecraft server", apiEndpoint);
+        await registerCommand("mc_backup", "NOT SUPPORTED at this point", apiEndpoint);
+        await registerCommand("mc_restart", "Restart the Minecraft system service", apiEndpoint);
         console.log("Discord command register completed");
     }
    
-
     const response: CdkCustomResourceResponse = {
         StackId: event.StackId,
         RequestId: event.RequestId,

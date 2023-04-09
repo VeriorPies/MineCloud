@@ -1,7 +1,7 @@
 import { Construct } from "constructs";
 import { SpotInstance } from "./spot-instance";
 import { CfnOutput, CustomResource, Duration, Stack, StackProps } from "aws-cdk-lib";
-import { Role, ServicePrincipal } from "aws-cdk-lib/aws-iam";
+import { Effect, PolicyDocument, PolicyStatement, Role, ServicePrincipal } from "aws-cdk-lib/aws-iam";
 import {
   AmazonLinuxGeneration,
   AmazonLinuxImage,
@@ -81,12 +81,21 @@ export class MineCloud extends Stack {
 
   setupEC2Instance(): SpotInstance {
     const vpc = new Vpc(this, `${STACK_PREFIX}_VPC`);
-    
     const ec2Role = new Role(
       this,
       `${STACK_PREFIX}_ec2_instance_role`,
       { assumedBy: new ServicePrincipal('ec2.amazonaws.com') }
     );
+    
+    // To enable SSM service
+    ec2Role.addToPolicy(new PolicyStatement(
+      {
+        effect: Effect.ALLOW,
+        actions: ["ssm:*", "ssmmessages:*", "ec2messages:*"],
+        resources: ["*"],
+      }
+    ));
+
 
     const securityGroup = new SecurityGroup(
       this,
@@ -215,7 +224,7 @@ export class MineCloud extends Stack {
           InitFile.fromFileInline(`${MINECRAFT_BASE_DIR}/check_user_conn.sh`,'server_init_assets/check_user_conn.sh'),
           InitCommand.shellCommand(`sudo chmod +x check_user_conn.sh`, {cwd: MINECRAFT_BASE_DIR}),
           // Setup crontab scheduler, run every 30 min
-          InitCommand.shellCommand(`(crontab -l 2>/dev/null; echo "*/30 * * * * ${MINECRAFT_BASE_DIR}/check_user_conn.sh") | crontab -`),
+          InitCommand.shellCommand(`(crontab -l 2>/dev/null; echo "*/2 * * * * ${MINECRAFT_BASE_DIR}/check_user_conn.sh") | crontab -`),
         ])
       },
     });
