@@ -34,6 +34,7 @@ import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
 import { Runtime } from "aws-cdk-lib/aws-lambda";
 import path = require("path");
 import { DISCORD_PUBLIC_KEY, DISCORD_APP_ID, DISCORD_BOT_TOKEN, DISCORD_CHANNEL_WEB_HOOK } from "../MineCloud-Configs";
+import { Bucket } from "aws-cdk-lib/aws-s3";
 
 export const STACK_PREFIX = 'MineCloud';
 
@@ -77,6 +78,11 @@ export class MineCloud extends Stack {
     this.discordInteractionsEndpointLambda.node.addDependency(this.ec2Instance);
     this.discordInteractionsEndpointURL = new CfnOutput(this, 'DISCORD-INTERACTIONS-ENDPOINT-URL', { 
       value: this.discordInteractionsEndpointLambda.lambdaFunctionURL.url });
+    
+    const backupBucket = new Bucket(this, `${STACK_PREFIX}_backup_s3_bucket`, {
+      bucketName: `${STACK_PREFIX.toLowerCase()}-backup-bucket`
+    });
+    backupBucket.grantReadWrite(this.ec2Instance);
   }
 
   setupEC2Instance(): SpotInstance {
