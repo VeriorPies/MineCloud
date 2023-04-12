@@ -168,7 +168,9 @@ export class MineCloud extends Stack {
           "setupDiscordMessaging",
           "createMinecraftService",
           "startMinecraftService",
-          "setupAutoShutdown"
+          "setupAutoShutdown",
+          "setupBackupScript",
+          "setupGetLatestBackupScript"
         ],
       },
       configs: {
@@ -232,7 +234,15 @@ export class MineCloud extends Stack {
           InitCommand.shellCommand(`sudo chmod +x check_user_conn.sh`, {cwd: MINECRAFT_BASE_DIR}),
           // Setup crontab scheduler, run every 30 min
           InitCommand.shellCommand(`(crontab -l 2>/dev/null; echo "*/30 * * * * ${MINECRAFT_BASE_DIR}/check_user_conn.sh") | crontab -`),
-        ])
+        ]),
+        setupBackupScript: new InitConfig([
+          InitFile.fromFileInline(`${MINECRAFT_BASE_DIR}/server_backup.sh`,'server_init_assets/server_backup.sh'),
+          InitCommand.shellCommand(`sudo chmod +x server_backup.sh`, {cwd: MINECRAFT_BASE_DIR}),
+        ]),
+        setupGetLatestBackupScript: new InitConfig([
+          InitFile.fromFileInline(`${MINECRAFT_BASE_DIR}/get_latest_server_backup.sh`,'server_init_assets/get_latest_server_backup.sh'),
+          InitCommand.shellCommand(`sudo chmod +x get_latest_server_backup.sh`, {cwd: MINECRAFT_BASE_DIR}),
+        ]),
       },
     });
   }

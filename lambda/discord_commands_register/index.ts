@@ -13,8 +13,9 @@ exports.handler = async (event: CdkCustomResourceEvent,
         const apiEndpoint = `https://discord.com/api/v10/applications/${process.env.APP_ID}/commands`;
         await registerCommand("mc_start", "Start the Minecraft server", apiEndpoint);
         await registerCommand("mc_stop", "Stop the Minecraft server", apiEndpoint);
-        await registerCommand("mc_backup", "NOT SUPPORTED at this point", apiEndpoint);
         await registerCommand("mc_restart", "Restart the Minecraft system service", apiEndpoint);
+        await registerCommand("mc_backup", "Stop the server and make a backup", apiEndpoint);
+        await registerCommand("mc_get_latest_backup", "Get the latest backup zip file", apiEndpoint);
         console.log("Discord command register completed");
     }
    
