@@ -86,7 +86,8 @@ export class MineCloud extends Stack {
   }
 
   setupEC2Instance(): SpotInstance {
-    const vpc = new Vpc(this, `${STACK_PREFIX}_VPC`);
+    const defaultVPC = Vpc.fromLookup(this,  `${STACK_PREFIX}_vpc`,{isDefault: true});
+
     const ec2Role = new Role(
       this,
       `${STACK_PREFIX}_ec2_instance_role`,
@@ -107,7 +108,7 @@ export class MineCloud extends Stack {
       this,
       `${STACK_PREFIX}_ec2_security_group`,
       {
-        vpc: vpc,
+        vpc: defaultVPC,
         allowAllOutbound: true,
         securityGroupName: `${STACK_PREFIX}_ec2_security_group`,
       }
@@ -129,7 +130,7 @@ export class MineCloud extends Stack {
       keyName: `${STACK_PREFIX}_ec2_key`});
       
     return new SpotInstance(this, `${STACK_PREFIX}_ec2_instance`, {
-      vpc: vpc,
+      vpc: defaultVPC,
       keyName: sshKeyPair.keyName,
       role: ec2Role,
       vpcSubnets: {

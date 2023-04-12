@@ -2,9 +2,14 @@
 import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
 import { MineCloud } from '../lib/mine-cloud-stack';
+import { AWS_ACCOUNT_NUMBER, AWS_REGION } from '../MineCloud-Configs';
 
 const app = new cdk.App();
 new MineCloud(app, 'MineCloud', {
+  env: {
+    account: AWS_ACCOUNT_NUMBER,
+    region: AWS_REGION // or whatever region you use
+  }
   /* If you don't specify 'env', this stack will be environment-agnostic.
    * Account/Region-dependent features and context lookups will not work,
    * but a single synthesized template can be deployed anywhere. */
