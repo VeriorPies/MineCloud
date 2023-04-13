@@ -117,7 +117,7 @@ exports.handler = async (event, context, callback) => {
   
   if (body.data.name == 'mc_backup'){
     const instanceIdList = [server_instance_id];
-    const cmd = ["cd /home/ubuntu/mc", "sudo ./backup_manual.sh"];
+    const cmd = ["cd /opt/minecraft/", "sudo ./server_backup.sh"];
     console.log('Sending commands to instances:');
     console.log(instanceIdList, cmd);
     
@@ -125,7 +125,7 @@ exports.handler = async (event, context, callback) => {
       const commandResults = await sendCommands(instanceIdList, cmd);
        return JSON.stringify({ 
               "type": 4,
-              "data": { "content": "OKOK~ Contacting server instance~~" }
+              "data": { "content": "OKOK~ Contacting the server instance~~" }
        });
     }catch (err) {
       console.log('sendCommands failed', err);
@@ -137,6 +137,28 @@ exports.handler = async (event, context, callback) => {
     }
   }
   
+  if (body.data.name == 'mc_get_latest_backup'){
+    const instanceIdList = [server_instance_id];
+    const cmd = ["cd /opt/minecraft/", "sudo ./get_latest_server_backup.sh"];
+    console.log('Sending commands to instances:');
+    console.log(instanceIdList, cmd);
+    
+    try{
+      const commandResults = await sendCommands(instanceIdList, cmd);
+       return JSON.stringify({ 
+              "type": 4,
+              "data": { "content": "OKOK~ Contacting the server instance~~" }
+       });
+    }catch (err) {
+      console.log('sendCommands failed', err);
+      return JSON.stringify({ 
+              "type": 4,
+              "data": { "content": "Hmm...There's some issue contacting server instance... \n This is want AWS told me: \n" 
+              +"\`\`\`" +err +"\`\`\`"}
+       });
+    }
+  }
+
   if (body.data.name == 'mc_restart'){
     const instanceIdList = [server_instance_id];
     const cmd = ["sudo systemctl restart minecraft"];

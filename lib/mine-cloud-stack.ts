@@ -34,6 +34,7 @@ import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
 import { Runtime } from "aws-cdk-lib/aws-lambda";
 import path = require("path");
 import { DISCORD_PUBLIC_KEY, DISCORD_APP_ID, DISCORD_BOT_TOKEN, DISCORD_CHANNEL_WEB_HOOK } from "../MineCloud-Configs";
+import { Bucket } from "aws-cdk-lib/aws-s3";
 
 export const STACK_PREFIX = 'MineCloud';
 
@@ -77,10 +78,16 @@ export class MineCloud extends Stack {
     this.discordInteractionsEndpointLambda.node.addDependency(this.ec2Instance);
     this.discordInteractionsEndpointURL = new CfnOutput(this, 'DISCORD-INTERACTIONS-ENDPOINT-URL', { 
       value: this.discordInteractionsEndpointLambda.lambdaFunctionURL.url });
+    
+    const backupBucket = new Bucket(this, `${STACK_PREFIX}_backup_s3_bucket`, {
+      bucketName: `${STACK_PREFIX.toLowerCase()}-backup-bucket`
+    });
+    backupBucket.grantReadWrite(this.ec2Instance);
   }
 
   setupEC2Instance(): SpotInstance {
-    const vpc = new Vpc(this, `${STACK_PREFIX}_VPC`);
+    const defaultVPC = Vpc.fromLookup(this,  `${STACK_PREFIX}_vpc`,{isDefault: true});
+
     const ec2Role = new Role(
       this,
       `${STACK_PREFIX}_ec2_instance_role`,
@@ -101,7 +108,7 @@ export class MineCloud extends Stack {
       this,
       `${STACK_PREFIX}_ec2_security_group`,
       {
-        vpc: vpc,
+        vpc: defaultVPC,
         allowAllOutbound: true,
         securityGroupName: `${STACK_PREFIX}_ec2_security_group`,
       }
@@ -123,7 +130,7 @@ export class MineCloud extends Stack {
       keyName: `${STACK_PREFIX}_ec2_key`});
       
     return new SpotInstance(this, `${STACK_PREFIX}_ec2_instance`, {
-      vpc: vpc,
+      vpc: defaultVPC,
       keyName: sshKeyPair.keyName,
       role: ec2Role,
       vpcSubnets: {
@@ -161,7 +168,9 @@ export class MineCloud extends Stack {
           "setupDiscordMessaging",
           "createMinecraftService",
           "startMinecraftService",
-          "setupAutoShutdown"
+          "setupAutoShutdown",
+          "setupBackupScript",
+          "setupGetLatestBackupScript"
         ],
       },
       configs: {
@@ -225,7 +234,15 @@ export class MineCloud extends Stack {
           InitCommand.shellCommand(`sudo chmod +x check_user_conn.sh`, {cwd: MINECRAFT_BASE_DIR}),
           // Setup crontab scheduler, run every 30 min
           InitCommand.shellCommand(`(crontab -l 2>/dev/null; echo "*/30 * * * * ${MINECRAFT_BASE_DIR}/check_user_conn.sh") | crontab -`),
-        ])
+        ]),
+        setupBackupScript: new InitConfig([
+          InitFile.fromFileInline(`${MINECRAFT_BASE_DIR}/server_backup.sh`,'server_init_assets/server_backup.sh'),
+          InitCommand.shellCommand(`sudo chmod +x server_backup.sh`, {cwd: MINECRAFT_BASE_DIR}),
+        ]),
+        setupGetLatestBackupScript: new InitConfig([
+          InitFile.fromFileInline(`${MINECRAFT_BASE_DIR}/get_latest_server_backup.sh`,'server_init_assets/get_latest_server_backup.sh'),
+          InitCommand.shellCommand(`sudo chmod +x get_latest_server_backup.sh`, {cwd: MINECRAFT_BASE_DIR}),
+        ]),
       },
     });
   }
