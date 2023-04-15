@@ -13,12 +13,4 @@ export const BACKUP_INTERVAL_IN_SECONDS=10800;
 
 // EC2 max price per hours, in dollars
 export const MAX_PRICE = 0.1; 
-export const EC2_INSTANCE_TYPE = InstanceType.of(
-  InstanceClass.T2,
-  InstanceSize.LARGE
-);
-
-
-
-// Imports
-import { InstanceClass, InstanceSize, InstanceType } from "aws-cdk-lib/aws-ec2";
+export const EC2_INSTANCE_TYPE = "t2.large";

@@ -137,7 +137,7 @@ exports.handler = async (event, context, callback) => {
     }
   }
   
-  if (body.data.name == 'mc_get_latest_backup'){
+  if (body.data.name == 'mc_backup_download'){
     const instanceIdList = [server_instance_id];
     const cmd = ["cd /opt/minecraft/", "sudo ./get_latest_server_backup.sh"];
     console.log('Sending commands to instances:');

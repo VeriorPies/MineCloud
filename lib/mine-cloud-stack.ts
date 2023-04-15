@@ -70,8 +70,10 @@ export class MineCloud extends Stack {
       }
     );
     this.discordInteractionsEndpointLambda.node.addDependency(this.ec2Instance);
-    this.discordInteractionsEndpointURL = new CfnOutput(this, 'DISCORD-INTERACTIONS-ENDPOINT-URL', { 
-      value: this.discordInteractionsEndpointLambda.lambdaFunctionURL.url });
+    this.discordInteractionsEndpointURL = new CfnOutput(this, `Discord-Interaction-End-Point-Url`, {
+      description: "Copy and paste this to the Discord developer portal.",
+      value: this.discordInteractionsEndpointLambda.lambdaFunctionURL.url }
+    );
     
     // setup backup S3 bucket
     this.backBucket = new Bucket(this, `${STACK_PREFIX}_backup_s3_bucket`, {
@@ -133,7 +135,7 @@ export class MineCloud extends Stack {
         subnetType: SubnetType.PUBLIC
       },
       securityGroup: securityGroup,
-      instanceType: EC2_INSTANCE_TYPE,
+      instanceType: new InstanceType(EC2_INSTANCE_TYPE),
       machineImage: new AmazonLinuxImage({generation: AmazonLinuxGeneration.AMAZON_LINUX_2}),
       templateId: `${STACK_PREFIX}_ec2_launch_template`,
       launchTemplateSpotOptions:{

@@ -1,4 +1,5 @@
 // These json can be used to test the lambda from the AWS console
+// Will need to comment out the public key validation section
 
 // Start the EC2 instance
 {
