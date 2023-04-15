@@ -33,18 +33,11 @@ import * as cr from 'aws-cdk-lib/custom-resources'
 import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
 import { Runtime } from "aws-cdk-lib/aws-lambda";
 import path = require("path");
-import { DISCORD_PUBLIC_KEY, DISCORD_APP_ID, DISCORD_BOT_TOKEN } from "../MineCloud-Configs";
+import { DISCORD_PUBLIC_KEY, DISCORD_APP_ID, DISCORD_BOT_TOKEN, EC2_INSTANCE_TYPE, MAX_PRICE } from "../minecloud_configs/MineCloud-Configs";
 import { Bucket } from "aws-cdk-lib/aws-s3";
 import { INTANCE_INIT_CONFIG } from "./instance-init";
 
 export const STACK_PREFIX = 'MineCloud';
-
-const MAX_PRICE = 0.1; // EC2 max price
-const EC2_INSTANCE_TYPE = InstanceType.of(
-  InstanceClass.T2,
-  InstanceSize.LARGE
-);
-
 
 export class MineCloud extends Stack {
 

@@ -8,7 +8,7 @@ import {
   InitUser,
 } from "aws-cdk-lib/aws-ec2";
 
-import { BACKUP_INTERVAL_IN_SECONDS, DISCORD_CHANNEL_WEB_HOOK, MAX_BACKUP_COUNT } from "../MineCloud-Configs";
+import { BACKUP_INTERVAL_IN_SECONDS, DISCORD_CHANNEL_WEB_HOOK, MAX_BACKUP_COUNT } from "../minecloud_configs/MineCloud-Configs";
 
 const MINECRAFT_USER = "minecraft";
 // Not the same name since cfn-init can't figure it out for some reason
@@ -21,7 +21,7 @@ export const INTANCE_INIT_CONFIG = CloudFormationInit.fromConfigSets(
       configSets: {
         default: [
           "yumPreinstall",
-          "minecraftServerJarSetup",
+          "setupMinecraftServer",
           "createEula",
           "setupDiscordMessaging",
           "setupMinecraftService",
@@ -35,7 +35,7 @@ export const INTANCE_INIT_CONFIG = CloudFormationInit.fromConfigSets(
           // Install an Amazon Linux package using yum
           InitPackage.yum("java-17-amazon-corretto-headless"),
         ]),
-        minecraftServerJarSetup: new InitConfig([
+        setupMinecraftServer: new InitConfig([
           InitGroup.fromName(MINECRAFT_GROUP),
           InitUser.fromName(MINECRAFT_USER, {
             groups: [MINECRAFT_GROUP],
@@ -43,22 +43,21 @@ export const INTANCE_INIT_CONFIG = CloudFormationInit.fromConfigSets(
 
           // Setup directories
           InitCommand.shellCommand(`mkdir -p ${MINECRAFT_SERVER_DIR}`),
-          InitCommand.shellCommand(
-            "wget https://piston-data.mojang.com/v1/objects/8f3112a1049751cc472ec13e397eade5336ca7ae/server.jar",
-            {
-              cwd: MINECRAFT_SERVER_DIR,
-            }
-          ),
+          
+          // Setuo server start/stop scripts
+          InitFile.fromFileInline(`${MINECRAFT_SERVER_DIR}/start_server.sh`,'minecloud_configs/server/start_server.sh'),
+          InitCommand.shellCommand(`sudo chmod +x start_server.sh`, {cwd: MINECRAFT_SERVER_DIR}),
+          
+          InitFile.fromFileInline(`${MINECRAFT_SERVER_DIR}/stop_server.sh`,'minecloud_configs/server/stop_server.sh'),
+          InitCommand.shellCommand(`sudo chmod +x stop_server.sh`, {cwd: MINECRAFT_SERVER_DIR}),
+          
+          // Setup server executables 
+          InitFile.fromAsset(`${MINECRAFT_SERVER_DIR}/server.zip`, 'minecloud_configs/server/server.zip'),
+          InitCommand.shellCommand(`sudo unzip server.zip`, {cwd: MINECRAFT_SERVER_DIR}),
+          InitCommand.shellCommand(`sudo rm -f server.zip`, {cwd: MINECRAFT_SERVER_DIR}),
+
           InitCommand.shellCommand(
             `chown -R ${MINECRAFT_USER}:${MINECRAFT_GROUP} ${MINECRAFT_BASE_DIR}`
-          ),
-        ]),
-        createEula: new InitConfig([
-          InitCommand.shellCommand(
-            "echo 'eula=true' > eula.txt",
-            {
-              cwd: MINECRAFT_SERVER_DIR,
-            }
           ),
         ]),
         setupDiscordMessaging: new InitConfig([
