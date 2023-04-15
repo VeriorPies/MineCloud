@@ -1,7 +1,5 @@
 cd /opt/minecraft/
 
-./send_discord_message_to_webhook.sh "Stopping the server to backup..."
-sudo systemctl stop minecraft
 ./send_discord_message_to_webhook.sh "Start backing up..."
 
 currentTime=$(date +"%Y-%m-%d-%T")
@@ -36,6 +34,3 @@ done <<<"$fileList"
 
 echo "Backup completed"
 ./send_discord_message_to_webhook.sh "Backup completed, here's all your backups: \n$backUpList"
-./send_discord_message_to_webhook.sh "Restarting server..."
-
-sudo systemctl start minecraft

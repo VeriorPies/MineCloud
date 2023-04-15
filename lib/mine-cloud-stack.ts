@@ -33,8 +33,9 @@ import * as cr from 'aws-cdk-lib/custom-resources'
 import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
 import { Runtime } from "aws-cdk-lib/aws-lambda";
 import path = require("path");
-import { DISCORD_PUBLIC_KEY, DISCORD_APP_ID, DISCORD_BOT_TOKEN, DISCORD_CHANNEL_WEB_HOOK } from "../MineCloud-Configs";
+import { DISCORD_PUBLIC_KEY, DISCORD_APP_ID, DISCORD_BOT_TOKEN } from "../MineCloud-Configs";
 import { Bucket } from "aws-cdk-lib/aws-s3";
+import { INTANCE_INIT_CONFIG } from "./instance-init";
 
 export const STACK_PREFIX = 'MineCloud';
 
@@ -43,13 +44,6 @@ const EC2_INSTANCE_TYPE = InstanceType.of(
   InstanceClass.T2,
   InstanceSize.LARGE
 );
-
-const MINECRAFT_USER = "minecraft";
-// Not the same name since cfn-init can't figure it out for some reason
-const MINECRAFT_GROUP = "minecraft-group";
-const MINECRAFT_BASE_DIR = "/opt/minecraft";
-const MINECRAFT_SERVER_DIR = `${MINECRAFT_BASE_DIR}/server`;
-
 
 
 export class MineCloud extends Stack {
@@ -60,12 +54,19 @@ export class MineCloud extends Stack {
   readonly discordInteractionsEndpointURL: CfnOutput;
   
   readonly discordCommandRegisterResource: CustomResource;
+  
+  readonly backBucket: Bucket;
 
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
+
+    // setup EC2 instance
     this.ec2Instance = this.setupEC2Instance();
+
+    // register Discord commands
     this.discordCommandRegisterResource = this.setupDiscordCommands();
 
+    // setup discord interaction end points
     this.discordInteractionsEndpointLambda = new DiscordInteractionsEndpointConstruct(
       this,  
       `${STACK_PREFIX}_discord_interactions_endpoint_construct`,
@@ -79,10 +80,11 @@ export class MineCloud extends Stack {
     this.discordInteractionsEndpointURL = new CfnOutput(this, 'DISCORD-INTERACTIONS-ENDPOINT-URL', { 
       value: this.discordInteractionsEndpointLambda.lambdaFunctionURL.url });
     
-    const backupBucket = new Bucket(this, `${STACK_PREFIX}_backup_s3_bucket`, {
+    // setup backup S3 bucket
+    this.backBucket = new Bucket(this, `${STACK_PREFIX}_backup_s3_bucket`, {
       bucketName: `${STACK_PREFIX.toLowerCase()}-backup-bucket`
     });
-    backupBucket.grantReadWrite(this.ec2Instance);
+    this.backBucket.grantReadWrite(this.ec2Instance);
   }
 
   setupEC2Instance(): SpotInstance {
@@ -151,102 +153,13 @@ export class MineCloud extends Stack {
         timeout: Duration.minutes(10),
         configSets: ["default"],
       },
-      // use init over user data commands since changes to user data will replace the EC2 instance...
-      init: this.getInstanceInit(),
+      // Note: 
+      // Making changes to init config will replace the old EC2 instance and 
+      // WILL RESULT IN DANGLING SPOT REQUEST AND EC2 INSTANCE 
+      // (YOU'LL NEED TO MANUALLY CANCEL THE DANGLING SPOT REQUEST TO AVOID SPINNING UP ADDITIONAL EC2 INSTANCE)
+      init: INTANCE_INIT_CONFIG,
     });
   }
-
-  getInstanceInit(): CloudFormationInit {
-    const handle = new InitServiceRestartHandle();
-
-    return CloudFormationInit.fromConfigSets({
-      configSets: {
-        default: [
-          "yumPreinstall",
-          "minecraftServerJarSetup",
-          "createEula",
-          "setupDiscordMessaging",
-          "createMinecraftService",
-          "startMinecraftService",
-          "setupAutoShutdown",
-          "setupBackupScript",
-          "setupGetLatestBackupScript"
-        ],
-      },
-      configs: {
-        yumPreinstall: new InitConfig([
-          // Install an Amazon Linux package using yum
-          InitPackage.yum("java-17-amazon-corretto-headless"),
-        ]),
-        minecraftServerJarSetup: new InitConfig([
-          InitGroup.fromName(MINECRAFT_GROUP),
-          InitUser.fromName(MINECRAFT_USER, {
-            groups: [MINECRAFT_GROUP],
-          }),
-
-          // Setup directories
-          InitCommand.shellCommand(`mkdir -p ${MINECRAFT_SERVER_DIR}`),
-          InitCommand.shellCommand(
-            "wget https://piston-data.mojang.com/v1/objects/8f3112a1049751cc472ec13e397eade5336ca7ae/server.jar",
-            {
-              cwd: MINECRAFT_SERVER_DIR,
-            }
-          ),
-          InitCommand.shellCommand(
-            `chown -R ${MINECRAFT_USER}:${MINECRAFT_GROUP} ${MINECRAFT_BASE_DIR}`
-          ),
-        ]),
-        setupDiscordMessaging: new InitConfig([
-          InitCommand.shellCommand(
-            `echo 'DISCORD_WEB_HOOK=${DISCORD_CHANNEL_WEB_HOOK}' >> /etc/environment`
-          ),
-          InitFile.fromFileInline(`${MINECRAFT_BASE_DIR}/send_discord_message_to_webhook.sh`,'server_init_assets/send_discord_message_to_webhook.sh'),
-          InitCommand.shellCommand(`sudo chmod +x send_discord_message_to_webhook.sh`, {cwd: MINECRAFT_BASE_DIR}),
-        ]),
-        createMinecraftService: new InitConfig([
-          InitFile.fromFileInline(`${MINECRAFT_BASE_DIR}/start_service.sh`,'server_init_assets/start_service.sh'),
-          InitCommand.shellCommand(`sudo chmod +x start_service.sh`, {cwd: MINECRAFT_BASE_DIR}),
-          InitFile.fromFileInline('/etc/systemd/system/minecraft.service','server_init_assets/minecraft.service'),
-        ]),
-        startMinecraftService: new InitConfig([
-          InitCommand.shellCommand("systemctl enable minecraft.service"),
-          InitCommand.shellCommand("systemctl start minecraft.service"),
-        ]),
-        // Currently unused
-        editEula: new InitConfig([
-          InitCommand.shellCommand(
-            "sed -i 's/^eula=false$/eula=true/g' eula.txt",
-            {
-              cwd: MINECRAFT_SERVER_DIR,
-            }
-          ),
-        ]),
-        createEula: new InitConfig([
-          InitCommand.shellCommand(
-            "echo 'eula=true' > eula.txt",
-            {
-              cwd: MINECRAFT_SERVER_DIR,
-            }
-          ),
-        ]),
-        setupAutoShutdown: new InitConfig([
-          InitFile.fromFileInline(`${MINECRAFT_BASE_DIR}/check_user_conn.sh`,'server_init_assets/check_user_conn.sh'),
-          InitCommand.shellCommand(`sudo chmod +x check_user_conn.sh`, {cwd: MINECRAFT_BASE_DIR}),
-          // Setup crontab scheduler, run every 30 min
-          InitCommand.shellCommand(`(crontab -l 2>/dev/null; echo "*/30 * * * * ${MINECRAFT_BASE_DIR}/check_user_conn.sh") | crontab -`),
-        ]),
-        setupBackupScript: new InitConfig([
-          InitFile.fromFileInline(`${MINECRAFT_BASE_DIR}/server_backup.sh`,'server_init_assets/server_backup.sh'),
-          InitCommand.shellCommand(`sudo chmod +x server_backup.sh`, {cwd: MINECRAFT_BASE_DIR}),
-        ]),
-        setupGetLatestBackupScript: new InitConfig([
-          InitFile.fromFileInline(`${MINECRAFT_BASE_DIR}/get_latest_server_backup.sh`,'server_init_assets/get_latest_server_backup.sh'),
-          InitCommand.shellCommand(`sudo chmod +x get_latest_server_backup.sh`, {cwd: MINECRAFT_BASE_DIR}),
-        ]),
-      },
-    });
-  }
-
 
   setupDiscordCommands(): CustomResource{
     const role = new Role(
