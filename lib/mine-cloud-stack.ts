@@ -1,28 +1,16 @@
 import { Construct } from "constructs";
 import { SpotInstance } from "./spot-instance";
 import { CfnOutput, CustomResource, Duration, Stack, StackProps } from "aws-cdk-lib";
-import { Effect, PolicyDocument, PolicyStatement, Role, ServicePrincipal } from "aws-cdk-lib/aws-iam";
+import { Effect, PolicyStatement, Role, ServicePrincipal } from "aws-cdk-lib/aws-iam";
 import {
   AmazonLinuxGeneration,
   AmazonLinuxImage,
+  BlockDeviceVolume,
   CfnKeyPair,
-  CloudFormationInit,
-  InitCommand,
-  InitConfig,
-  InitFile,
-  InitGroup,
-  InitPackage,
-  InitService,
-  InitServiceRestartHandle,
-  InitUser,
-  Instance,
-  InstanceClass,
-  InstanceSize,
   InstanceType,
   Peer,
   Port,
   SecurityGroup,
-  ServiceManager,
   SpotInstanceInterruption,
   SpotRequestType,
   SubnetType,
@@ -33,7 +21,7 @@ import * as cr from 'aws-cdk-lib/custom-resources'
 import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
 import { Runtime } from "aws-cdk-lib/aws-lambda";
 import path = require("path");
-import { DISCORD_PUBLIC_KEY, DISCORD_APP_ID, DISCORD_BOT_TOKEN, EC2_INSTANCE_TYPE, MAX_PRICE } from "../minecloud_configs/MineCloud-Configs";
+import { DISCORD_PUBLIC_KEY, DISCORD_APP_ID, DISCORD_BOT_TOKEN, EC2_INSTANCE_TYPE, MAX_PRICE, EC2_VOLUME } from "../minecloud_configs/MineCloud-Configs";
 import { Bucket } from "aws-cdk-lib/aws-s3";
 import { INTANCE_INIT_CONFIG } from "./instance-init";
 
@@ -148,6 +136,10 @@ export class MineCloud extends Stack {
         timeout: Duration.minutes(10),
         configSets: ["default"],
       },
+      blockDevices:[{
+        deviceName:"/dev/xvda",
+        volume: BlockDeviceVolume.ebs(EC2_VOLUME)
+      }],
       // Note: 
       // Making changes to init config will replace the old EC2 instance and 
       // WILL RESULT IN DANGLING SPOT REQUEST AND EC2 INSTANCE 
