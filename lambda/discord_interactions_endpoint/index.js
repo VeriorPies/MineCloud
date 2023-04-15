@@ -117,7 +117,7 @@ exports.handler = async (event, context, callback) => {
   
   if (body.data.name == 'mc_backup'){
     const instanceIdList = [server_instance_id];
-    const cmd = ["cd /opt/minecraft/", "sudo ./server_backup.sh"];
+    const cmd = ["cd /opt/minecraft/", "sudo ./server_manual_backup.sh"];
     console.log('Sending commands to instances:');
     console.log(instanceIdList, cmd);
     

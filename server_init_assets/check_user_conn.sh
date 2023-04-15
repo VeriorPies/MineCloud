@@ -21,8 +21,8 @@ then
                 echo "no ssh connections, closing server instace"
                 ./send_discord_message_to_webhook.sh "Nobody here~ Shutting down the server OwO~"
 		sudo systemctl stop minecraft
-		# /home/ubuntu/mc/backup.sh # Not for now
-		# /home/ubuntu/mc/discord.sh/discord.sh --text "Done~ Shutting down~~" # Not for now
+                ./auto_backup_checker.sh
+		./send_discord_message_to_webhook.sh "Shutting down the server instance!"
 		sudo shutdown
         else
                 echo "There are 1 or more active ssh connections, skip termination"
