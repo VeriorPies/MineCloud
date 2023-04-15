@@ -1,0 +1,4 @@
+# eslint ignore artifacts:
+node_modules
+dist
+cdk.out

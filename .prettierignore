@@ -1,0 +1,4 @@
+# Prettier ignore artifacts:
+node_modules
+cdk.out
+dist

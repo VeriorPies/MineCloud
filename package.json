@@ -11,15 +11,22 @@
     "build": "tsc",
     "watch": "tsc -w",
     "test": "jest",
-    "cdk": "cdk"
+    "cdk": "cdk",
+    "prettier-format": "prettier --config .prettierrc . --write",
+    "lint": "eslint . --ext .ts",
+    "lint-fix": "eslint . --ext .ts --fix"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.114",
     "@types/jest": "^29.4.0",
     "@types/node": "18.14.6",
+    "@typescript-eslint/eslint-plugin": "^5.58.0",
+    "@typescript-eslint/parser": "^5.58.0",
     "aws-cdk": "2.72.1",
     "esbuild": "^0.17.15",
+    "eslint": "^8.38.0",
     "jest": "^29.5.0",
+    "prettier": "^2.8.7",
     "ts-jest": "^29.0.5",
     "ts-node": "^10.9.1",
     "typescript": "~4.9.5"
