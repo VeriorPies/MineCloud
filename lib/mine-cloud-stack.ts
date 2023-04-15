@@ -21,7 +21,7 @@ import * as cr from 'aws-cdk-lib/custom-resources'
 import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
 import { Runtime } from "aws-cdk-lib/aws-lambda";
 import path = require("path");
-import { DISCORD_PUBLIC_KEY, DISCORD_APP_ID, DISCORD_BOT_TOKEN, EC2_INSTANCE_TYPE, MAX_PRICE, EC2_VOLUME } from "../minecloud_configs/MineCloud-Configs";
+import { DISCORD_PUBLIC_KEY, DISCORD_APP_ID, DISCORD_BOT_TOKEN, EC2_INSTANCE_TYPE, MAX_PRICE, EC2_VOLUME, EC2_INIT_TIMEOUT } from "../minecloud_configs/MineCloud-Configs";
 import { Bucket } from "aws-cdk-lib/aws-s3";
 import { INTANCE_INIT_CONFIG } from "./instance-init";
 
@@ -133,7 +133,7 @@ export class MineCloud extends Stack {
       },
       initOptions: {
         ignoreFailures: false,
-        timeout: Duration.minutes(10),
+        timeout: Duration.minutes(EC2_INIT_TIMEOUT),
         configSets: ["default"],
       },
       blockDevices:[{
