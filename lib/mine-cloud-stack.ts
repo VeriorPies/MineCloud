@@ -186,7 +186,7 @@ export class MineCloud extends Stack {
       this,
       `${STACK_PREFIX}_discord_commands_register_lambda`,
       {
-        runtime: Runtime.NODEJS_14_X, // We will want to upgrade this later
+        runtime: Runtime.NODEJS_18_X,
         handler: 'index.handler',
         entry: path.join(
           __dirname,

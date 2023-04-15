@@ -30,7 +30,7 @@ export class DiscordInteractionsEndpointConstruct extends Construct {
       this,
       `${STACK_PREFIX}_discord_interactions_endpoint_lambda`,
       {
-        runtime: Runtime.NODEJS_18_X, // We will want to upgrade this later
+        runtime: Runtime.NODEJS_18_X,
         handler: 'index.handler',
         entry: path.join(
           __dirname,
