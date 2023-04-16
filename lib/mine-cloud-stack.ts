@@ -42,7 +42,8 @@ import {
   EC2_INIT_TIMEOUT
 } from '../minecloud_configs/MineCloud-Configs';
 import { Bucket } from 'aws-cdk-lib/aws-s3';
-import { INTANCE_INIT_CONFIG } from './instance-init';
+import { getInitConfig } from './instance-init';
+import { v4 } from 'uuid';
 
 export const STACK_PREFIX = 'MineCloud';
 
@@ -54,13 +55,20 @@ export class MineCloud extends Stack {
 
   readonly discordCommandRegisterResource: CustomResource;
 
-  readonly backBucket: Bucket;
+  readonly backupBucket: Bucket;
 
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
 
+    // setup backup S3 bucket
+    const backUpBucketName = `mc-backup-${v4()}`;
+    this.backupBucket = new Bucket(this, `${STACK_PREFIX}_backup_s3_bucket`, {
+      bucketName: backUpBucketName
+    });
+
     // setup EC2 instance
-    this.ec2Instance = this.setupEC2Instance();
+    this.ec2Instance = this.setupEC2Instance(backUpBucketName);
+    this.backupBucket.grantReadWrite(this.ec2Instance);
 
     // register Discord commands
     this.discordCommandRegisterResource = this.setupDiscordCommands();
@@ -85,15 +93,9 @@ export class MineCloud extends Stack {
         value: this.discordInteractionsEndpointLambda.lambdaFunctionURL.url
       }
     );
-
-    // setup backup S3 bucket
-    this.backBucket = new Bucket(this, `${STACK_PREFIX}_backup_s3_bucket`, {
-      bucketName: `${STACK_PREFIX.toLowerCase()}-backup-bucket`
-    });
-    this.backBucket.grantReadWrite(this.ec2Instance);
   }
 
-  setupEC2Instance(): SpotInstance {
+  setupEC2Instance(backupBucketName: string): SpotInstance {
     const defaultVPC = Vpc.fromLookup(this, `${STACK_PREFIX}_vpc`, {
       isDefault: true
     });
@@ -171,7 +173,7 @@ export class MineCloud extends Stack {
       // Making changes to init config will replace the old EC2 instance and
       // WILL RESULT IN DANGLING SPOT REQUEST AND EC2 INSTANCE
       // (YOU'LL NEED TO MANUALLY CANCEL THE DANGLING SPOT REQUEST TO AVOID SPINNING UP ADDITIONAL EC2 INSTANCE)
-      init: INTANCE_INIT_CONFIG
+      init: getInitConfig(backupBucketName)
     });
   }
 

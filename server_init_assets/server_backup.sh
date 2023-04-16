@@ -7,10 +7,10 @@ currentTime=$(date +"%Y-%m-%d-%T")
 backupArchiveName="backup_${currentTime}.zip"
 
 zip -r ${backupArchiveName} server
-aws s3 mv ${backupArchiveName} s3://minecloud-backup-bucket
+aws s3 mv ${backupArchiveName} s3://${BACKUP_BUCKET_NAME}
 
 # Remove older backups
-fileList=$(aws s3 ls s3://minecloud-backup-bucket | sort -r)
+fileList=$(aws s3 ls s3://${BACKUP_BUCKET_NAME} | sort -r)
 
 backUpList=""
 maxBackup=${MAX_BACKUP_COUNT:=3}
@@ -26,7 +26,7 @@ while read fileObj;
     if (( i > maxBackup )); 
      then
        echo " => Deleting $fileName"
-      aws s3 rm s3://minecloud-backup-bucket/$fileName
+      aws s3 rm s3://${BACKUP_BUCKET_NAME}/$fileName
      else
        backUpList+=" - ${fileName} \n"
     fi
