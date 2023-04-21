@@ -80,7 +80,7 @@ export class MineCloud extends Stack {
         `${STACK_PREFIX}_discord_interactions_endpoint_construct`,
         {
           instanceId: this.ec2Instance.instanceId,
-          region: this.region,
+          ec2Region: this.region,
           discordPublicKey: DISCORD_PUBLIC_KEY
         }
       );
