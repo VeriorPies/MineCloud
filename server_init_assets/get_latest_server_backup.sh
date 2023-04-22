@@ -2,7 +2,6 @@ cd /opt/minecraft/
 
 ./send_discord_message_to_webhook.sh "Grabbing the latest backup for you..."
 
-# Remove older backups
 fileList=$(aws s3 ls s3://${BACKUP_BUCKET_NAME} | sort -r)
 
 backUpList=""
