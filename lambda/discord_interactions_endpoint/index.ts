@@ -1,11 +1,8 @@
-import {
-  Context
-} from 'aws-lambda';
-import {sign} from 'tweetnacl';
+import { Context } from 'aws-lambda';
+import { sign } from 'tweetnacl';
 import { Lambda } from 'aws-sdk';
 
 exports.handler = async (event: any, context: Context) => {
-
   const PUBLIC_KEY = process.env.PUBLIC_KEY!;
 
   const signature = event.headers['x-signature-ed25519'];
@@ -37,10 +34,12 @@ exports.handler = async (event: any, context: Context) => {
     };
   }
   const lambda = new Lambda();
-  const res = await lambda.invokeAsync({
-    FunctionName: 'discord_command_processor_lambda',
-    InvokeArgs: JSON.stringify(event)
-  }).promise();
+  const res = await lambda
+    .invokeAsync({
+      FunctionName: 'discord_command_processor_lambda',
+      InvokeArgs: JSON.stringify(event)
+    })
+    .promise();
   console.log('Command processing lambda invoking result: ', res);
 
   return JSON.stringify({

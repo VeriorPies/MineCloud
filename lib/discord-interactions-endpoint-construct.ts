@@ -46,8 +46,7 @@ export class DiscordInteractionsEndpointConstruct extends Construct {
         memorySize: 1024 // To reduce cold start time
       }
     );
-    
-    
+
     this.discordCommandProcesser = new NodejsFunction(
       this,
       `${STACK_PREFIX}_discord_command_processor_lambda`,
