@@ -8,15 +8,18 @@ import {
 import path = require('path');
 import { PolicyStatement, Policy } from 'aws-cdk-lib/aws-iam';
 import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
+import { Duration } from 'aws-cdk-lib';
+import { DISCORD_APP_ID } from '../minecloud_configs/MineCloud-Configs';
 
 export interface DiscordInteractionsEndpointConstructProps {
   instanceId: string;
-  region: string;
+  ec2Region: string;
   discordPublicKey: string;
 }
 
 export class DiscordInteractionsEndpointConstruct extends Construct {
-  readonly lambdaFunction;
+  readonly discordInteractionsEndpoint;
+  readonly discordCommandProcesser;
   readonly lambdaFunctionURL: FunctionUrl;
 
   constructor(
@@ -26,23 +29,44 @@ export class DiscordInteractionsEndpointConstruct extends Construct {
   ) {
     super(scope, id);
 
-    this.lambdaFunction = new NodejsFunction(
+    this.discordInteractionsEndpoint = new NodejsFunction(
       this,
       `${STACK_PREFIX}_discord_interactions_endpoint_lambda`,
       {
+        functionName: `discord_interactions_endpoint_lambda`,
         runtime: Runtime.NODEJS_18_X,
         handler: 'index.handler',
         entry: path.join(
           __dirname,
-          '/../lambda/discord_interactions_endpoint/index.js'
+          '/../lambda/discord_interactions_endpoint/index.ts'
         ),
         environment: {
-          PUBLIC_KEY: props.discordPublicKey,
-          INSTANCE_ID: props.instanceId,
-          REGION: props.region
-        }
+          PUBLIC_KEY: props.discordPublicKey
+        },
+        memorySize: 1024 // To reduce cold start time
       }
     );
+
+    this.discordCommandProcesser = new NodejsFunction(
+      this,
+      `${STACK_PREFIX}_discord_command_processor_lambda`,
+      {
+        functionName: 'discord_command_processor_lambda',
+        runtime: Runtime.NODEJS_18_X,
+        handler: 'index.handler',
+        entry: path.join(
+          __dirname,
+          '/../lambda/discord_command_processer/index.ts'
+        ),
+        environment: {
+          INSTANCE_ID: props.instanceId,
+          EC2_REGION: props.ec2Region,
+          APP_ID: DISCORD_APP_ID
+        },
+        timeout: Duration.seconds(15)
+      }
+    );
+    this.discordCommandProcesser.grantInvoke(this.discordInteractionsEndpoint);
 
     const ec2Policy = new PolicyStatement({
       actions: ['ec2:*'],
@@ -54,7 +78,7 @@ export class DiscordInteractionsEndpointConstruct extends Construct {
       resources: ['*']
     });
 
-    this.lambdaFunction.role?.attachInlinePolicy(
+    this.discordCommandProcesser.role?.attachInlinePolicy(
       new Policy(
         this,
         `${STACK_PREFIX}_discord_interactions_endpoint_lambda_policy`,
@@ -64,7 +88,7 @@ export class DiscordInteractionsEndpointConstruct extends Construct {
       )
     );
 
-    this.lambdaFunctionURL = this.lambdaFunction.addFunctionUrl({
+    this.lambdaFunctionURL = this.discordInteractionsEndpoint.addFunctionUrl({
       authType: FunctionUrlAuthType.NONE
     });
   }
