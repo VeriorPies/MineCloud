@@ -30,6 +30,7 @@ exports.handler = async (event: any, context: Context) => {
       await sendDeferredResponse(
         getAWSErrorMessageTemplate('starting server instance', err)
       );
+      await sendDeferredResponse('Try in another minute?');
     }
   }
 
