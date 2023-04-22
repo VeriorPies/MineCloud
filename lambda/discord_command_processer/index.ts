@@ -24,11 +24,11 @@ exports.handler = async (event: any, context: Context) => {
     try {
       const result = await ec2.startInstances({ InstanceIds }).promise();
       console.log('startInstances succeed, result: \n', result);
-      await sendDeferredResponse('OK! Starting the server machine!');
+      await sendDeferredResponse('OK! Starting the server instance (`･ω･´)~~');
     } catch (err) {
       console.error(`startInstances error: \n`, err);
       await sendDeferredResponse(
-        getAWSErrorMessageTemplate('starting server', err)
+        getAWSErrorMessageTemplate('starting server instance', err)
       );
     }
   }
@@ -37,11 +37,11 @@ exports.handler = async (event: any, context: Context) => {
     try {
       const result = await ec2.stopInstances({ InstanceIds }).promise();
       console.log('stopInstance suceeed, result: \n', result);
-      await sendDeferredResponse('OK! Shutting down the server machine!');
+      await sendDeferredResponse('OK! Shutting down the server instance!');
     } catch (err) {
       console.error(`stopInstance error: \n`, err);
       await sendDeferredResponse(
-        getAWSErrorMessageTemplate('stopping server', err)
+        getAWSErrorMessageTemplate('stopping server instance', err)
       );
     }
   }
@@ -50,7 +50,7 @@ exports.handler = async (event: any, context: Context) => {
     try {
       const result = await sendCommands(['sudo systemctl restart minecraft']);
       console.log('mc_restart result: ', result);
-      await sendDeferredResponse('OK, contacting EC2 instance!');
+      await sendDeferredResponse('OK, contacting server instance!');
     } catch (err) {
       console.error(`mc_restart error: \n`, err);
       await sendDeferredResponse(
@@ -66,11 +66,11 @@ exports.handler = async (event: any, context: Context) => {
         'sudo ./server_manual_backup.sh'
       ]);
       console.log('mc_backup result: ', result);
-      await sendDeferredResponse('OK, contacting EC2 instance!');
+      await sendDeferredResponse('OK, contacting server instance!');
     } catch (err) {
       console.error(`mc_backup error: \n`, err);
       await sendDeferredResponse(
-        getAWSErrorMessageTemplate('sending backup', err)
+        getAWSErrorMessageTemplate('making backup', err)
       );
     }
   }
@@ -82,11 +82,11 @@ exports.handler = async (event: any, context: Context) => {
         'sudo ./get_latest_server_backup.sh'
       ]);
       console.log('mc_backup_download result: ', result);
-      await sendDeferredResponse('OK, contacting EC2 instance!');
+      await sendDeferredResponse('OK, contacting server instance!');
     } catch (err) {
       console.error(`mc_backup error: \n`, err);
       await sendDeferredResponse(
-        getAWSErrorMessageTemplate('sending backup', err)
+        getAWSErrorMessageTemplate('getting latest backup', err)
       );
     }
   }

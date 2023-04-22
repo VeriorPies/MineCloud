@@ -11,7 +11,7 @@ mcCons=$(netstat -anp | grep :25565 | grep ESTABLISHED | wc -l)
 echo "Active SSH Connections: $sshCons"
 echo "Active Minecraft Connections: $mcCons"
 
-./send_discord_message_to_webhook.sh "Hm... there're still $mcCons people here...QwQ \n(When can I go home...?)"
+./send_discord_message_to_webhook.sh "Hm... there're $mcCons players online now... Come and join Ow<?"
 
 if [ $((mcCons)) = 0 ]
 then
@@ -19,10 +19,10 @@ then
         if [[ $((sshCons)) = 0 ]]
         then
                 echo "no ssh connections, closing server instace"
-                ./send_discord_message_to_webhook.sh "Nobody here~ Shutting down the server OwO~"
+                ./send_discord_message_to_webhook.sh "Nobody is online. Shutting down the server instance OwO~"
 		sudo systemctl stop minecraft
                 ./auto_backup_checker.sh
-		./send_discord_message_to_webhook.sh "Shutting down the server instance!"
+		./send_discord_message_to_webhook.sh "(Server instance stopped)"
 		sudo shutdown
         else
                 echo "There are 1 or more active ssh connections, skip termination"
