@@ -48,7 +48,7 @@ export function getInitConfig(backupBucketName: string) {
         // Setup directories
         InitCommand.shellCommand(`mkdir -p ${MINECRAFT_SERVER_DIR}`),
 
-        // Setuo server start/stop scripts
+        // Setup server start/stop scripts
         InitFile.fromFileInline(
           `${MINECRAFT_SERVER_DIR}/start_server.sh`,
           'minecloud_configs/server/start_server.sh'
@@ -144,6 +144,14 @@ export function getInitConfig(backupBucketName: string) {
         )
       ]),
       setupAutoShutdown: new InitConfig([
+        // Setup custom logic for checking how many current connection
+        InitFile.fromFileInline(
+          `${MINECRAFT_BASE_DIR}/get_connection_count.sh`,
+          'minecloud_configs/advanced_configs/get_connection_count.sh'
+        ),
+        InitCommand.shellCommand(`sudo chmod +x get_connection_count.sh`, {
+          cwd: MINECRAFT_BASE_DIR
+        }),
         InitFile.fromFileInline(
           `${MINECRAFT_BASE_DIR}/check_user_conn.sh`,
           'server_init_assets/check_user_conn.sh'

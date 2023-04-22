@@ -6,8 +6,11 @@
 cd /opt/minecraft
 sleep 10m
 
+source ./get_connection_count.sh
+
 sshCons=$(netstat -anp | grep :22 | grep ESTABLISHED | wc -l)
-mcCons=$(netstat -anp | grep :25565 | grep ESTABLISHED | wc -l)
+mcCons=$(get_current_connection_count)
+
 echo "Active SSH Connections: $sshCons"
 echo "Active Minecraft Connections: $mcCons"
 
