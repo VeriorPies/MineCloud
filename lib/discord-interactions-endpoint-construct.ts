@@ -9,6 +9,7 @@ import path = require('path');
 import { PolicyStatement, Policy } from 'aws-cdk-lib/aws-iam';
 import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
 import { Duration } from 'aws-cdk-lib';
+import { DISCORD_APP_ID } from '../minecloud_configs/MineCloud-Configs';
 
 export interface DiscordInteractionsEndpointConstructProps {
   instanceId: string;
@@ -60,7 +61,8 @@ export class DiscordInteractionsEndpointConstruct extends Construct {
         ),
         environment: {
           INSTANCE_ID: props.instanceId,
-          EC2_REGION: props.ec2Region
+          EC2_REGION: props.ec2Region,
+          APP_ID: DISCORD_APP_ID
         },
         timeout: Duration.seconds(15)
       }

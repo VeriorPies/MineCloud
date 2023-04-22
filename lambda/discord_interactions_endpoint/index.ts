@@ -41,7 +41,7 @@ exports.handler = async (event: any, context: Context) => {
     FunctionName: 'discord_command_processor_lambda',
     InvokeArgs: JSON.stringify(event)
   }).promise();
-   console.log('Command processing lambda invoking result: ', res);
+  console.log('Command processing lambda invoking result: ', res);
 
   return JSON.stringify({
     type: 5
