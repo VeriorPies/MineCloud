@@ -128,11 +128,13 @@ function getAWSErrorMessageTemplate(
   actionText: string,
   errorMessage: any
 ): string {
-  return "Hmmm...There's some issue when " +
+  return (
+    "Hmmm...There's some issue when " +
     actionText +
     '...\n' +
     'This is what AWS told me:\n' +
     '```' +
-    errorMessage + 
-    '```';
+    errorMessage +
+    '```'
+  );
 }

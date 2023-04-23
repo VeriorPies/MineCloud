@@ -4,7 +4,6 @@ import {
   InitConfig,
   InitFile,
   InitGroup,
-  InitPackage,
   InitUser
 } from 'aws-cdk-lib/aws-ec2';
 
@@ -13,6 +12,7 @@ import {
   DISCORD_CHANNEL_WEB_HOOK,
   MAX_BACKUP_COUNT
 } from '../minecloud_configs/MineCloud-Configs';
+import { CUSTOM_INIT_CONFIG } from '../minecloud_configs/advanced_configs/custom-instance-init';
 
 const MINECLOUD_USER = 'minecloud';
 // Not the same name since cfn-init can't figure it out for some reason
@@ -24,7 +24,7 @@ export function getInitConfig(backupBucketName: string) {
   return CloudFormationInit.fromConfigSets({
     configSets: {
       default: [
-        'yumPreinstall',
+        'customInit',
         'setupMinecraftServer',
         'createEula',
         'setupDiscordMessaging',
@@ -35,10 +35,7 @@ export function getInitConfig(backupBucketName: string) {
       ]
     },
     configs: {
-      yumPreinstall: new InitConfig([
-        // Install an Amazon Linux package using yum
-        InitPackage.yum('java-17-amazon-corretto-headless')
-      ]),
+      customInit: CUSTOM_INIT_CONFIG,
       setupMinecraftServer: new InitConfig([
         InitGroup.fromName(MINECLOUD_GROUP),
         InitUser.fromName(MINECLOUD_USER, {

@@ -9,11 +9,7 @@ import axios from 'axios';
 exports.handler = async (event: CdkCustomResourceEvent, context: Context) => {
   if (event.RequestType !== 'Delete') {
     const apiEndpoint = `https://discord.com/api/v10/applications/${process.env.APP_ID}/commands`;
-    await registerCommand(
-      'mc_start',
-      'Start the server',
-      apiEndpoint
-    );
+    await registerCommand('mc_start', 'Start the server', apiEndpoint);
     await registerCommand('mc_stop', 'Stop the server', apiEndpoint);
     await registerCommand(
       'mc_restart',
