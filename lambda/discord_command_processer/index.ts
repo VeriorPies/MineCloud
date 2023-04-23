@@ -49,7 +49,7 @@ exports.handler = async (event: any, context: Context) => {
 
   if (commandName == 'mc_restart') {
     try {
-      const result = await sendCommands(['sudo systemctl restart minecraft']);
+      const result = await sendCommands(['sudo systemctl restart minecloud']);
       console.log('mc_restart result: ', result);
       await sendDeferredResponse('OK, contacting server instance!');
     } catch (err) {
@@ -63,7 +63,7 @@ exports.handler = async (event: any, context: Context) => {
   if (commandName == 'mc_backup') {
     try {
       const result = await sendCommands([
-        'cd /opt/minecraft/',
+        'cd /opt/minecloud/',
         'sudo ./server_manual_backup.sh'
       ]);
       console.log('mc_backup result: ', result);
@@ -79,7 +79,7 @@ exports.handler = async (event: any, context: Context) => {
   if (commandName == 'mc_backup_download') {
     try {
       const result = await sendCommands([
-        'cd /opt/minecraft/',
+        'cd /opt/minecloud/',
         'sudo ./get_latest_server_backup.sh'
       ]);
       console.log('mc_backup_download result: ', result);

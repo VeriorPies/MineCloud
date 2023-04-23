@@ -11,13 +11,13 @@ exports.handler = async (event: CdkCustomResourceEvent, context: Context) => {
     const apiEndpoint = `https://discord.com/api/v10/applications/${process.env.APP_ID}/commands`;
     await registerCommand(
       'mc_start',
-      'Start the Minecraft server',
+      'Start the server',
       apiEndpoint
     );
-    await registerCommand('mc_stop', 'Stop the Minecraft server', apiEndpoint);
+    await registerCommand('mc_stop', 'Stop the server', apiEndpoint);
     await registerCommand(
       'mc_restart',
-      'Restart the Minecraft system service',
+      'Restart the server system service',
       apiEndpoint
     );
     await registerCommand(
