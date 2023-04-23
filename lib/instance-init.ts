@@ -34,7 +34,6 @@ export function getInitConfig(backupBucketName: string) {
       ]
     },
     configs: {
-      customInit: CUSTOM_INIT_CONFIG,
       setupMineCloudServer: new InitConfig([
         InitGroup.fromName(MINECLOUD_GROUP),
         InitUser.fromName(MINECLOUD_USER, {
@@ -77,6 +76,7 @@ export function getInitConfig(backupBucketName: string) {
           `chown -R ${MINECLOUD_USER}:${MINECLOUD_GROUP} ${MINECLOUD_BASE_DIR}`
         )
       ]),
+      customInit: CUSTOM_INIT_CONFIG,
       setupDiscordMessaging: new InitConfig([
         InitCommand.shellCommand(
           `echo 'DISCORD_WEB_HOOK=${DISCORD_CHANNEL_WEB_HOOK}' >> /etc/environment`
