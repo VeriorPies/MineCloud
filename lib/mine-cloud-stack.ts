@@ -45,6 +45,7 @@ import { Bucket } from 'aws-cdk-lib/aws-s3';
 import { getInitConfig } from './instance-init';
 import { v4 } from 'uuid';
 import { PORT_CONFIGS } from '../minecloud_configs/advanced_configs/port-configs';
+import { IGNORE_FAILURE_ON_INSTANCE_INIT } from '../minecloud_configs/advanced_configs/other-configs';
 
 export const STACK_PREFIX = 'MineCloud';
 
@@ -90,7 +91,8 @@ export class MineCloud extends Stack {
       this,
       `Discord-Interaction-End-Point-Url`,
       {
-        description: 'Copy and paste this to the Discord developer portal.',
+        description:
+          'Copy and paste this to the "INTERACTIONS ENDPOINT URL" field on Discord developer portal.',
         value: this.discordInteractionsEndpointLambda.lambdaFunctionURL.url
       }
     );
@@ -163,7 +165,7 @@ export class MineCloud extends Stack {
         maxPrice: MAX_PRICE
       },
       initOptions: {
-        ignoreFailures: false,
+        ignoreFailures: IGNORE_FAILURE_ON_INSTANCE_INIT,
         timeout: Duration.minutes(EC2_INIT_TIMEOUT),
         configSets: ['default']
       },
