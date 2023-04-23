@@ -91,7 +91,8 @@ export class MineCloud extends Stack {
       this,
       `Discord-Interaction-End-Point-Url`,
       {
-        description: 'Copy and paste this to the Discord developer portal.',
+        description:
+          'Copy and paste this to the "INTERACTIONS ENDPOINT URL" field on Discord developer portal.',
         value: this.discordInteractionsEndpointLambda.lambdaFunctionURL.url
       }
     );
