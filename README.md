@@ -1,64 +1,98 @@
-# Minecloud
+# MineCloud 
+[![Release](https://img.shields.io/github/v/release/VeriorPies/MineCloud)](https://github.com/VeriorPies/Minecloud/releases) [![Documentation](https://img.shields.io/badge/documentation-brightgreen.svg)](https://github.com/VeriorPies/ParrelSync/wiki) [![License](https://img.shields.io/badge/license-MIT-green)](https://github.com/VeriorPies/ParrelSync/blob/master/LICENSE.md) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-blue.svg)](https://github.com/VeriorPies/ParrelSync/pulls) [![Chats](https://img.shields.io/discord/710688100996743200)](https://discord.gg/TmQk2qG)  
 
-**Note: Minecloud is a temporary project name, please feel free to come up with any other name.**
+// To do
+// Some lovely description
 
-This is a blank project for CDK development with TypeScript.
+<br>
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+![ShortGif](https://i0.wp.com/www.printmag.com/wp-content/uploads/2021/02/4cbe8d_f1ed2800a49649848102c68fc5a66e53mv2.gif?fit=476%2C280&ssl=1)
+<p align="center">
+<b>// To do // A cool demo gif
+</b>
+<br>
+</p>
 
-## Getting start
+## Features
+1. // To-do
+2. // Some awesome features
+## How To Setup?
+### Prerequisites
+1. A Discord account :)
+2. Node.js 18 (or above) - If haven't, go to https://nodejs.org to download and install the latest version of Node.js
+    - Type `node --version` in the terminal to confirm node is properlly setup. You should see something like this:  
+        ```
+        v18.xx.x
+        ```
+3. An AWS account and AWS CLI  
+   3.1  If haven't already, go to https://aws.amazon.com/ to register an AWS account   
+   3.2 Download and install AWS CLI from [here](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+    -   Type `aws --version` in the terminal to confirm AWS CLI is properlly setup. Something like this should showed up:
+        ```
+        aws-cli/2.10.0 Python/3.11.2 Windows/10 exe/AMD64 prompt/off
+        ```
+   3.3 Login to your AWS account, click the account name at the top-right corner and click "Security credentials". Go to the access key section and create an access key. Notes down `Access key` and `Secret access key`
+   ![GetAccessKey](images/get-aws-access-key.png)
+### UPM Package
+ParrelSync can also be installed via UPM package.  
+After Unity 2019.3.4f1, Unity 2020.1a21, which support path query parameter of git package. You can install ParrelSync by adding the following to Package Manager.
 
-1. Follow this tutorial to setup AWS CLI: https://aws.amazon.com/getting-started/guides/setup-environment/module-three/
-2. Setup Node/NPM: https://aws.amazon.com/getting-started/guides/setup-cdk/module-one/
-3. Use the following commands to confirm CDK is properlly set-up
-   - `cdk --version`
-   - `aws sts get-caller-identity`
-4. Run `cdk bootstrap aws://<ACCOUNT-NUMBER>/<REGION>`
-5. Clone this project, cd to the directory and build the project by running `npm run build`
-6. Run `cdk deploy` to deploy to your CloudFormation. Verify the stack in your CloudFormation dashboard.
+```
+https://github.com/VeriorPies/ParrelSync.git?path=/ParrelSync
+```  
 
-## Useful commands
+  
+![UPM_Image](https://github.com/VeriorPies/ParrelSync/raw/master/Images/UPM_1.png?raw=true) ![UPM_Image2](https://github.com/VeriorPies/ParrelSync/raw/master/Images/UPM_2.png?raw=true)
+  
+or by adding 
 
-- `npm run build` compile typescript to js
-- `npm run watch` watch for changes and compile
-- `npm run test` perform the jest unit tests
-- `cdk deploy` deploy this stack to your default AWS account/region
-- `cdk diff` compare deployed stack with current state
-- `cdk synth` emits the synthesized CloudFormation template
-- `npm run prettier-format` format with prettier
-- `npm run lint` run linter
-- `npm run lint-fix` run linter and fix it
+```
+"com.veriorpies.parrelsync": "https://github.com/VeriorPies/ParrelSync.git?path=/ParrelSync"
+``` 
 
-## Background-ish
+to the `Packages/manifest.json` file 
 
-- Around 1~2 year ago, we tried to find an on-demand hosting solution.
-- This project, [minecraft-ondemand](https://github.com/doctorray117/minecraft-ondemand) got 1.5k stars on GitHub. But I'm NOT happy with this solution due to:
 
-  - It spins up the server by doing DNS query. That is, the server might spin up randomly (see: [Server starts randomly](https://github.com/doctorray117/minecraft-ondemand#server-starts-randomly))
-  - Lack of permission control
-  - Over complicated - It took me a decent amount of time to spin it up :p - many of the components aren't necessary for us.
+## Supported Platform
+Currently, ParrelSync supports Windows, macOS and Linux editors.  
 
-- Inspired by it, we end up building our own simple solution:
-  - When you want to start the server, type `/mc_start` in the Discord channel.
-  - The server will spin up (took around 15 sec ~ 1 min) and send the server IP address to the channel
-  - When no one is online, the server will auto-shutdown.
-  - Cost is almost negligible, with ~20 hours of playtime, the cost is around 56 cents each month (20 \* 0.0278 (t2.large spot instance) ≈ 0.556)
-  - No maintaining cost - won't cost any if aren't using the server.
-  - We also added some other features like restart, auto backup...etc
-  - One small (?) benefit here is that the IP address is different every time the server start. (better-ish security, also, fixed IP is quite expensive)
-- We have been using this solution for more than a year, > 1000 hours of server-up time and we are pretty satisfied with it.
-- This is how it works basically:
-  - We built a discord BOT
-  - Discord BOT will forward the request to Lambda
-  - Lambda will start the EC2 instance.
-  - The Minecraft server is packed as a Linux service, running on EC2. When the service starts, it will send a message to the Discord channel.
-- **The goal of this project is to convert this into IAC (Infrastructure as Code), probably CDK, so people in the future can spin up their low-cost, on-demand Minecraft server with minimal effort.**
-  - Here's some spaghetti code/script we've used in the project:
-    - [check_user_conn.sh](https://gist.github.com/314pies/ac0aa3aa4e42e83363b6ca1a6c426564)
-    - [backup.sh](https://gist.github.com/314pies/40339beb3c5caa904af63e9b282b95ac)
-    - [baclup_manual.sh](https://gist.github.com/314pies/45800b70faeb5b6dfa0fed5a3d9b6828)
-    - [start_service.sh](https://gist.github.com/314pies/ec8cbb706b103690ac0efda1f0219bd1)
-    - [minecraft_start.sh](https://gist.github.com/314pies/7d7c1252f3bf964ec312967a1e32d7cb)
-    - [handler.js](https://gist.github.com/314pies/3aa3a559cc1c665c796ea9b0e4c0f50a)
-  - We should be able to make this solution generic enough for most multi-player server hosting.
-  - For task/issue, please visit the project board (https://github.com/orgs/VeriorPies/projects/1/views/1?layout=board)
+ParrelSync has been tested with the following Unity version. However, it should also work with other versions as well.
+* *2020.3.1f1*
+* *2019.3.0f6*
+* *2018.4.22f1*
+
+
+## APIs
+There's some useful APIs for speeding up the multiplayer testing workflow.
+Here's a basic example: 
+```
+if (ClonesManager.IsClone()) {
+  // Automatically connect to local host if this is the clone editor
+}else{
+  // Automatically start server if this is the original editor
+}
+```
+Check out [the doc](https://github.com/VeriorPies/ParrelSync/wiki/List-of-APIs) to view the complete API list.
+
+## How does it work?
+For each clone instance, ParrelSync will make a copy of the original project folder and reference the ```Asset```, ```Packages``` and ```ProjectSettings``` folder back to the original project with [symbolic link](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/mklink). Other folders such as ```Library```, ```Temp```, and ```obj``` will remain independent for each clone project.
+
+All clones are placed right next to the original project with suffix *```_clone_x```*, which will be something like this in the folder hierarchy. 
+```
+/ProjectName
+/ProjectName_clone_0
+/ProjectName_clone_1
+...
+```
+## Discord Server
+We have a [Discord server](https://discord.gg/TmQk2qG).
+
+## Need Help?
+Some common questions and troubleshooting can be found under the [Troubleshooting & FAQs](https://github.com/VeriorPies/ParrelSync/wiki/Troubleshooting-&-FAQs) page.  
+You can also [create a question post](https://github.com/VeriorPies/ParrelSync/issues/new/choose), or ask on [Discord](https://discord.gg/TmQk2qG) if you prefer to have a real-time conversation.
+
+## Support this project 
+A star will be appreciated :)
+
+## Credits
+This project is originated from hwaet's [UnityProjectCloner](https://github.com/hwaet/UnityProjectCloner)
