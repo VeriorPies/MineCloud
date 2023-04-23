@@ -1,4 +1,4 @@
-cd /opt/minecraft/
+cd /opt/minecloud/
 
 ./send_discord_message_to_webhook.sh "Doing auto backup check..."
 backUpTimeFilePath=lastBackupTime.txt
@@ -24,16 +24,11 @@ if [ ! -f "$backUpTimeFilePath" ];
 
         if (($timeSinceLastBackup > $backUpInterval));
         then
-            ./send_discord_message_to_webhook.sh "It has been $(($timeSinceLastBackup/60)) minutes since last auto backup... \nCreating backup..."
+            ./send_discord_message_to_webhook.sh "It has been $(($timeSinceLastBackup/60)) minutes since last auto backup... \nCreating backup OwO... "
             ./server_backup.sh
             currentTime=$(date +%s)
             echo "$currentTime" > lastBackupTime.txt
         else
-            ./send_discord_message_to_webhook.sh "Only $(($timeSinceLastBackup/60)) minutes since last auto backup... \n No auto backup needed..."
+            ./send_discord_message_to_webhook.sh "Only $(($timeSinceLastBackup/60)) minutes since last auto backup... \n No auto backup needed www..."
         fi;
 fi
-
-
-
-# currentTime=$(date +%s)
-# echo "$currentTime" > lastBackupTime.txt

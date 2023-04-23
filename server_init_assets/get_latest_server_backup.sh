@@ -1,4 +1,4 @@
-cd /opt/minecraft/
+cd /opt/minecloud/
 
 ./send_discord_message_to_webhook.sh "Grabbing the latest backup for you..."
 

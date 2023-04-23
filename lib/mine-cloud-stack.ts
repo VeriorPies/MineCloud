@@ -44,6 +44,7 @@ import {
 import { Bucket } from 'aws-cdk-lib/aws-s3';
 import { getInitConfig } from './instance-init';
 import { v4 } from 'uuid';
+import { PORT_CONFIGS } from '../minecloud_configs/advanced_configs/port-configs';
 
 export const STACK_PREFIX = 'MineCloud';
 
@@ -122,17 +123,20 @@ export class MineCloud extends Stack {
         securityGroupName: `${STACK_PREFIX}_ec2_security_group`
       }
     );
-    // To allow SSH and minecraft connections
+    // To allow SSH and minecloud connections
     securityGroup.addIngressRule(
       Peer.anyIpv4(),
       Port.tcp(22),
       'Allows SSH connection'
     );
-    securityGroup.addIngressRule(
-      Peer.anyIpv4(),
-      Port.tcp(25565),
-      'Allows Minecraft connection'
-    );
+
+    for (const config of PORT_CONFIGS) {
+      securityGroup.addIngressRule(
+        config.peer,
+        config.port,
+        config.description
+      );
+    }
 
     // Key pair for ssh-ing into EC2 instance from aws console
     const sshKeyPair = new CfnKeyPair(this, `${STACK_PREFIX}_ec2_key_pair`, {

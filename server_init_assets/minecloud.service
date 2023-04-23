@@ -1,12 +1,12 @@
 [Unit]
-Description=Minecraft Server
+Description=Minecloud Server
 After=network.target
 
 [Install]
 WantedBy=multi-user.target
 
 [Service]
-WorkingDirectory=/opt/minecraft
+WorkingDirectory=/opt/minecloud
 EnvironmentFile=/etc/environment
 
 Restart=always
@@ -14,5 +14,5 @@ Restart=always
 
 ExecStart=/usr/bin/screen -DmS mc_server ./start_service.sh
 
-ExecStop=/opt/minecraft/send_discord_message_to_webhook.sh "Stopping system service..."
-ExecStop=/opt/minecraft/server/stop_server.sh
+ExecStop=/opt/minecloud/send_discord_message_to_webhook.sh "Stopping system service..."
+ExecStop=/opt/minecloud/server/stop_server.sh
