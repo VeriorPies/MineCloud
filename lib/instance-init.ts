@@ -24,11 +24,10 @@ export function getInitConfig(backupBucketName: string) {
   return CloudFormationInit.fromConfigSets({
     configSets: {
       default: [
+        'setupMineCloudServer',
         'customInit',
-        'setupMinecraftServer',
-        'createEula',
         'setupDiscordMessaging',
-        'setupMinecraftService',
+        'setupMineCloudService',
         'setupBackupScripts',
         'setupAutoShutdown',
         'setupGetLatestBackupScript'
@@ -36,7 +35,7 @@ export function getInitConfig(backupBucketName: string) {
     },
     configs: {
       customInit: CUSTOM_INIT_CONFIG,
-      setupMinecraftServer: new InitConfig([
+      setupMineCloudServer: new InitConfig([
         InitGroup.fromName(MINECLOUD_GROUP),
         InitUser.fromName(MINECLOUD_USER, {
           groups: [MINECLOUD_GROUP]
@@ -91,7 +90,7 @@ export function getInitConfig(backupBucketName: string) {
           { cwd: MINECLOUD_BASE_DIR }
         )
       ]),
-      setupMinecraftService: new InitConfig([
+      setupMineCloudService: new InitConfig([
         InitFile.fromFileInline(
           `${MINECLOUD_BASE_DIR}/start_service.sh`,
           'server_init_assets/start_service.sh'
