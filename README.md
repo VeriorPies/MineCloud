@@ -53,7 +53,7 @@
 2. Go to `minecloud_configs` folder and open `MineCloud-Configs.ts`, there're some parameters we have to provide first:  
    - `AWS_ACCOUNT_NUMBER`:  Click the account name at the top-right corner of your AWS console and copy the `Account ID`
    - `AWS_REGION`: Choose a [region](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html) that's closet to you. Some example value are: `us-west-2`, `ap-northeast-1` or `eu-west-3`
-   - `DISCORD_APP_ID` and `DISCORD_PUBLIC_KEY`: Go to [Discord Developer Portal](https://discord.com/developers/applications), and click "New Application" to create a new Discord APP.  On the "General Information" page, you will find the App Id and Public Key.   
+   - `DISCORD_APP_ID` and `DISCORD_PUBLIC_KEY`: Go to [Discord Developer Portal](https://discord.com/developers/applications) and click "New Application" to create a new Discord APP.  On the "General Information" page, you will find the App Id and Public Key.   
      &nbsp;&nbsp;&nbsp; <img width="80%"  src="images/discord-app-id-and-public-key.png" > 
    - `DISCORD_BOT_TOKEN`: Go to the "Bot" page on the Discord Developer Portal, reset and copy the token  
      - This is the Discord BOT that will handle our commands. If there's no BOT shown, click the "Add Bot" button to create a new BOT  
