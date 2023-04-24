@@ -18,7 +18,7 @@
 2. // Some awesome features
 ## How To Setup?
 ### Prerequisites
-1. A Discord account :)
+1. A [Discord](https://discord.com/) account :)
 2. Node.js 18 (or above) - If haven't, go to https://nodejs.org to download and install the latest version of Node.js
     - Type `node --version` in the terminal to confirm node is properlly setup. You should see something like this:  
         ```
@@ -31,10 +31,44 @@
         ```
         aws-cli/2.10.0 Python/3.11.2 Windows/10 exe/AMD64 prompt/off
         ```
-   3.3 Login to your AWS account, click the account name at the top-right corner and click "Security credentials". Go to the "Access keys" section and create an access key. Notes down `Access key` and `Secret access key`
-   <img style="right; width: 100%; margin-left: 15px;"  src="images/get-aws-access-key.png" >  
-     
-
+   3.3 Setup AWS CLI credentials: 
+    - Login to your AWS account, click the account name at the top-right corner and click "Security credentials". Go to the "Access keys" section and create an access key. Notes down `Access key` and `Secret access key`   
+     &nbsp;&nbsp;&nbsp; <img width="80%"  src="images/get-aws-access-key.png" >  
+    - In the terminal, type:  
+      ```
+      aws configure
+      ```
+      When prompted, Enter the `Access key` and `Secret access key` you got from last step (and optionally choose the default AWS region and output format)
+    - Once done, type `aws sts get-caller-identity` in the terminal to confirm the AWS CLI credentials is set up correctly. You should see something like this:  
+      ```
+      {
+        "UserId": "1234567890",
+        "Account": "1234567890",
+        "Arn": "arn:aws:iam::1234567890:xxx"
+      }
+      ```  
+    - Prerequisites done, now start the fun part :)
+### Set up MineCloud
+1. Download the latest release from the [release page](https://github.com/VeriorPies/Minecloud/releases) and unzip it
+2. Go to `minecloud_configs` folder and open `MineCloud-Configs.ts`, there're some parameters we have to provide:  
+   - `AWS_ACCOUNT_NUMBER`:  Click the account name at the top-right corner in your AWS console and copy the `Accound ID`
+   - `AWS_REGION`: Choose a [region](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html) that's closet to you. Some example value are: `us-west-2`, `ap-northeast-1` or `eu-west-3`
+   - `DISCORD_APP_ID` and `DISCORD_PUBLIC_KEY`: Go to [Discord Developer Portal](https://discord.com/developers/applications), and click "New Application" to create a new Discord APP.  On the General Inforamtion page, you will find the App Id and Public Key.   
+     &nbsp;&nbsp;&nbsp; <img width="80%"  src="images/discord-app-id-and-public-key.png" > 
+   - `DISCORD_BOT_TOKEN`: Go to the "Bot" page on the Discord Developer Portal, reset and copy the token  
+   ( This is the Discord BOT that will handle our commands. If there's no BOT shown, click the "Add Bot" button to create a new BOT)  
+   &nbsp;&nbsp;&nbsp; <img width="80%"  src="images/discord-bot-token.png" > 
+      <p align="center">
+      You can optionally setup your BOT avatar<br>
+      </p>
+   - `DISCORD_CHANNEL_WEB_HOOK`: 
+     - Open regular Discord, go to the Discord server you want add MineCloud to, choose a text channel, and click "Edit Channel". 
+     - Go to "Integrations" => "Webhooks", click "New Webhook" to create a new Webhook then copy the Webhook URL.
+     - This text channel is where our VM instance will send update to
+       &nbsp;&nbsp;&nbsp; <img width="80%"  src="images/discord-channel-webhook.png" > 
+        <p align="center">
+        You can also optionally setup your BOT avatar here<br>
+        </p>
 ### UPM Package
 ParrelSync can also be installed via UPM package.  
 After Unity 2019.3.4f1, Unity 2020.1a21, which support path query parameter of git package. You can install ParrelSync by adding the following to Package Manager.
