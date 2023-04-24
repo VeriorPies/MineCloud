@@ -88,7 +88,7 @@
    - Go to "OAuth2" => "URL Generator", select "application.commands" and click "Copy"  
    &nbsp;&nbsp;&nbsp; <img width="80%"  src="images/discord-url-generator.png" >
    - Open the copied URL (either in Discord or the browser) and add the BOT to your Discord server.
-   - You are all set now - Type any (ex: `/mc_restart`) command in the Discord text channel to give it a try🎉!  
+   - You are all set now - Type any command (ex: `/mc_restart`) in the Discord text channel to give it a try🎉!  
    &nbsp;&nbsp;&nbsp; <img width="80%"  src="images/discord-mc-start-command.gif" >
 
 ## // To-Do
