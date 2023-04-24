@@ -20,14 +20,14 @@
 ### Prerequisites
 1. A [Discord](https://discord.com/) account :)
 2. Node.js 18 (or above) - If haven't, go to https://nodejs.org to download and install the latest version of Node.js
-    - Type `node --version` in the terminal to confirm node is properlly setup. You should see something like this:  
+    - Type `node --version` in the terminal to confirm Node is properly setup. You should see something like this:  
         ```
         v18.xx.x
         ```
 3. An AWS account and AWS CLI  
    3.1  If haven't already, go to https://aws.amazon.com/ to register an AWS account   
    3.2 Download and install AWS CLI from [here](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
-    -   Type `aws --version` in the terminal to confirm AWS CLI is properlly setup. Something like this should showed up:
+    -   Type `aws --version` in the terminal to confirm AWS CLI is properly setup. Something like this should show up:
         ```
         aws-cli/2.10.0 Python/3.11.2 Windows/10 exe/AMD64 prompt/off
         ```
@@ -38,8 +38,8 @@
       ```
       aws configure
       ```
-      When prompted, Enter the `Access key` and `Secret access key` you got from last step (and optionally choose the default AWS region and output format)
-    - Once done, type `aws sts get-caller-identity` in the terminal to confirm the AWS CLI credentials is set up correctly. You should see something like this:  
+      When prompted, Enter the `Access key` and `Secret access key` you got from the last step (and optionally choose the default AWS region and output format)
+    - Once done, type `aws sts get-caller-identity` in the terminal to confirm the AWS CLI credentials are set up correctly. You should see something like this:  
       ```
       {
         "UserId": "1234567890",
@@ -50,13 +50,13 @@
     - Prerequisites done, now start the fun part :)
 ### Set up MineCloud
 1. Download the latest release from the [release page](https://github.com/VeriorPies/Minecloud/releases) and unzip it
-2. Go to `minecloud_configs` folder and open `MineCloud-Configs.ts`, there're some parameters we have to provide:  
-   - `AWS_ACCOUNT_NUMBER`:  Click the account name at the top-right corner in your AWS console and copy the `Accound ID`
+2. Go to `minecloud_configs` folder and open `MineCloud-Configs.ts`, there're some parameters we have to provide first:  
+   - `AWS_ACCOUNT_NUMBER`:  Click the account name at the top-right corner of your AWS console and copy the `Account ID`
    - `AWS_REGION`: Choose a [region](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html) that's closet to you. Some example value are: `us-west-2`, `ap-northeast-1` or `eu-west-3`
-   - `DISCORD_APP_ID` and `DISCORD_PUBLIC_KEY`: Go to [Discord Developer Portal](https://discord.com/developers/applications), and click "New Application" to create a new Discord APP.  On the General Inforamtion page, you will find the App Id and Public Key.   
+   - `DISCORD_APP_ID` and `DISCORD_PUBLIC_KEY`: Go to [Discord Developer Portal](https://discord.com/developers/applications), and click "New Application" to create a new Discord APP.  On the "General Information" page, you will find the App Id and Public Key.   
      &nbsp;&nbsp;&nbsp; <img width="80%"  src="images/discord-app-id-and-public-key.png" > 
    - `DISCORD_BOT_TOKEN`: Go to the "Bot" page on the Discord Developer Portal, reset and copy the token  
-   ( This is the Discord BOT that will handle our commands. If there's no BOT shown, click the "Add Bot" button to create a new BOT)  
+     - This is the Discord BOT that will handle our commands. If there's no BOT shown, click the "Add Bot" button to create a new BOT  
    &nbsp;&nbsp;&nbsp; <img width="80%"  src="images/discord-bot-token.png" > 
       <p align="center">
       You can optionally setup your BOT avatar<br>
@@ -64,71 +64,31 @@
    - `DISCORD_CHANNEL_WEB_HOOK`: 
      - Open regular Discord, go to the Discord server you want add MineCloud to, choose a text channel, and click "Edit Channel". 
      - Go to "Integrations" => "Webhooks", click "New Webhook" to create a new Webhook then copy the Webhook URL.
-     - This text channel is where our VM instance will send update to
+     - This text channel is where our VM instance will send updates to
        &nbsp;&nbsp;&nbsp; <img width="80%"  src="images/discord-channel-webhook.png" > 
-        <p align="center">
-        You can also optionally setup your BOT avatar here<br>
-        </p>
-### UPM Package
-ParrelSync can also be installed via UPM package.  
-After Unity 2019.3.4f1, Unity 2020.1a21, which support path query parameter of git package. You can install ParrelSync by adding the following to Package Manager.
+      <p align="center">
+      You can also optionally set up your BOT avatar here<br>
+      </p>
+3. Deploy MineCloud
+   - Bootstrap your AWS account by running `cdk bootstrap aws://<ACCOUNT-NUMBER>/<REGION>`
+   - (Optional) Replace `minecloud_configs/server/server.zip` with your favorite Minecraft version, the default one is `1.19.4` (When packing server executable, make sure the server.jar is at the root level of the zip file)
+   - Open the terminal in the MineCloud folder and enter `npx cdk list` to make sure the build pass. You should see the stack name being printed:  
+      ```
+      MineCloud
+      ```
+   - Enter `npx cdk deploy` to deploy the stack. 
+   - Sit back and relax, this will take like 5~10 minutes ☕.
+     - When you see a "The server instance is ready"  message shown up in the Discord channel, this means the Minecraft server is ready to connect :)
+4. Setup BOT for your Discord server  
+   - After MineCloud is deployed, go to your AWS [CloudFormation page](https://console.aws.amazon.com/cloudformation) (make sure to select the right AWS region)
+   - Click on "MineCloud" stack, go to "Outputs" and copy the value of "Discord Interaction End Point Url"  
+    &nbsp;&nbsp;&nbsp; <img width="80%"  src="images/discord-interaction-url.png" >
+   - Go back to your [Discord Developer Portal](https://discord.com/developers/applications), select the APP created, and paste the URL into the "INTERACTIONS ENDPOINT URL" field.  
+   &nbsp;&nbsp;&nbsp; <img width="80%"  src="images/discord-interaction-url-dev-portal.png" > 
+   - Go to "OAuth2" => "URL Generator", select "application.commands" and click "Copy"  
+   &nbsp;&nbsp;&nbsp; <img width="80%"  src="images/discord-url-generator.png" >
+   - Open the copied URL (either in Discord or the browser) and add the BOT to your Discord server.
+   - You are all set now - Type any (ex: `/mc_restart`) command in the Discord text channel to give it a try🎉!  
+   &nbsp;&nbsp;&nbsp; <img width="80%"  src="images/discord-mc-start-command.gif" >
 
-```
-https://github.com/VeriorPies/ParrelSync.git?path=/ParrelSync
-```  
-
-  
-![UPM_Image](https://github.com/VeriorPies/ParrelSync/raw/master/Images/UPM_1.png?raw=true) ![UPM_Image2](https://github.com/VeriorPies/ParrelSync/raw/master/Images/UPM_2.png?raw=true)
-  
-or by adding 
-
-```
-"com.veriorpies.parrelsync": "https://github.com/VeriorPies/ParrelSync.git?path=/ParrelSync"
-``` 
-
-to the `Packages/manifest.json` file 
-
-
-## Supported Platform
-Currently, ParrelSync supports Windows, macOS and Linux editors.  
-
-ParrelSync has been tested with the following Unity version. However, it should also work with other versions as well.
-* *2020.3.1f1*
-* *2019.3.0f6*
-* *2018.4.22f1*
-
-
-## APIs
-There's some useful APIs for speeding up the multiplayer testing workflow.
-Here's a basic example: 
-```
-if (ClonesManager.IsClone()) {
-  // Automatically connect to local host if this is the clone editor
-}else{
-  // Automatically start server if this is the original editor
-}
-```
-Check out [the doc](https://github.com/VeriorPies/ParrelSync/wiki/List-of-APIs) to view the complete API list.
-
-## How does it work?
-For each clone instance, ParrelSync will make a copy of the original project folder and reference the ```Asset```, ```Packages``` and ```ProjectSettings``` folder back to the original project with [symbolic link](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/mklink). Other folders such as ```Library```, ```Temp```, and ```obj``` will remain independent for each clone project.
-
-All clones are placed right next to the original project with suffix *```_clone_x```*, which will be something like this in the folder hierarchy. 
-```
-/ProjectName
-/ProjectName_clone_0
-/ProjectName_clone_1
-...
-```
-## Discord Server
-We have a [Discord server](https://discord.gg/TmQk2qG).
-
-## Need Help?
-Some common questions and troubleshooting can be found under the [Troubleshooting & FAQs](https://github.com/VeriorPies/ParrelSync/wiki/Troubleshooting-&-FAQs) page.  
-You can also [create a question post](https://github.com/VeriorPies/ParrelSync/issues/new/choose), or ask on [Discord](https://discord.gg/TmQk2qG) if you prefer to have a real-time conversation.
-
-## Support this project 
-A star will be appreciated :)
-
-## Credits
-This project is originated from hwaet's [UnityProjectCloner](https://github.com/hwaet/UnityProjectCloner)
+## // To-Do
