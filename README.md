@@ -25,20 +25,20 @@
         v18.xx.x
         ```
 3. An AWS account and AWS CLI  
-   3.1  If haven't already, go to https://aws.amazon.com/ to register an AWS account   
-   3.2 Download and install AWS CLI from [here](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
-    -   Type `aws --version` in the terminal to confirm AWS CLI is properly setup. Something like this should show up:
+   - If haven't already, go to https://aws.amazon.com/ to register an AWS account   
+   - Download and install AWS CLI from [here](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+     -   Type `aws --version` in the terminal to confirm AWS CLI is properly setup. Something like this should show up:
         ```
         aws-cli/2.10.0 Python/3.11.2 Windows/10 exe/AMD64 prompt/off
         ```
-   3.3 Setup AWS CLI credentials: 
-    - Login to your AWS account, click the account name at the top-right corner and click "Security credentials". Go to the "Access keys" section and create an access key. Notes down `Access key` and `Secret access key`   
+   -  Setup AWS CLI credentials: 
+      - Login to your AWS account, click the account name at the top-right corner and click "Security credentials". Go to the "Access keys" section and create an access key. Notes down `Access key` and `Secret access key`   
      &nbsp;&nbsp;&nbsp; <img width="80%"  src="images/get-aws-access-key.png" >  
     - In the terminal, type:  
       ```
       aws configure
       ```
-      When prompted, Enter the `Access key` and `Secret access key` you got from the last step (and optionally choose the default AWS region and output format)
+      When prompted, Enter the `Access key` and `Secret access key` you got from the last step (and optionally choose the "default AWS region" and "output format")
     - Once done, type `aws sts get-caller-identity` in the terminal to confirm the AWS CLI credentials are set up correctly. You should see something like this:  
       ```
       {
