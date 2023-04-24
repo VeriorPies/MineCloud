@@ -38,7 +38,7 @@
       ```
       aws configure
       ```
-      When prompted, Enter the `Access key` and `Secret access key` you got from the last step (and optionally choose the "default AWS region" and "output format")
+      When prompted, enter the `Access key` and `Secret access key` you got from the last step (and optionally choose the "default AWS region" and "output format")
     - Once done, type `aws sts get-caller-identity` in the terminal to confirm the AWS CLI credentials are set up correctly. You should see something like this:  
         ```
         {
