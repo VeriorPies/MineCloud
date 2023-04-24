@@ -31,8 +31,8 @@
         ```
         aws-cli/2.10.0 Python/3.11.2 Windows/10 exe/AMD64 prompt/off
         ```
-   3.3 Login to your AWS account, click the account name at the top-right corner and click "Security credentials". Go to the access key section and create an access key. Notes down `Access key` and `Secret access key`
-   <img style="right;" src="images/get-aws-access-key.png">  
+   3.3 Login to your AWS account, click the account name at the top-right corner and click "Security credentials". Go to the "Access keys" section and create an access key. Notes down `Access key` and `Secret access key`
+   <img style="right; width: 100%; margin-left: 15px;"  src="images/get-aws-access-key.png" >  
      
 
 ### UPM Package
