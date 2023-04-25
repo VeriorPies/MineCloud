@@ -13,6 +13,6 @@ export const EC2_INSTANCE_TYPE = 't2.large';
 export const EC2_VOLUME = 16;
 export const EC2_INIT_TIMEOUT = 15;
 
-// --------------- Bacup Settings------------------ //
+// --------------- Backup Settings------------------ //
 export const MAX_BACKUP_COUNT = 3;
 export const BACKUP_INTERVAL_IN_SECONDS = 10800;
