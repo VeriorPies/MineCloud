@@ -17,7 +17,7 @@
 1. // To-do
 2. // Some awesome features
 ## How To Setup?
-### Prerequisites
+### **Prerequisites**
 1. A [Discord](https://discord.com/) account :)
 2. Node.js 18 (or above) - If haven't, go to https://nodejs.org to download and install the latest version of Node.js
     - Type `node --version` in the terminal to confirm Node is properly setup. You should see something like this:  
@@ -48,9 +48,8 @@
         }
         ```  
     - Prerequisites done, now start the fun part :)
-### Set up MineCloud
-1. Download the latest release from the [release page](https://github.com/VeriorPies/Minecloud/releases) and unzip it
-2. Go to `minecloud_configs` folder and open `MineCloud-Configs.ts`, there're some parameters we have to provide first:  
+### **Set up MineCloud**
+1. Download the latest release from the [release page](https://github.com/VeriorPies/Minecloud/releases), unzip it and open `minecloud_configs/MineCloud-Configs.ts`, there're some parameters we have to provide first:  
    - `AWS_ACCOUNT_NUMBER`:  Click the account name at the top-right corner of your AWS console and copy the `Account ID`
    - `AWS_REGION`: Choose a [region](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html) that's closet to you. Some example value are: `us-west-2`, `ap-northeast-1` or `eu-west-3`
    - `DISCORD_APP_ID` and `DISCORD_PUBLIC_KEY`: Go to [Discord Developer Portal](https://discord.com/developers/applications) and click "New Application" to create a new Discord APP.  On the "General Information" page, you will find the App Id and Public Key.   
@@ -70,15 +69,16 @@
       You can also optionally set up your BOT avatar here<br>
       </p>
 3. Deploy MineCloud
-   - Bootstrap your AWS account by running `cdk bootstrap aws://<ACCOUNT-NUMBER>/<REGION>`
+   - Type `npm install` to install all dependencies
    - (Optional) Replace `minecloud_configs/server/server.zip` with your favorite Minecraft version, the default one is `1.19.4` (When packing server executable, make sure the server.jar is at the root level of the zip file)
    - Open the terminal in the MineCloud folder and enter `npx cdk list` to make sure the build pass. You should see the stack name being printed:  
       ```
       MineCloud
       ```
+   - Bootstrap your AWS account by running `cdk bootstrap aws://<ACCOUNT-NUMBER>/<REGION>`
    - Enter `npx cdk deploy` to deploy the stack. 
    - Sit back and relax, this will take like 5~10 minutes ☕.
-     - When you see a "The server instance is ready"  message shown up in the Discord channel, this means the Minecraft server is ready to connect :)
+     - When you see a "The server instance is ready"  message shown up in the Discord channel, this means your Minecraft server is almost ready to connect :)
 4. Setup BOT for your Discord server  
    - After MineCloud is deployed, go to your AWS [CloudFormation page](https://console.aws.amazon.com/cloudformation) (make sure to select the right AWS region)
    - Click on "MineCloud" stack, go to "Outputs" and copy the value of "Discord Interaction End Point Url"  
@@ -89,6 +89,8 @@
    &nbsp;&nbsp;&nbsp; <img width="80%"  src="images/discord-url-generator.png" >
    - Open the copied URL (either in Discord or the browser) and add the BOT to your Discord server.
    - You are all set now - Type any command (ex: `/mc_restart`) in the Discord text channel to give it a try🎉!  
-   &nbsp;&nbsp;&nbsp; <img width="80%"  src="images/discord-mc-start-command.gif" >
+   &nbsp;&nbsp;&nbsp; <img width="80%"  src="images/discord-mc-start-command.gif" >   
+### **ONE MORE THING!**
+If your have deployed MineCloud more than once, there might be dangling spot instance request that will constantly charged you. **MAKE SURE TO CHECK YOUR [EC2 SPOT REQUESTS TAB](https://console.aws.amazon.com/ec2/home#SpotInstances:) AND CANCEL THE DANGLING SPOT REQUEST IF IT EXISTED!**
 
 ## // To-Do
