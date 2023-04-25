@@ -14,9 +14,12 @@
 </p>
 
 ## Features
-1. // To-do
-2. // Some awesome features
+1. Spin up your server with one Discord command
+2. Auto shut down
 ## How To Setup?
+If you prefer, we have a step-by-step video tutorial ↓  
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/dQw4w9WgXcQ/0.jpg)](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
+
 ### **Prerequisites**
 1. A [Discord](https://discord.com/) account :)
 2. Node.js 18 (or above) - If haven't, go to https://nodejs.org to download and install the latest version of Node.js
