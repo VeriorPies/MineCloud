@@ -3,12 +3,12 @@
 
 // To do
 // Some lovely description
-
+// Came with minecraft, but can easy modify other game
 <br>
 
 ![ShortGif](https://i0.wp.com/www.printmag.com/wp-content/uploads/2021/02/4cbe8d_f1ed2800a49649848102c68fc5a66e53mv2.gif?fit=476%2C280&ssl=1)
 <p align="center">
-<b>// Enjoy your hassle free, almost free minecraft server with your friends on Discord - Owned and managed by your selves!
+<b>// Enjoy your hassle free, almost free minecraft (or other multiplayer game) server with your friends on Discord - Owned and managed by your selves!
 </b>
 <br>
 </p>
@@ -18,6 +18,7 @@
 ## Features
 1. 
 2. // no maintainen cost, if you don't want to play it. just leave it there.
+3. support other game
 ## How To Setup?
 If you prefer, we have a step-by-step video tutorial ↓  
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/dQw4w9WgXcQ/0.jpg)](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
@@ -99,3 +100,6 @@ If you prefer, we have a step-by-step video tutorial ↓
 If you have deployed MineCloud more than once, there might be dangling spot instance request that will constantly charged you. **MAKE SURE TO CHECK YOUR [EC2 SPOT REQUESTS TAB](https://console.aws.amazon.com/ec2/home#SpotInstances:) AND CANCEL THE DANGLING SPOT REQUEST IF IT EXISTED!**
 
 ## // To-Do
+## Story
+## Architect/How this works
+ => wiki
