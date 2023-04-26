@@ -8,7 +8,7 @@
 
 ![ShortGif](https://i0.wp.com/www.printmag.com/wp-content/uploads/2021/02/4cbe8d_f1ed2800a49649848102c68fc5a66e53mv2.gif?fit=476%2C280&ssl=1)
 <p align="center">
-<b>// Enjoy your hassle free, almost no-cost minecraft (or other multiplayer game) server with your friends on Discord - Owned and managed by your selves!
+<b>// Enjoy your hassle free, almost no-cost minecraft (or other multiplayer game) server with your friends on Discord - Fully owned and managed by your selves!
 </b>
 <br>
 </p>
