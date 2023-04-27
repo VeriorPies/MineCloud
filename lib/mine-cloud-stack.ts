@@ -149,10 +149,10 @@ export class MineCloud extends Stack {
       vpc: defaultVPC,
       keyName: sshKeyPair.keyName,
       role: ec2Role,
-      vpcSubnets: {
-        // Place in a public subnet in-order to have a public ip address
-        subnetType: SubnetType.PUBLIC
-      },
+      // vpcSubnets: {
+      //   // Place in a public subnet in-order to have a public ip address
+      //   subnetType: SubnetType.PUBLIC
+      // },
       securityGroup: securityGroup,
       instanceType: new InstanceType(EC2_INSTANCE_TYPE),
       machineImage: new AmazonLinuxImage({
