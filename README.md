@@ -1,9 +1,9 @@
 # MineCloud 
 [![Release](https://img.shields.io/github/v/release/VeriorPies/MineCloud)](https://github.com/VeriorPies/Minecloud/releases) [![Documentation](https://img.shields.io/badge/documentation-brightgreen.svg)](https://github.com/VeriorPies/ParrelSync/wiki) [![License](https://img.shields.io/badge/license-MIT-green)](https://github.com/VeriorPies/ParrelSync/blob/master/LICENSE.md) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-blue.svg)](https://github.com/VeriorPies/ParrelSync/pulls) [![Chats](https://img.shields.io/discord/710688100996743200)](https://discord.gg/TmQk2qG)  
 
-// To do
-// Some lovely description
-// Came with minecraft, but can easy modify other game
+MineCloud is a CDK project that allows you to setup your own hassle-free/almost no-cost Minecraft server for your Discord server with minimal time.
+
+(MineCloud came with MineCraft built-in, but still can be easily modified to host other multi-player server as well)
 <br>
 
 ![ShortGif](https://i0.wp.com/www.printmag.com/wp-content/uploads/2021/02/4cbe8d_f1ed2800a49649848102c68fc5a66e53mv2.gif?fit=476%2C280&ssl=1)
@@ -14,12 +14,12 @@
 </p>
 
 ## Features
-1. Start your server with a single Discord command
-2. Auto backup and shutdown when no one is online
+1. Fully integrated with Discord - start your server with one Discord command.
+2. Auto backup and shutdown when no one is online.
 3. Almost free (~55 cents with 20/hr gameplay each month)
-4. Fully customizable - installed what ever mods you like
-5. No maintainen cost, if you don't want to play it. just leave it there.
-3. support other game
+4. Fully customizable - installed whatever mods you like
+5. No maintainment cost - don't have time to play? Just leave it there! It cost nothing.
+6. Can be easily modified to host other multiplayer game servers as well.
 ## How To Setup?
 If you prefer, we have a step-by-step video tutorial ↓  
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/6NC-GO1RrXQ/0.jpg)](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
