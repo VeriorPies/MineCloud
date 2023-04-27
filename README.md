@@ -16,7 +16,7 @@ MineCloud is a CDK project that allows you to setup your own hassle-free/almost 
 ## Features
 1. Fully integrated with Discord - start, stop and manage your server with Discord commands
 2. Auto shutdown and backup when no one is online
-3. ≈Almost free (~55 cents with 20 hr gameplay each month)
+3. ≈Almost free (~55 cents for ~20 hr gameplay each month)
 4. Fully customizable - installed whatever mods you like
 5. No maintainment cost - don't have time to play? Just leave it there! It cost nothing
 6. Can be easily modified to host other multiplayer game servers as well!
