@@ -8,7 +8,7 @@ MineCloud is a CDK project that allows you to setup your own hassle-free/almost 
 
 ![ShortGif](/images/MCDemo_1080-min.gif)
 <p align="center">
-<b>Enjoy your hassle free Minecraft (or other multiplayer game) server with your friends on Discord  with almost no-cost - Also fully owned and managed by your selves!
+<b>Enjoy your hassle free Minecraft server with your friends on Discord  with almost no-cost - Fully owned and managed by your selves!
 </b>
 <br>
 </p>
