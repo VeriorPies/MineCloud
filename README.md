@@ -3,10 +3,10 @@
 
 MineCloud is a CDK project that allows you to setup your own hassle-free/almost no-cost Minecraft server for your Discord server with minimal time.
 
-(MineCloud came with MineCraft built-in, but can be easily modified to host other multi-player server as well)
+(MineCloud came with Minecraft built-in, but can be easily modified to host other multiplayer game server as well)
 <br>
 
-![ShortGif](https://i0.wp.com/www.printmag.com/wp-content/uploads/2021/02/4cbe8d_f1ed2800a49649848102c68fc5a66e53mv2.gif?fit=476%2C280&ssl=1)
+![ShortGif](/images/MCDemo_1080-min.gif)
 <p align="center">
 <b>Enjoy your hassle free Minecraft (or other multiplayer game) server with your friends on Discord  with almost no-cost - Also fully owned and managed by your selves!
 </b>
@@ -14,12 +14,12 @@ MineCloud is a CDK project that allows you to setup your own hassle-free/almost 
 </p>
 
 ## Features
-1. Fully integrated with Discord - start your server with one Discord command.
-2. Auto backup and shutdown when no one is online.
+1. Fully integrated with Discord - start, stop and manage your server with Discord commands
+2. Auto shutdown and backup when no one is online
 3. Almost free (~55 cents with 20/hr gameplay each month)
 4. Fully customizable - installed whatever mods you like
-5. No maintainment cost - don't have time to play? Just leave it there! It cost nothing.
-6. Can be easily modified to host other multiplayer game servers as well.
+5. No maintainment cost - don't have time to play? Just leave it there! It cost nothing
+6. Can be easily modified to host other multiplayer game servers as well!
 ## How To Setup?
 If you prefer, we have a step-by-step video tutorial ↓  
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/6NC-GO1RrXQ/0.jpg)](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
