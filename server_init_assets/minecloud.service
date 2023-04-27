@@ -14,5 +14,5 @@ Restart=always
 
 ExecStart=/usr/bin/screen -DmS mc_server ./start_service.sh
 
-ExecStop=/opt/minecloud/send_discord_message_to_webhook.sh "Stopping system service..."
+ExecStop=/opt/minecloud/send_discord_message_to_webhook.sh "Stopping MineCloud service..."
 ExecStop=/opt/minecloud/server/stop_server.sh

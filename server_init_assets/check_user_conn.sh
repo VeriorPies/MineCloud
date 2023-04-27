@@ -14,15 +14,13 @@ mcCons=$(get_current_connection_count)
 echo "Active SSH Connections: $sshCons"
 echo "Active Server Connections: $mcCons"
 
-./send_discord_message_to_webhook.sh "Hm... there're $mcCons players online now... Come and join Ow<?"
-
 if [ $((mcCons)) = 0 ]
 then
         echo "Checking for SSH connections before shutting down"
         if [[ $((sshCons)) = 0 ]]
         then
                 echo "no ssh connections, closing server instace"
-                ./send_discord_message_to_webhook.sh "Nobody is online. Shutting down the server instance OwO~"
+                ./send_discord_message_to_webhook.sh "Hm... there's $mcCons player online now. Shutting down the server instance OwO~"
 		sudo systemctl stop minecloud
                 ./auto_backup_checker.sh
 		./send_discord_message_to_webhook.sh "(Server instance stopped)"
@@ -33,4 +31,5 @@ then
         fi
 else
         echo "Somebody is online, do nothing!"
+        ./send_discord_message_to_webhook.sh "Hm... there're $mcCons players online now... Come and join Ow<?"
 fi
