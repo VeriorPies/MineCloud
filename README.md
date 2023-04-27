@@ -16,10 +16,20 @@ MineCloud is a CDK project that allows you to setup your own hassle-free/almost 
 ## Features
 1. Fully integrated with Discord - start, stop and manage your server with Discord commands
 2. Auto shutdown and backup when no one is online
-3. Almost free (~55 cents with 20/hr gameplay each month)
+3. ≈Almost free (~55 cents with 20 hr gameplay each month)
 4. Fully customizable - installed whatever mods you like
 5. No maintainment cost - don't have time to play? Just leave it there! It cost nothing
 6. Can be easily modified to host other multiplayer game servers as well!
+
+### Cost Breakdown
+Assuming *20 hours* of play per month
+- Lambda: Free tier
+- S3: Free tier (Until backup exceed 5GB)
+- Data Trasnfer: Free tier (Until exceed 100GB)
+- EC2: 0.27 (`t2.large` spot price) * 20 (hr) ≈ $0.54/month
+- **Total**: ≈ $0.54/month
+
+Please refer to [Spot Instances Pricing](https://aws.amazon.com/ec2/spot/pricing/) and [S3 Pricing](https://aws.amazon.com/s3/pricing) for more informations.
 ## How To Setup?
 If you prefer, we have a step-by-step video tutorial ↓  
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/6NC-GO1RrXQ/0.jpg)](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
