@@ -1,7 +1,7 @@
 # MineCloud 
 [![Release](https://img.shields.io/github/v/release/VeriorPies/MineCloud)](https://github.com/VeriorPies/Minecloud/releases) [![Documentation](https://img.shields.io/badge/documentation-brightgreen.svg)](https://github.com/VeriorPies/ParrelSync/wiki) [![License](https://img.shields.io/badge/license-MIT-green)](https://github.com/VeriorPies/ParrelSync/blob/master/LICENSE.md) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-blue.svg)](https://github.com/VeriorPies/ParrelSync/pulls) [![Chats](https://img.shields.io/discord/710688100996743200)](https://discord.gg/TmQk2qG)  
 
-MineCloud is a CDK project that allows you to setup your own hassle-free/almost no-cost Minecraft server for your Discord server with minimal time.
+MineCloud is a CDK project that allows you to setup your own hassle-free/almost no-cost Minecraft server for your Discord server using minimal time.
 
 (MineCloud came with Minecraft built-in, but can be easily modified to host other multiplayer game server as well)
 <br>
