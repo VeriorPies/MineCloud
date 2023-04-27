@@ -21,7 +21,7 @@
 3. support other game
 ## How To Setup?
 If you prefer, we have a step-by-step video tutorial ↓  
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/dQw4w9WgXcQ/0.jpg)](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/6NC-GO1RrXQ/0.jpg)](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
 
 ### **Prerequisites**
 1. A [Discord](https://discord.com/) account :)
