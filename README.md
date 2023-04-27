@@ -8,16 +8,17 @@
 
 ![ShortGif](https://i0.wp.com/www.printmag.com/wp-content/uploads/2021/02/4cbe8d_f1ed2800a49649848102c68fc5a66e53mv2.gif?fit=476%2C280&ssl=1)
 <p align="center">
-<b>// Enjoy your hassle free, almost no-cost minecraft (or other multiplayer game) server with your friends on Discord - Fully owned and managed by your selves!
+<b>Enjoy your hassle free Minecraft (or other multiplayer game) server with your friends on Discord  with almost no-cost - Also fully owned and managed by your selves!
 </b>
 <br>
 </p>
 
-// Enjoy your Hassel free, almost free minecraft server with your friends on Discord - Owned and managed by your selves!
-
 ## Features
-1. 
-2. // no maintainen cost, if you don't want to play it. just leave it there.
+1. Start your server with a single Discord command
+2. Auto backup and shutdown when no one is online
+3. Almost free (~55 cents with 20/hr gameplay each month)
+4. Fully customizable - installed what ever mods you like
+5. No maintainen cost, if you don't want to play it. just leave it there.
 3. support other game
 ## How To Setup?
 If you prefer, we have a step-by-step video tutorial ↓  
