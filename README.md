@@ -24,7 +24,15 @@ MineCloud is a AWS CDK (Cloud Development Kit) project that allows you to setup 
 5. No maintainment cost - don't have time to play? Just leave it there! It cost nothing
 6. Can be easily modified to host other multiplayer game servers as well
 
-### Cost Breakdown
+### *Supported Discord Commands*
+
+- `mc_start`: Start the server
+- `mc_stop` : Stop the server
+- `mc_restart`: Restart the server process
+- `mc_backup`: Pause the server and create a backup
+- `mc_backup_download`: Get the download link of the latest backup
+
+### *Cost Breakdown*
 
 with _20 hrs_ play / month
 
@@ -122,14 +130,6 @@ If you prefer, we have a step-by-step video tutorial ↓
 ### **_ONE MORE THING!!!_**
 
 If you have deployed MineCloud more than once, there might be dangling spot instance request that will constantly charged you. **MAKE SURE TO CHECK YOUR [EC2 SPOT REQUESTS TAB](https://console.aws.amazon.com/ec2/home#SpotInstances:) AND CANCEL THE DANGLING SPOT REQUEST IF IT EXISTED!**
-
-## Supported Discord Commands
-
-- `mc_start`: Start the server
-- `mc_stop` : Stop the server
-- `mc_restart`: Restart the server process
-- `mc_backup`: Pause the server and create a backup
-- `mc_backup_download`: Get the download link of the latest backup
 
 ## // To-Do
 
