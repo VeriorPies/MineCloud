@@ -14,7 +14,10 @@ import {
   MAX_BACKUP_COUNT
 } from '../minecloud_configs/MineCloud-Configs';
 import { CUSTOM_INIT_CONFIG } from '../minecloud_configs/advanced_configs/custom-instance-init';
-import { MINECLOUD_BASE_DIR, MINECLOUD_SERVER_DIR } from './const/minecloud-dir';
+import {
+  MINECLOUD_BASE_DIR,
+  MINECLOUD_SERVER_DIR
+} from './const/minecloud-dir';
 
 const MINECLOUD_USER = 'minecloud';
 // Not the same name since cfn-init can't figure it out for some reason
@@ -24,7 +27,9 @@ export function getInitConfig(backupBucketName: string) {
   return CloudFormationInit.fromConfigSets({
     configSets: {
       default: [
-        DEPLOY_LOCAL_SERVER_EXECUTABLE ? 'deployLocalServerExecutable' : 'noAction',
+        DEPLOY_LOCAL_SERVER_EXECUTABLE
+          ? 'deployLocalServerExecutable'
+          : 'noAction',
         'customInit',
         'setupServerUtilities',
         'setupDiscordMessaging',
