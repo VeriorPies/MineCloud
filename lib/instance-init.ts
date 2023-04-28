@@ -9,23 +9,24 @@ import {
 
 import {
   BACKUP_INTERVAL_IN_SECONDS,
+  DEPLOY_LOCAL_SERVER_EXECUTABLE,
   DISCORD_CHANNEL_WEB_HOOK,
   MAX_BACKUP_COUNT
 } from '../minecloud_configs/MineCloud-Configs';
 import { CUSTOM_INIT_CONFIG } from '../minecloud_configs/advanced_configs/custom-instance-init';
+import { MINECLOUD_BASE_DIR, MINECLOUD_SERVER_DIR } from './const/minecloud-dir';
 
 const MINECLOUD_USER = 'minecloud';
 // Not the same name since cfn-init can't figure it out for some reason
 const MINECLOUD_GROUP = 'minecloud-group';
-const MINECLOUD_BASE_DIR = '/opt/minecloud';
-const MINECLOUD_SERVER_DIR = `${MINECLOUD_BASE_DIR}/server`;
 
 export function getInitConfig(backupBucketName: string) {
   return CloudFormationInit.fromConfigSets({
     configSets: {
       default: [
-        'setupMineCloudServer',
+        DEPLOY_LOCAL_SERVER_EXECUTABLE ? 'deployLocalServerExecutable' : 'noAction',
         'customInit',
+        'setupServerUtilities',
         'setupDiscordMessaging',
         'setupMineCloudService',
         'setupBackupScripts',
@@ -34,7 +35,21 @@ export function getInitConfig(backupBucketName: string) {
       ]
     },
     configs: {
-      setupMineCloudServer: new InitConfig([
+      deployLocalServerExecutable: new InitConfig([
+        // Setup server executables
+        InitFile.fromAsset(
+          `${MINECLOUD_SERVER_DIR}/server.zip`,
+          'minecloud_configs/server/server.zip'
+        ),
+        InitCommand.shellCommand(`sudo unzip server.zip`, {
+          cwd: MINECLOUD_SERVER_DIR
+        }),
+        InitCommand.shellCommand(`sudo rm -f server.zip`, {
+          cwd: MINECLOUD_SERVER_DIR
+        })
+      ]),
+      customInit: CUSTOM_INIT_CONFIG,
+      setupServerUtilities: new InitConfig([
         InitGroup.fromName(MINECLOUD_GROUP),
         InitUser.fromName(MINECLOUD_USER, {
           groups: [MINECLOUD_GROUP]
@@ -60,23 +75,10 @@ export function getInitConfig(backupBucketName: string) {
           cwd: MINECLOUD_SERVER_DIR
         }),
 
-        // Setup server executables
-        InitFile.fromAsset(
-          `${MINECLOUD_SERVER_DIR}/server.zip`,
-          'minecloud_configs/server/server.zip'
-        ),
-        InitCommand.shellCommand(`sudo unzip server.zip`, {
-          cwd: MINECLOUD_SERVER_DIR
-        }),
-        InitCommand.shellCommand(`sudo rm -f server.zip`, {
-          cwd: MINECLOUD_SERVER_DIR
-        }),
-
         InitCommand.shellCommand(
           `chown -R ${MINECLOUD_USER}:${MINECLOUD_GROUP} ${MINECLOUD_BASE_DIR}`
         )
       ]),
-      customInit: CUSTOM_INIT_CONFIG,
       setupDiscordMessaging: new InitConfig([
         InitCommand.shellCommand(
           `echo 'DISCORD_WEB_HOOK=${DISCORD_CHANNEL_WEB_HOOK}' >> /etc/environment`
@@ -168,7 +170,8 @@ export function getInitConfig(backupBucketName: string) {
         InitCommand.shellCommand(`sudo chmod +x get_latest_server_backup.sh`, {
           cwd: MINECLOUD_BASE_DIR
         })
-      ])
+      ]),
+      noAction: new InitConfig([])
     }
   });
 }

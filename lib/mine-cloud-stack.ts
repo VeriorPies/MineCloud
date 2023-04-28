@@ -125,7 +125,7 @@ export class MineCloud extends Stack {
         securityGroupName: `${STACK_PREFIX}_ec2_security_group`
       }
     );
-    // To allow SSH and minecloud connections
+    // To allow SSH connections
     securityGroup.addIngressRule(
       Peer.anyIpv4(),
       Port.tcp(22),
