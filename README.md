@@ -2,32 +2,32 @@
 
 [![Release](https://img.shields.io/github/v/release/VeriorPies/MineCloud)](https://github.com/VeriorPies/Minecloud/releases) [![Documentation](https://img.shields.io/badge/documentation-brightgreen.svg)](https://github.com/VeriorPies/ParrelSync/wiki) [![License](https://img.shields.io/badge/license-MIT-green)](https://github.com/VeriorPies/ParrelSync/blob/master/LICENSE.md) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-blue.svg)](https://github.com/VeriorPies/ParrelSync/pulls) [![Chats](https://img.shields.io/discord/710688100996743200)](https://discord.gg/TmQk2qG)
 
-MineCloud is a AWS CDK (Cloud Development Kit) project that allows you to setup your own hassle-free/almost no-cost Minecraft server for your Discord server with minimal time.
+MineCloud is an AWS CDK (Cloud Development Kit) project that allows you to set up your hassle-free/almost no-cost Minecraft server for your Discord server with minimal time.
 
-(MineCloud came with Minecraft built-in, but can be easily modified to host other multiplayer game server as well)
+(MineCloud came with Minecraft built-in, but can be easily modified to host other multiplayer game servers as well)
 <br>
 
 ![ShortGif](/images/MCDemo_1080-min.gif)
 
 <p align="center">
-<b>Enjoy your hassle free Minecraft server with your friends on Discord  with almost no-cost!
+<b>Enjoy your hassle-free Minecraft server with your friends on Discord at almost no cost!
 </b>
 <br>
 </p>
 
 ## Features
 
-1. Fully integrated with Discord - start, stop and backup the server with Discord commands
+1. Fully integrated with Discord - start, stop, and backup the server with Discord commands
 2. Auto shutdown and backup when no one is online
-3. Almost free (≈55 cents for 20 hr play / month)
+3. Almost free (≈55 cents for 20 hr play/month)
 4. Fully customizable - installed whatever mods you like
-5. No maintainment cost - don't have time to play? Just leave it there! It cost nothing
+5. No maintaining cost - don't have time to play? Just leave it there! It cost nothing
 6. Can be easily modified to host other multiplayer game servers as well
 
 #### *Supported Discord Commands*
 
 - `mc_start`: Start the server
-- `mc_stop` : Stop the server
+- `mc_stop`: Stop the server
 - `mc_restart`: Restart the server process
 - `mc_backup`: Pause the server and create a backup
 - `mc_backup_download`: Get the download link of the latest backup
@@ -37,12 +37,12 @@ MineCloud is a AWS CDK (Cloud Development Kit) project that allows you to setup 
 with _20 hrs_ play / month
 
 - Lambda: Free tier
-- S3: Free tier, unless total backup size exceed 5GB (default max backup count is 3)
-- Data Trasnfer: Free tier, unless total data tansfer exceed 100GB
+- S3: Free tier, unless total backup size exceeds 5GB (default max backup count is 3)
+- Data Transfer: Free tier, unless total data transfer exceeds 100GB
 - EC2: 0.27 (`t2.large` spot price) \* 20 (hr) ≈ $0.54/month
 - **Total**: ≈ $0.54/month
 
-Please refer to [Spot Instances Pricing](https://aws.amazon.com/ec2/spot/pricing/) and [S3 Pricing](https://aws.amazon.com/s3/pricing) for more informations.
+Please refer to [Spot Instances Pricing](https://aws.amazon.com/ec2/spot/pricing/) and [S3 Pricing](https://aws.amazon.com/s3/pricing) for more information.
 
 ## How To Setup?
 
@@ -53,14 +53,14 @@ If you prefer, we have a step-by-step video tutorial ↓
 
 1. A [Discord](https://discord.com/) account :)
 2. Node.js 18 (or above) - If haven't, go to https://nodejs.org to download and install the latest version of Node.js
-   - Type `node --version` in the terminal to confirm Node is properly setup. You should see something like this:
+   - Type `node --version` in the terminal to confirm Node is properly set up. You should see something like this:
      ```
      v18.xx.x
      ```
 3. An AWS account and AWS CLI
    - If haven't already, go to https://aws.amazon.com/ to register an AWS account
    - Download and install AWS CLI from [here](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
-     - Type `aws --version` in the terminal to confirm AWS CLI is properly setup. Something like this should show up:
+     - Type `aws --version` in the terminal to confirm AWS CLI is properly set up. Something like this should show up:
        ```
        aws-cli/2.10.0 Python/3.11.2 Windows/10 exe/AMD64 prompt/off
        ```
@@ -96,7 +96,7 @@ If you prefer, we have a step-by-step video tutorial ↓
         You can optionally setup your BOT avatar<br>
         </p>
    - `DISCORD_CHANNEL_WEB_HOOK`:
-     - Open regular Discord, go to the Discord server you want add MineCloud to, choose a text channel, and click "Edit Channel".
+     - Open regular Discord, go to the Discord server you want to add MineCloud to, choose a text channel, and click "Edit Channel".
      - Go to "Integrations" => "Webhooks", click "New Webhook" to create a new Webhook then copy the Webhook URL.
      - This text channel is where our VM instance will send updates to
      &nbsp;&nbsp;&nbsp; <img width="80%"  src="images/discord-channel-webhook.png" >
@@ -105,7 +105,7 @@ If you prefer, we have a step-by-step video tutorial ↓
      </p>
 2. Deploy MineCloud
    - Type `npm install` to install all dependencies
-   - (Optional) Replace `minecloud_configs/server/server.zip` with your favorite Minecraft version / Mods, the default Minecraft being downloaded is `1.19.4` (When packing server executable, make sure the server.jar is at the root level of the zip file).  
+   - (Optional) Replace `minecloud_configs/server/server.zip` with your favorite Minecraft version / Mods, the default Minecraft being downloaded is `1.19.4` (When packing the server executable, make sure the server.jar is at the root level of the zip file).  
      After replacing `server.zip`, set `DEPLOY_LOCAL_SERVER_EXECUTABLE = true` in the `minecloud_configs/MineCloud-Configs.ts`
    - Open the terminal in the MineCloud folder and enter `npx cdk list` to make sure the build pass. You should see the stack name being printed:
      ```
@@ -129,7 +129,7 @@ If you prefer, we have a step-by-step video tutorial ↓
 
 ### **_ONE MORE THING!!!_**
 
-If you have deployed MineCloud more than once, there might be dangling spot instance request that will constantly charged you. **MAKE SURE TO CHECK YOUR [EC2 SPOT REQUESTS TAB](https://console.aws.amazon.com/ec2/home#SpotInstances:) AND CANCEL THE DANGLING SPOT REQUEST IF IT EXISTED!**
+If you have deployed MineCloud more than once, there might be dangling spot instance requests that will constantly charge you. **MAKE SURE TO CHECK YOUR [EC2 SPOT REQUESTS TAB](https://console.aws.amazon.com/ec2/home#SpotInstances:) AND CANCEL THE DANGLING SPOT REQUEST IF IT EXISTED!**
 
 ## // To-Do
 
