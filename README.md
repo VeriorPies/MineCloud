@@ -24,7 +24,7 @@ MineCloud is a AWS CDK (Cloud Development Kit) project that allows you to setup 
 5. No maintainment cost - don't have time to play? Just leave it there! It cost nothing
 6. Can be easily modified to host other multiplayer game servers as well
 
-### *Supported Discord Commands*
+#### *Supported Discord Commands*
 
 - `mc_start`: Start the server
 - `mc_stop` : Stop the server
@@ -32,7 +32,7 @@ MineCloud is a AWS CDK (Cloud Development Kit) project that allows you to setup 
 - `mc_backup`: Pause the server and create a backup
 - `mc_backup_download`: Get the download link of the latest backup
 
-### *Cost Breakdown*
+#### *Cost Breakdown*
 
 with _20 hrs_ play / month
 
