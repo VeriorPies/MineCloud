@@ -111,7 +111,7 @@ If you prefer, we have a step-by-step video tutorial ↓
      ```
      MineCloud
      ```
-   - Bootstrap your AWS account by running `cdk bootstrap aws://<ACCOUNT-NUMBER>/<REGION>`
+   - Bootstrap your AWS account by running `cdk bootstrap aws://<AWS_ACCOUNT_ID>/<AWS_REGION>`
    - Enter `npx cdk deploy` to deploy the stack.
    - Sit back and relax, this will take like 5~10 minutes ☕.
      - When you see a "The server instance is ready" message shown up in the Discord channel, this means your Minecraft server is almost ready to connect :)
