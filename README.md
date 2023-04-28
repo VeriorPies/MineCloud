@@ -37,8 +37,8 @@ MineCloud is a AWS CDK (Cloud Development Kit) project that allows you to setup 
 with _20 hrs_ play / month
 
 - Lambda: Free tier
-- S3: Free tier (Until backup exceed 5GB)
-- Data Trasnfer: Free tier (Until exceed 100GB)
+- S3: Free tier, unless total backup size exceed 5GB (default max backup count is 3)
+- Data Trasnfer: Free tier, unless total data tansfer exceed 100GB
 - EC2: 0.27 (`t2.large` spot price) \* 20 (hr) ≈ $0.54/month
 - **Total**: ≈ $0.54/month
 
