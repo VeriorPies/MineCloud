@@ -1,5 +1,5 @@
 // ---------------- Required -------------------- //
-export const AWS_ACCOUNT_NUMBER = '';
+export const AWS_ACCOUNT_ID = '';
 export const AWS_REGION = '';
 
 export const DISCORD_APP_ID = '';
