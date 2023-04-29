@@ -111,7 +111,7 @@ If you prefer, we have a step-by-step video tutorial ↓
      ```
      MineCloud
      ```
-   - Bootstrap your AWS account by running `cdk bootstrap aws://<AWS_ACCOUNT_ID>/<AWS_REGION>`
+   - Bootstrap your AWS account by running `npx cdk bootstrap aws://<AWS_ACCOUNT_ID>/<AWS_REGION>`
    - Before deploying, read through [MINECRAFT END USER LICENSE AGREEMENT](https://www.minecraft.net/en-us/eula) and make sure you agree to it
    - Enter `npx cdk deploy` to deploy the stack.
    - Sit back and relax, this will take like 5~10 minutes ☕.
