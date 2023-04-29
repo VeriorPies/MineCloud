@@ -47,7 +47,7 @@ Please refer to [Spot Instances Pricing](https://aws.amazon.com/ec2/spot/pricing
 ## How To Setup?
 
 If you prefer, we have a step-by-step video tutorial ↓  
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/6NC-GO1RrXQ/0.jpg)](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/XchzoyRVfVU/0.jpg)](https://www.youtube.com/watch?v=XchzoyRVfVU)
 
 ### **Prerequisites**
 
