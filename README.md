@@ -104,7 +104,7 @@ If you prefer, we have a step-by-step video tutorial ↓
      You can also optionally set up your BOT avatar here<br>
      </p>
 2. Deploy MineCloud
-   - In the MineCloud project directory, type `npm install` to install all dependencies
+   - In the MineCloud project directory, type `npm install` in the terminal to install all dependencies
    - (Optional) Replace `minecloud_configs/server/server.zip` with your favorite Minecraft version / Mods, the default Minecraft being downloaded is `1.19.4` (When packing the server executable, make sure the server.jar is at the root level of the zip file).  
      After replacing `server.zip`, set `DEPLOY_LOCAL_SERVER_EXECUTABLE = true` in the `minecloud_configs/MineCloud-Configs.ts`
    - Open the terminal in the MineCloud folder and enter `npx cdk list` to make sure the build pass. You should see the stack name being printed:
