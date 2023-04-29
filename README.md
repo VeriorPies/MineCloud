@@ -1,10 +1,10 @@
 # MineCloud
 
-[![Release](https://img.shields.io/github/v/release/VeriorPies/MineCloud)](https://github.com/VeriorPies/Minecloud/releases) [![Documentation](https://img.shields.io/badge/documentation-brightgreen.svg)](https://github.com/VeriorPies/ParrelSync/wiki) [![License](https://img.shields.io/badge/license-MIT-green)](https://github.com/VeriorPies/ParrelSync/blob/master/LICENSE.md) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-blue.svg)](https://github.com/VeriorPies/ParrelSync/pulls) [![Chats](https://img.shields.io/discord/710688100996743200)](https://discord.gg/TmQk2qG)
+[![Release](https://img.shields.io/github/v/release/VeriorPies/MineCloud)](https://github.com/VeriorPies/Minecloud/releases) [![Documentation](https://img.shields.io/badge/documentation-brightgreen.svg)](https://github.com/VeriorPies/ParrelSync/wiki) [![License](https://img.shields.io/badge/license-MIT-green)](https://github.com/VeriorPies/MineCloud/blob/main/LICENSE) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-blue.svg)](https://github.com/VeriorPies/MineCloud/pulls) [![Chats](https://img.shields.io/discord/1101786911846182964)](https://discord.gg/fuTdbYrbZm)
 
 MineCloud is an AWS CDK (Cloud Development Kit) project that allows you to set up your hassle-free/almost no-cost Minecraft server for your Discord server with minimal time.
 
-(MineCloud came with Minecraft built-in, but can be easily modified to host other multiplayer game servers as well)
+*(MineCloud came with Minecraft built-in, but can be easily modified to host other multiplayer game servers as well)*
 <br>
 
 ![ShortGif](/images/MCDemo_1080-min.gif)
@@ -130,12 +130,16 @@ If you prefer, we have a step-by-step video tutorial ↓
 
 ### **_ONE MORE THING!!!_**
 
-If you have deployed MineCloud more than once, there might be dangling spot instance requests that will constantly charge you. **MAKE SURE TO CHECK YOUR [EC2 SPOT REQUESTS TAB](https://console.aws.amazon.com/ec2/home#SpotInstances:) AND CANCEL THE DANGLING SPOT REQUEST IF IT EXISTED!**
+If you have deployed MineCloud more than once, **THERE MIGHT BE DANGLING SPOT INSTANCE REQUESTS THAT WILL CONSTANTLY CHARGE YOU. MAKE SURE TO CHECK YOUR [EC2 SPOT REQUESTS TAB](https://console.aws.amazon.com/ec2/home#SpotInstances:) AND CANCEL THE DANGLING SPOT REQUEST IF IT EXISTED!!**
 
-## // To-Do
+## How does it work?
+![Diagram](/images/MineCloudDiagram.png)
+## Discord Server
+We have a [Discord Server](https://discord.gg/fuTdbYrbZm)
 
-## // Story
+## Need Help?
+Some common questions and troubleshooting will be available under the Troubleshooting & FAQs page (we are still working on it)
+You can also create a question post in [issues](https://github.com/VeriorPies/MineCloud/issues), or ask on Discord if you prefer to have a real-time conversation.
 
-## // Architect/How this works
-
-// => wiki
+## Support this project
+A star will be appreciated ;)
