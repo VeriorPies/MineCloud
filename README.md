@@ -19,7 +19,7 @@ MineCloud is an AWS CDK (Cloud Development Kit) project that allows you to set u
 
 1. Fully integrated with Discord - start, stop, and backup the server with Discord commands
 2. Auto shutdown and backup when no one is online
-3. Almost free (≈55 cents for 20 hr play/month)
+3. Almost free (≈54 cents for 20 hr play/month - <ins>with a 2 CPUs & 8GB RAM server</ins>)
 4. Fully customizable - installed whatever mods you like
 5. No maintenance cost - don't have time to play? Just leave it there! It cost nothing
 6. Can be easily modified to host other multiplayer game servers as well
@@ -47,7 +47,7 @@ Please refer to [Spot Instances Pricing](https://aws.amazon.com/ec2/spot/pricing
 ## How To Setup?
 
 If you prefer, we have a step-by-step video tutorial ↓  
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/XchzoyRVfVU/0.jpg)](https://www.youtube.com/watch?v=XchzoyRVfVU)
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/6L-cPb_IOX4/0.jpg)](https://youtu.be/6L-cPb_IOX4)
 
 ### **Prerequisites**
 
@@ -130,7 +130,7 @@ If you prefer, we have a step-by-step video tutorial ↓
 
 ### **_ONE MORE THING!!!_**
 
-If you have deployed MineCloud more than once, **THERE MIGHT BE DANGLING SPOT INSTANCE REQUESTS THAT WILL CONSTANTLY CHARGE YOU. MAKE SURE TO CHECK YOUR [EC2 SPOT REQUESTS TAB](https://console.aws.amazon.com/ec2/home#SpotInstances:) AND CANCEL THE DANGLING SPOT REQUEST IF IT EXISTED!!**
+If you have deployed MineCloud more than once, **THERE MIGHT BE DANGLING SPOT INSTANCE REQUESTS THAT WILL CONSTANTLY CHARGE YOU. MAKE SURE TO CHECK YOUR [EC2 SPOT REQUESTS TAB](https://console.aws.amazon.com/ec2/home#SpotInstances:) AND CANCEL THE DANGLING SPOT REQUEST IF THERE'S ANY!!**
 
 ## How does it work?
 ![Diagram](/images/MineCloudDiagram.png)
