@@ -140,7 +140,7 @@ For more details, please refer to the [wiki page](https://github.com/VeriorPies/
 We have a [Discord Server](https://discord.gg/fuTdbYrbZm)
 
 ## Need Help?
-Common questions and troubleshooting can be found in the [Troubleshooting & FAQs page](https://github.com/VeriorPies/MineCloud/wiki/Troubleshooting-&-FAQs-page).  
+Common questions and troubleshooting can be found in the [FAQs & Troubleshooting page](https://github.com/VeriorPies/MineCloud/wiki/FAQs-&-Troubleshooting).  
 You can also [create a question post](https://github.com/VeriorPies/MineCloud/issues) or ask on [Discord](https://discord.gg/fuTdbYrbZm) if you like.
 
 ## Support this project
