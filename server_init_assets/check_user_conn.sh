@@ -24,6 +24,7 @@ then
 		sudo systemctl stop minecloud
                 ./auto_backup_checker.sh
 		./send_discord_message_to_webhook.sh "(Server instance stopped)"
+		./send_discord_message_to_webhook.sh "Enjoying MineCloud BOT? If so, please don't hesitate to star it on GitHub and contribute to the project :) ! \n https://github.com/VeriorPies/MineCloud"
 		sudo shutdown
         else
                 echo "There are 1 or more active ssh connections, skip termination"
