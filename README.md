@@ -2,9 +2,9 @@
 
 [![Release](https://img.shields.io/github/v/release/VeriorPies/MineCloud)](https://github.com/VeriorPies/Minecloud/releases) [![Documentation](https://img.shields.io/badge/documentation-brightgreen.svg)](https://github.com/VeriorPies/MineCloud/wiki) [![License](https://img.shields.io/badge/license-MIT-green)](https://github.com/VeriorPies/MineCloud/blob/main/LICENSE) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-blue.svg)](https://github.com/VeriorPies/MineCloud/pulls) [![Chats](https://img.shields.io/discord/1101786911846182964)](https://discord.gg/fuTdbYrbZm)
 
-MineCloud is an AWS CDK (Cloud Development Kit) project that allows you to set up your hassle-free/almost no-cost/on-demand Minecraft server for your Discord server with minimal time.
+MineCloud is an AWS CDK (Cloud Development Kit) project that allows users to set up an almost free on-demand Minecraft (or other game) server for their Discord server with minimal time.
 
-*(MineCloud came with Minecraft built-in, but can be easily modified to host other multiplayer game servers as well)*
+*MineCloud comes with Minecraft server built-in but can be easily configured to host other multiplayer game servers as well. For more details, please check out the [Terraria example](https://github.com/VeriorPies/MineCloud/tree/Terraria).*
 <br>
 
 ![ShortGif](/images/MCDemo_1080-min.gif)
@@ -17,16 +17,17 @@ MineCloud is an AWS CDK (Cloud Development Kit) project that allows you to set u
 
 ## Features
 
-1. Fully integrated with Discord - start, stop, and backup the server with Discord commands
+1. Discord Bot - start, stop, and backup the server with Discord commands (The server IP address will be sent to Discord channel after start)
 2. Auto shutdown and backup when no one is online
-3. Almost free (≈54 cents for 20 hr play/month - <ins>with a 2 CPUs & 8GB RAM server</ins>)
-4. Fully customizable - install whatever mods you like
-5. No maintenance cost - don't have time to play? Just leave it there! It cost nothing
-6. Can be easily modified to host other multiplayer game servers as well
+3. Easy to setup - we do our best to make the process as simple as possible :)
+4. Almost free (≈54 cents for 20 hr play/month - <ins>with a 2 CPUs & 8GB RAM server</ins>)
+5. Fully customizable - install whatever mods you like
+6. No maintenance cost - don't have time to play? Just leave it there! It cost nothing
+7. Can be easily configured to host other multiplayer game servers as well
 
 #### *Supported Discord Commands*
 
-- `mc_start`: Start the server
+- `mc_start`: Start the server and send the IP address to Discord channel
 - `mc_stop`: Stop the server
 - `mc_restart`: Restart the server process
 - `mc_backup`: Pause the server and create a backup
@@ -43,6 +44,10 @@ with _20 hrs_ play / month
 - **Total**: ≈ $0.54/month
 
 Please refer to [Spot Instances Pricing](https://aws.amazon.com/ec2/spot/pricing/) and [S3 Pricing](https://aws.amazon.com/s3/pricing) for more information.
+
+## Diagram
+![Diagram](/images/MineCloudDiagram.png)
+*For more details, please check out the [wiki page](https://github.com/VeriorPies/MineCloud/wiki/How-does-MineCloud-work%3F).* 
 
 ## How To Setup?
 
@@ -131,10 +136,6 @@ If you prefer, we have a step-by-step video tutorial ↓
 ### **_ONE MORE THING!!!_**
 
 If you have deployed MineCloud more than once, **THERE MIGHT BE DANGLING SPOT INSTANCE REQUESTS THAT WILL CONSTANTLY CHARGE YOU. MAKE SURE TO CHECK YOUR [EC2 SPOT REQUESTS TAB](https://console.aws.amazon.com/ec2/home#SpotInstances:) AND CANCEL THE DANGLING SPOT REQUEST IF THERE'S ANY!!**
-
-## How does it work?
-![Diagram](/images/MineCloudDiagram.png)
-For more details, please refer to the [wiki page](https://github.com/VeriorPies/MineCloud/wiki/How-does-MineCloud-work%3F)! 
 
 ## Discord Server
 We have a [Discord Server](https://discord.gg/fuTdbYrbZm)
