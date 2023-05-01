@@ -19,10 +19,11 @@ MineCloud is an AWS CDK (Cloud Development Kit) project that allows you to set u
 
 1. Fully integrated with Discord - start, stop, and backup the server with Discord commands
 2. Auto shutdown and backup when no one is online
-3. Almost free (≈54 cents for 20 hr play/month - <ins>with a 2 CPUs & 8GB RAM server</ins>)
-4. Fully customizable - install whatever mods you like
-5. No maintenance cost - don't have time to play? Just leave it there! It cost nothing
-6. Can be easily modified to host other multiplayer game servers as well
+3. Easy to setup - we do our best to make the process as simple as possible
+4. Almost free (≈54 cents for 20 hr play/month - <ins>with a 2 CPUs & 8GB RAM server</ins>)
+5. Fully customizable - install whatever mods you like
+6. No maintenance cost - don't have time to play? Just leave it there! It cost nothing
+7. Can be easily modified to host other multiplayer game servers as well
 
 #### *Supported Discord Commands*
 
