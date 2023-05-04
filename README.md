@@ -17,9 +17,9 @@ MineCloud is an AWS CDK (Cloud Development Kit) project that allows you to set u
 
 ## Features
 
-1. Discord Bot - start, stop, and backup the server with Discord commands
+1. Discord Bot - start, stop, and backup the server with Discord commands (The server IP address will be sent to Discord channel after start)
 2. Auto shutdown and backup when no one is online
-3. Easy to setup - we do our best to make the process as simple as possible
+3. Easy to setup - we do our best to make the process as simple as possible :)
 4. Almost free (≈54 cents for 20 hr play/month - <ins>with a 2 CPUs & 8GB RAM server</ins>)
 5. Fully customizable - install whatever mods you like
 6. No maintenance cost - don't have time to play? Just leave it there! It cost nothing
@@ -27,7 +27,7 @@ MineCloud is an AWS CDK (Cloud Development Kit) project that allows you to set u
 
 #### *Supported Discord Commands*
 
-- `mc_start`: Start the server
+- `mc_start`: Start the server and send the IP address to Discord channel
 - `mc_stop`: Stop the server
 - `mc_restart`: Restart the server process
 - `mc_backup`: Pause the server and create a backup
