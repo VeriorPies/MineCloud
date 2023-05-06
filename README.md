@@ -14,7 +14,7 @@ All of the common config files for hosting a general multiplayer game server are
   - server/ 
     - `start_server.sh`: Script to start the game server
     - `stop_server.sh`: Script to stop the game server
-    - `server.zip`: This will be deployed and unzipped in the `/server` folder when `DEPLOY_LOCAL_SERVER_EXECUTABLE ` is set to true in `MineCloud-Configs.ts` (when creating `server.zip`, make sure all the files are at the top level)
+    - `server.zip`: This will be deployed and unzipped into the `/server` folder when `DEPLOY_LOCAL_SERVER_EXECUTABLE ` is set to true in `MineCloud-Configs.ts` (when creating `server.zip`, make sure all the files are at the top level)
   - advanced_configs/
     - `custom-instance-init.ts`: Custom EC2 init configs. This will be executed before other EC2 init processes (except local `server.zip` deployment - this can allow us to grant execution permission to server executable if needed)
     - `get_connection_count.sh`: Override the `get_current_connection_count()` method to return how many players are currently connected. When the return is zero, the server will auto shut down.  
