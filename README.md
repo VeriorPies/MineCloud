@@ -2,10 +2,9 @@
 
 [![Release](https://img.shields.io/github/v/release/VeriorPies/MineCloud)](https://github.com/VeriorPies/Minecloud/releases) [![Documentation](https://img.shields.io/badge/documentation-brightgreen.svg)](https://github.com/VeriorPies/MineCloud/wiki) [![License](https://img.shields.io/badge/license-MIT-green)](https://github.com/VeriorPies/MineCloud/blob/main/LICENSE) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-blue.svg)](https://github.com/VeriorPies/MineCloud/pulls) [![Chats](https://img.shields.io/discord/1101786911846182964)](https://discord.gg/fuTdbYrbZm)
 
-MineCloud is an AWS CDK (Cloud Development Kit) project that allows you to 
-set up your (almost) free on-demand Minecraft (or other multiplayer game) server for your Discord community with minimal time.
+MineCloud is an AWS CDK (Cloud Development Kit) project that allows users to set up an almost free on-demand Minecraft (or other multiplayer game) server for their Discord server with minimal time.
 
-*(MineCloud came with Minecraft server built-in, but can be easily configured to host other multiplayer game servers as well. For more details, please refer to the [Terraria example](https://github.com/VeriorPies/MineCloud/tree/Terraria))*
+*MineCloud comes with Minecraft server built-in but can be easily configured to host other multiplayer game servers as well. For more details, please refer to the [Terraria example](https://github.com/VeriorPies/MineCloud/tree/Terraria).*
 <br>
 
 ![ShortGif](/images/MCDemo_1080-min.gif)
