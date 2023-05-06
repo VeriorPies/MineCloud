@@ -15,6 +15,6 @@ All of the common config files needed to host a multiplayer game server are plac
     - `get_connection_count.sh`: Override the `get_current_connection_count()` method to return how many players are currently connected. When the return is zero, the server will auto shut down.  
     - `port-configs.ts`: To configure which ports should be opened
   - server/ 
-    - `server.zip`: This will be deployed to the `/server` folder - replace with your own server archive file (when creating `server.zip`, make sure all the files are at the top level)
-    - `start_server.sh`: Bash script to start the server
-    - `stop_server.sh`: Bash script to stop the server
+    - `server.zip`: This will be deployed and unzipped in the `/server` folder when `DEPLOY_LOCAL_SERVER_EXECUTABLE ` is set to true in `MineCloud-Configs.ts` (when creating `server.zip`, make sure all the files are at the top level)
+    - `start_server.sh`: Script to start the server
+    - `stop_server.sh`: Script to stop the server
