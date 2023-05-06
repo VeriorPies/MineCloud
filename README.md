@@ -24,7 +24,7 @@ set up your (almost) free on-demand Minecraft (or other multiplayer game) server
 4. Almost free (≈54 cents for 20 hr play/month - <ins>with a 2 CPUs & 8GB RAM server</ins>)
 5. Fully customizable - install whatever mods you like
 6. No maintenance cost - don't have time to play? Just leave it there! It cost nothing
-7. Can be easily modified to host other multiplayer game servers as well
+7. Can be easily configured to host other multiplayer game servers as well
 
 #### *Supported Discord Commands*
 
