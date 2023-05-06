@@ -7,7 +7,7 @@ This is a sample project showcasing how to modify MineCloud to host other multip
 ## Setup
 The setup is almost the same - the only difference is instead of downloading MineCloud from the release page,  click the "Code" button at the top-right corner and select "Download ZIP" to download the Terraria edition.
 
-## How do I modify MineCloud to host other multiplayer game servers?
+## How do I configure MineCloud to host other multiplayer game servers?
 (Refer to this [commit](https://github.com/VeriorPies/MineCloud/commit/b76085ded0824b43ded3264b990977a867e8a610?diff=split) to see all the changes being made in order to host Terraria server)  
 All the common config files for hosting a general multiplayer game server are placed under the `minecloud_configs` folder, these files include:  
   - `MineCloud-Configs.ts`: Contain the most basic configs
