@@ -4,7 +4,7 @@
 
 MineCloud is an AWS CDK (Cloud Development Kit) project that allows users to set up an almost free on-demand Minecraft (or other multiplayer game) server for their Discord server with minimal time.
 
-*MineCloud comes with Minecraft server built-in but can be easily configured to host other multiplayer game servers as well. For more details, please refer to the [Terraria example](https://github.com/VeriorPies/MineCloud/tree/Terraria).*
+*MineCloud comes with Minecraft server built-in but can be easily configured to host other multiplayer game servers as well. For more details, please check out the [Terraria example](https://github.com/VeriorPies/MineCloud/tree/Terraria).*
 <br>
 
 ![ShortGif](/images/MCDemo_1080-min.gif)
