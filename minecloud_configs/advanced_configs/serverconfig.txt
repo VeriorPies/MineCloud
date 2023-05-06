@@ -1,0 +1,4 @@
+world=/opt/minecloud/terraria/Worlds/MyWorld.wld
+autocreate=1
+worldname=MyWorld
+worldpath=/opt/minecloud/terraria/Worlds

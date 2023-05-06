@@ -1,6 +1,6 @@
 #!/bin/sh
 
-echo "Starting Minecraft server"
+echo "Starting Terraria server"
 # You can adjust your server start up command here
-/usr/bin/env java -Xmx6144M -Xms1024M -jar server.jar nogui
-echo "Minecraft server stop"
+./TerrariaServer.bin.x86_64 -config serverconfig.txt
+echo "Terraria server stop"
