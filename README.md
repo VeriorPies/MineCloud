@@ -47,7 +47,7 @@ Please refer to [Spot Instances Pricing](https://aws.amazon.com/ec2/spot/pricing
 
 ## Diagram
 ![Diagram](/images/MineCloudDiagram.png)
-For more details, please refer to the [wiki page](https://github.com/VeriorPies/MineCloud/wiki/How-does-MineCloud-work%3F)! 
+*For more details, please check out the [wiki page](https://github.com/VeriorPies/MineCloud/wiki/How-does-MineCloud-work%3F).* 
 
 ## How To Setup?
 
