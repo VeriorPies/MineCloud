@@ -45,6 +45,10 @@ with _20 hrs_ play / month
 
 Please refer to [Spot Instances Pricing](https://aws.amazon.com/ec2/spot/pricing/) and [S3 Pricing](https://aws.amazon.com/s3/pricing) for more information.
 
+## Diagram
+![Diagram](/images/MineCloudDiagram.png)
+For more details, please refer to the [wiki page](https://github.com/VeriorPies/MineCloud/wiki/How-does-MineCloud-work%3F)! 
+
 ## How To Setup?
 
 If you prefer, we have a step-by-step video tutorial ↓  
@@ -132,10 +136,6 @@ If you prefer, we have a step-by-step video tutorial ↓
 ### **_ONE MORE THING!!!_**
 
 If you have deployed MineCloud more than once, **THERE MIGHT BE DANGLING SPOT INSTANCE REQUESTS THAT WILL CONSTANTLY CHARGE YOU. MAKE SURE TO CHECK YOUR [EC2 SPOT REQUESTS TAB](https://console.aws.amazon.com/ec2/home#SpotInstances:) AND CANCEL THE DANGLING SPOT REQUEST IF THERE'S ANY!!**
-
-## How does it work?
-![Diagram](/images/MineCloudDiagram.png)
-For more details, please refer to the [wiki page](https://github.com/VeriorPies/MineCloud/wiki/How-does-MineCloud-work%3F)! 
 
 ## Discord Server
 We have a [Discord Server](https://discord.gg/fuTdbYrbZm)
