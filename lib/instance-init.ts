@@ -71,12 +71,18 @@ export function getInitConfig(backupBucketName: string) {
         InitCommand.shellCommand(`sudo chmod +x start_server.sh`, {
           cwd: MINECLOUD_SERVER_DIR
         }),
+        InitCommand.shellCommand(`sed -i 's/\r//' start_server.sh`, {
+          cwd: MINECLOUD_SERVER_DIR
+        }),
 
         InitFile.fromFileInline(
           `${MINECLOUD_SERVER_DIR}/stop_server.sh`,
           'minecloud_configs/server/stop_server.sh'
         ),
         InitCommand.shellCommand(`sudo chmod +x stop_server.sh`, {
+          cwd: MINECLOUD_SERVER_DIR
+        }),
+        InitCommand.shellCommand(`sed -i 's/\r//' stop_server.sh`, {
           cwd: MINECLOUD_SERVER_DIR
         }),
 
@@ -95,7 +101,10 @@ export function getInitConfig(backupBucketName: string) {
         InitCommand.shellCommand(
           `sudo chmod +x send_discord_message_to_webhook.sh`,
           { cwd: MINECLOUD_BASE_DIR }
-        )
+        ),
+        InitCommand.shellCommand(`sed -i 's/\r//' send_discord_message_to_webhook.sh`, 
+          { cwd: MINECLOUD_BASE_DIR }
+        ),
       ]),
       setupMineCloudService: new InitConfig([
         InitFile.fromFileInline(
@@ -103,6 +112,9 @@ export function getInitConfig(backupBucketName: string) {
           'server_init_assets/start_service.sh'
         ),
         InitCommand.shellCommand(`sudo chmod +x start_service.sh`, {
+          cwd: MINECLOUD_BASE_DIR
+        }),
+        InitCommand.shellCommand(`sed -i 's/\r//' start_service.sh`, {
           cwd: MINECLOUD_BASE_DIR
         }),
         InitFile.fromFileInline(
@@ -123,6 +135,9 @@ export function getInitConfig(backupBucketName: string) {
         InitCommand.shellCommand(`sudo chmod +x server_backup.sh`, {
           cwd: MINECLOUD_BASE_DIR
         }),
+        InitCommand.shellCommand(`sed -i 's/\r//' server_backup.sh`, {
+          cwd: MINECLOUD_BASE_DIR
+        }),
         InitCommand.shellCommand(
           `echo 'MAX_BACKUP_COUNT=${MAX_BACKUP_COUNT}' >> /etc/environment`
         ),
@@ -134,12 +149,18 @@ export function getInitConfig(backupBucketName: string) {
         InitCommand.shellCommand(`sudo chmod +x server_manual_backup.sh`, {
           cwd: MINECLOUD_BASE_DIR
         }),
+        InitCommand.shellCommand(`sed -i 's/\r//' server_manual_backup.sh`, {
+          cwd: MINECLOUD_BASE_DIR
+        }),
 
         InitFile.fromFileInline(
           `${MINECLOUD_BASE_DIR}/auto_backup_checker.sh`,
           'server_init_assets/auto_backup_checker.sh'
         ),
         InitCommand.shellCommand(`sudo chmod +x auto_backup_checker.sh`, {
+          cwd: MINECLOUD_BASE_DIR
+        }),
+        InitCommand.shellCommand(`sed -i 's/\r//' auto_backup_checker.sh`, {
           cwd: MINECLOUD_BASE_DIR
         }),
         InitCommand.shellCommand(
@@ -162,6 +183,9 @@ export function getInitConfig(backupBucketName: string) {
         InitCommand.shellCommand(`sudo chmod +x check_user_conn.sh`, {
           cwd: MINECLOUD_BASE_DIR
         }),
+        InitCommand.shellCommand(`sed -i 's/\r//' check_user_conn.sh`, {
+          cwd: MINECLOUD_BASE_DIR
+        }),
         // Setup crontab scheduler, run every 30 min
         InitCommand.shellCommand(
           `(crontab -l 2>/dev/null; echo "*/30 * * * * ${MINECLOUD_BASE_DIR}/check_user_conn.sh") | crontab -`
@@ -174,7 +198,10 @@ export function getInitConfig(backupBucketName: string) {
         ),
         InitCommand.shellCommand(`sudo chmod +x get_latest_server_backup.sh`, {
           cwd: MINECLOUD_BASE_DIR
-        })
+        }),
+        InitCommand.shellCommand(`sed -i 's/\r//' get_latest_server_backup.sh`, {
+          cwd: MINECLOUD_BASE_DIR
+        }),
       ]),
       noAction: new InitConfig([])
     }
