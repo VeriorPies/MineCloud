@@ -203,7 +203,8 @@ export class MineCloud extends Stack {
         environment: {
           APP_ID: DISCORD_APP_ID,
           BOT_TOKEN: DISCORD_BOT_TOKEN
-        }
+        },
+        timeout: Duration.seconds(30)
       }
     );
 
