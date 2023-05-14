@@ -91,7 +91,7 @@ If you prefer, we have a step-by-step video tutorial ↓
 
 1. Download the latest release from the [release page](https://github.com/VeriorPies/Minecloud/releases), unzip it and open `minecloud_configs/MineCloud-Configs.ts`, there're some parameters we have to provide first:
    - `AWS_ACCOUNT_ID`: Click the account name at the top-right corner of your AWS console and copy the `Account ID`
-   - `AWS_REGION`: Choose a [region](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html) that's closet to you. Some example value are: `us-west-2`, `ap-northeast-1` or `eu-west-3`
+   - `AWS_REGION`: Choose a [region](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html) that's closet to you. Some example value are: `us-west-2`, `ap-northeast-1` or `eu-west-2`
    - `DISCORD_APP_ID` and `DISCORD_PUBLIC_KEY`: Go to [Discord Developer Portal](https://discord.com/developers/applications) and click "New Application" to create a new Discord APP. On the "General Information" page, you will find the App Id and Public Key.  
      &nbsp;&nbsp;&nbsp; <img width="80%"  src="images/discord-app-id-and-public-key.png" >
    - `DISCORD_BOT_TOKEN`: Go to the "Bot" page on the Discord Developer Portal, reset and copy the token
@@ -112,10 +112,10 @@ If you prefer, we have a step-by-step video tutorial ↓
    - In the MineCloud project directory, type `npm install` in the terminal to install all dependencies
    - (Optional) Change Minecraft version OR provide your own world files
      - To change Minecraft version:   
-     Replace `MINECRAFT_SERVER_DOWNLOAD_URL ` in `minecloud_configs\advanced_configs\minecraft-server-download-url.ts`. (The default Minecraft being downloaded is `1.19.4`)   
+     Replace `MINECRAFT_SERVER_DOWNLOAD_URL ` in `minecloud_configs\advanced_configs\minecraft-server-download-url.ts` (The default Minecraft being downloaded is `1.19.4`).   
      There are some websites that collect the download links of older versions of Minecraft (ex: [MCVersion.net](https://mcversions.net/)) 
      - To provide your own world files:  
-     Replace `minecloud_configs/server/server.zip` with your own Minecraft version/worlds (When packing the server executable, make sure `server.jar` are at the top level of the `server.zip` file)  
+     Replace `minecloud_configs/server/server.zip` with your own Minecraft version/worlds (When packing the server executable, make sure `server.jar` is at the top level of the `server.zip` file).  
      After replacing `server.zip`, set `DEPLOY_LOCAL_SERVER_EXECUTABLE = true` in the `minecloud_configs/MineCloud-Configs.ts`
    - Open the terminal in the MineCloud folder and enter `npx cdk list` to make sure the build pass. You should see the stack name being printed:
      ```
