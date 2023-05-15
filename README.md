@@ -112,7 +112,7 @@ If you prefer, we have a step-by-step video tutorial ↓
    - In the MineCloud project directory, type `npm install` in the terminal to install all the dependencies
    - (Optional) Change Minecraft version OR upload your own Minecraft server files
      - To change Minecraft version:   
-     Replace `MINECRAFT_SERVER_DOWNLOAD_URL ` in `minecloud_configs\advanced_configs\minecraft-server-download-url.ts` (The default Minecraft version being downloaded is `1.19.4`).   
+     Replace `MINECRAFT_SERVER_DOWNLOAD_URL ` in `minecloud_configs\advanced_configs\minecraft-server-download-url.ts` (the default Minecraft version being downloaded is `1.19.4`).   
      There are some websites that collect the download links of older versions of Minecraft (ex: [MCVersion.net](https://mcversions.net/)) 
      - To upload your own Minecraft server files:  
        - Replace `minecloud_configs/server/server.zip` with your your own Minecraft server folder (when packing the server executable, make sure the files are at the top level of the `server.zip` file).  
