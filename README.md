@@ -110,13 +110,14 @@ If you prefer, we have a step-by-step video tutorial ↓
      </p>
 2. Deploy MineCloud
    - In the MineCloud project directory, type `npm install` in the terminal to install all the dependencies
-   - (Optional) Change Minecraft version OR provide your own world files
+   - (Optional) Change Minecraft version OR upload your own Minecraft server files
      - To change Minecraft version:   
      Replace `MINECRAFT_SERVER_DOWNLOAD_URL ` in `minecloud_configs\advanced_configs\minecraft-server-download-url.ts` (The default Minecraft version being downloaded is `1.19.4`).   
      There are some websites that collect the download links of older versions of Minecraft (ex: [MCVersion.net](https://mcversions.net/)) 
-     - To provide your own world files:  
-     Replace `minecloud_configs/server/server.zip` with your own Minecraft server folder (when packing the server executable, make sure `server.jar` is at the top level of the `server.zip` file).  
-     After replacing `server.zip`, set `DEPLOY_LOCAL_SERVER_EXECUTABLE = true` in the `minecloud_configs/MineCloud-Configs.ts`
+     - To upload your own Minecraft server files:  
+       - Replace `minecloud_configs/server/server.zip` with your your own Minecraft server folder (when packing the server executable, make sure the files are at the top level of the `server.zip` file).  
+       - After replacing `server.zip`, set `DEPLOY_LOCAL_SERVER_EXECUTABLE = true` in `minecloud_configs/MineCloud-Configs.ts`  
+       - If needed, edit the server start-up commands in `minecloud_configs/server/start_server.sh`
    - Open the terminal in the MineCloud folder and enter `npx cdk list` to make sure the build pass. You should see the stack name being printed:
      ```
      MineCloud
