@@ -83,7 +83,8 @@ export class MineCloud extends Stack {
         {
           instanceId: this.ec2Instance.instanceId,
           ec2Region: this.region,
-          discordPublicKey: DISCORD_PUBLIC_KEY
+          discordPublicKey: DISCORD_PUBLIC_KEY,
+          backUpBucket: this.backupBucket
         }
       );
     this.discordInteractionsEndpointLambda.node.addDependency(this.ec2Instance);
