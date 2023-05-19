@@ -58,8 +58,7 @@ export function getInitConfig(backupBucketName: string) {
         'setupDiscordMessaging',
         'setupMineCloudService',
         'setupBackupScripts',
-        'setupAutoShutdown',
-        'setupGetLatestBackupScript'
+        'setupAutoShutdown'
       ]
     },
     configs: {
@@ -168,13 +167,6 @@ export function getInitConfig(backupBucketName: string) {
         // Setup crontab scheduler, run every 30 min
         InitCommand.shellCommand(
           `(crontab -l 2>/dev/null; echo "*/30 * * * * ${MINECLOUD_BASE_DIR}/check_user_conn.sh") | crontab -`
-        )
-      ]),
-      setupGetLatestBackupScript: new InitConfig([
-        ...setUpShellScript(
-          MINECLOUD_BASE_DIR,
-          'get_latest_server_backup.sh',
-          'server_init_assets/get_latest_server_backup.sh'
         )
       ]),
       noAction: new InitConfig([])

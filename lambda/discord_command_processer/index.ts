@@ -77,18 +77,28 @@ exports.handler = async (event: any, context: Context) => {
   }
 
   if (commandName == 'mc_backup_download') {
-    try {
-      const result = await sendCommands([
-        'cd /opt/minecloud/',
-        'sudo ./get_latest_server_backup.sh'
-      ]);
-      console.log('mc_backup_download result: ', result);
-      await sendDeferredResponse('OK, contacting server instance!');
-    } catch (err) {
-      console.error(`mc_backup error: \n`, err);
+    const s3 = new AWS.S3({ signatureVersion: 'v4' });
+
+    const bucketName: string = process.env.BACKUP_BUCKET_NAME as string;
+    const s3Objects = await s3.listObjectsV2({ Bucket: bucketName }).promise();
+
+    if (s3Objects.Contents && s3Objects.Contents.length > 0) {
+      let s3ObjectKeys = s3Objects.Contents.map((x) => x.Key);
+      s3ObjectKeys = s3ObjectKeys.sort((a, b) => (a! > b! ? -1 : 1));
+
+      const latestBackupKey = s3ObjectKeys[0];
+
+      const params = {
+        Bucket: bucketName,
+        Key: latestBackupKey,
+        Expires: 3600
+      };
+      const preSignedUrl = await s3.getSignedUrl('getObject', params);
       await sendDeferredResponse(
-        getAWSErrorMessageTemplate('getting latest backup', err)
+        `Here's the download link for ${latestBackupKey}:\n ${preSignedUrl}`
       );
+    } else {
+      await sendDeferredResponse('Hmm... looks like there is no backup yet~');
     }
   }
 
