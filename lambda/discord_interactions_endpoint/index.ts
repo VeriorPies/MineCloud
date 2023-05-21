@@ -1,6 +1,7 @@
 import { Context } from 'aws-lambda';
 import { sign } from 'tweetnacl';
 import { Lambda } from 'aws-sdk';
+import { STACK_PREFIX } from '../../lib/mine-cloud-stack';
 
 exports.handler = async (event: any, context: Context) => {
   const PUBLIC_KEY = process.env.PUBLIC_KEY!;
@@ -36,7 +37,7 @@ exports.handler = async (event: any, context: Context) => {
   const lambda = new Lambda();
   const res = await lambda
     .invokeAsync({
-      FunctionName: 'discord_command_processor_lambda',
+      FunctionName: `${STACK_PREFIX}_discord_command_processor_lambda`,
       InvokeArgs: JSON.stringify(event)
     })
     .promise();
