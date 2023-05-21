@@ -39,7 +39,8 @@ import {
   EC2_INSTANCE_TYPE,
   MAX_PRICE,
   EC2_VOLUME,
-  EC2_INIT_TIMEOUT
+  EC2_INIT_TIMEOUT,
+  STACK_NAME
 } from '../minecloud_configs/MineCloud-Configs';
 import { Bucket } from 'aws-cdk-lib/aws-s3';
 import { getInitConfig } from './instance-init';
@@ -47,7 +48,7 @@ import { v4 } from 'uuid';
 import { PORT_CONFIGS } from '../minecloud_configs/advanced_configs/port-configs';
 import { IGNORE_FAILURE_ON_INSTANCE_INIT } from '../minecloud_configs/advanced_configs/other-configs';
 
-export const STACK_PREFIX = 'MineCloud';
+export const STACK_PREFIX = STACK_NAME;
 
 export class MineCloud extends Stack {
   readonly ec2Instance;

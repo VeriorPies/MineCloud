@@ -4,11 +4,12 @@ import * as cdk from 'aws-cdk-lib';
 import { MineCloud } from '../lib/mine-cloud-stack';
 import {
   AWS_ACCOUNT_ID,
-  AWS_REGION
+  AWS_REGION,
+  STACK_NAME
 } from '../minecloud_configs/MineCloud-Configs';
 
 const app = new cdk.App();
-new MineCloud(app, 'MineCloud', {
+new MineCloud(app, STACK_NAME, {
   env: {
     account: AWS_ACCOUNT_ID,
     region: AWS_REGION // or whatever region you use

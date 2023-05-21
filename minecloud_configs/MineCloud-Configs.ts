@@ -7,6 +7,9 @@ export const DISCORD_PUBLIC_KEY = '';
 export const DISCORD_BOT_TOKEN = '';
 export const DISCORD_CHANNEL_WEB_HOOK = '';
 
+// ------------- CloudFormation ------------- //
+export const STACK_NAME = 'Minecraft'; 
+
 // -------------- Server Executable ------------- //
 // If set to true, /minecloud_configs/server/server.zip will be deployed
 export const DEPLOY_LOCAL_SERVER_EXECUTABLE = false; 
