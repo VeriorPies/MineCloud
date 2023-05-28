@@ -14,5 +14,6 @@ The folders hierarchy should look like this:
   - /server_init_assets
   - ...
 ```
-The pairing MineCloud version of the Configuration Package can be found in `MineCloud-Configs.ts`.    
-An out-of-the-box working Minecraft server example,  `minecloud_configs_example.zip`, can also be found in `/minecloud_configs`. 
+The pairing MineCloud version of the Configuration Package can be found in `MineCloud-Configs.ts`.
+
+An out-of-the-box Minecraft server example,  `minecraft_example_config_pack.zip`, can also be found in this folder. 
