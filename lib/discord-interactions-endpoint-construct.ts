@@ -9,12 +9,12 @@ import path = require('path');
 import { PolicyStatement, Policy } from 'aws-cdk-lib/aws-iam';
 import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
 import { Duration } from 'aws-cdk-lib';
-import { DISCORD_APP_ID } from '../minecloud_configs/MineCloud-Configs';
 import { Bucket } from 'aws-cdk-lib/aws-s3';
 
 export interface DiscordInteractionsEndpointConstructProps {
   instanceId: string;
   ec2Region: string;
+  discordAppId: string;
   discordPublicKey: string;
   backUpBucket: Bucket;
 }
@@ -31,24 +31,6 @@ export class DiscordInteractionsEndpointConstruct extends Construct {
   ) {
     super(scope, id);
 
-    this.discordInteractionsEndpoint = new NodejsFunction(
-      this,
-      `${STACK_PREFIX}_discord_interactions_endpoint_lambda`,
-      {
-        functionName: `${STACK_PREFIX}_discord_interactions_endpoint_lambda`,
-        runtime: Runtime.NODEJS_18_X,
-        handler: 'index.handler',
-        entry: path.join(
-          __dirname,
-          '/../lambda/discord_interactions_endpoint/index.ts'
-        ),
-        environment: {
-          PUBLIC_KEY: props.discordPublicKey
-        },
-        memorySize: 1024 // To reduce cold start time
-      }
-    );
-
     this.discordCommandProcesser = new NodejsFunction(
       this,
       `${STACK_PREFIX}_discord_command_processor_lambda`,
@@ -63,12 +45,32 @@ export class DiscordInteractionsEndpointConstruct extends Construct {
         environment: {
           INSTANCE_ID: props.instanceId,
           EC2_REGION: props.ec2Region,
-          APP_ID: DISCORD_APP_ID,
+          APP_ID: props.discordAppId,
           BACKUP_BUCKET_NAME: props.backUpBucket.bucketName
         },
         timeout: Duration.seconds(15)
       }
     );
+
+    this.discordInteractionsEndpoint = new NodejsFunction(
+      this,
+      `${STACK_PREFIX}_discord_interactions_endpoint_lambda`,
+      {
+        functionName: `${STACK_PREFIX}_discord_interactions_endpoint_lambda`,
+        runtime: Runtime.NODEJS_18_X,
+        handler: 'index.handler',
+        entry: path.join(
+          __dirname,
+          '/../lambda/discord_interactions_endpoint/index.ts'
+        ),
+        environment: {
+          PUBLIC_KEY: props.discordPublicKey,
+          DISCORD_COMMAND_PROCESSOR_FUNCTION_NAME: this.discordCommandProcesser.functionName
+        },
+        memorySize: 1024 // To reduce cold start time
+      }
+    );
+
     this.discordCommandProcesser.grantInvoke(this.discordInteractionsEndpoint);
     props.backUpBucket.grantReadWrite(this.discordCommandProcesser);
 
