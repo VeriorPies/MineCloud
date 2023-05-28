@@ -84,6 +84,7 @@ export class MineCloud extends Stack {
         {
           instanceId: this.ec2Instance.instanceId,
           ec2Region: this.region,
+          discordAppId: DISCORD_APP_ID,
           discordPublicKey: DISCORD_PUBLIC_KEY,
           backUpBucket: this.backupBucket
         }

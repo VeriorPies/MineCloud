@@ -126,6 +126,14 @@ export function getInitConfig(backupBucketName: string) {
         InitCommand.shellCommand('systemctl start minecloud.service')
       ]),
       setupBackupScripts: new InitConfig([
+        InitFile.fromFileInline(
+          `${MINECLOUD_BASE_DIR}/backup-folders.txt`,
+          'minecloud_configs/advanced_configs/backup-folders.txt'
+        ),
+        // To convert Windows's EOL to Linux
+        InitCommand.shellCommand(`sed -i 's/\r//' backup-folders.txt`, {
+          cwd: MINECLOUD_BASE_DIR
+        }),
         ...setUpEnviromentVariable('BACKUP_BUCKET_NAME', backupBucketName),
         ...setUpShellScript(
           MINECLOUD_BASE_DIR,

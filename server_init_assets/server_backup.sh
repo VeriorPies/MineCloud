@@ -2,11 +2,18 @@ cd /opt/minecloud/
 
 ./send_discord_message_to_webhook.sh "Start backing up..."
 
+rm -rf server_backups_all
+mkdir server_backups_all
+
+readarray -t backupFolders < backup-folders.txt
+for folderPath in ${backupFolders[@]}; do
+  echo Copying $folderPath
+  cp -r $folderPath /opt/minecloud/server_backups_all
+done
+
 currentTime=$(date +"%Y-%m-%d-%T")
-
 backupArchiveName="backup_${currentTime}.zip"
-
-zip -r ${backupArchiveName} server
+zip -r ${backupArchiveName} server_backups_all
 aws s3 mv ${backupArchiveName} s3://${BACKUP_BUCKET_NAME}
 
 # Remove older backups
@@ -32,5 +39,6 @@ while read fileObj;
     fi
 done <<<"$fileList"
 
+rm -rf server_backups_all
 echo "Backup completed"
 ./send_discord_message_to_webhook.sh "Backup completed, here's all your backups: \n$backUpList"

@@ -10,7 +10,7 @@ export const DISCORD_BOT_TOKEN = '';
 export const DISCORD_CHANNEL_WEB_HOOK = '';
 
 // ------------- CloudFormation ------------- //
-export const STACK_NAME = 'Minecraft';
+export const STACK_NAME = 'Terraria';
 
 // -------------- Server Executable ------------- //
 // If set to true, /minecloud_configs/server/server.zip will be deployed
