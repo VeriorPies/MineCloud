@@ -1,0 +1,2 @@
+/opt/minecloud/server
+/opt/minecloud/TerrariaSaves
