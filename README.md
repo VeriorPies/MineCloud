@@ -101,7 +101,7 @@ If you prefer, we have a step-by-step video tutorial ↓
    -  Corresponding MineCloud versions are listed next to the configuration package on the [Configuration Packages releases page](minecloud_configuration_packages/RELEASES.md) OR can be found at the first line of the `MineCloud-Configs.ts` file in the package.
 3. Unzip the configuration package (ex: `"1.19.4 Vanilla.zip"`) into the `minecloud_configs` folder in the MineCloud project folder. The folders hierarchy should now look like this:  
       ```
-      - /MineCloud-x.x.x <= MineCloud root folder
+      - /MineCloud-x.x.x <= MineCloud root folder (ex: MineCloud-1.2.2)
         - /minecloud_configs <= Unzip the configuration package inside this folder
            - MineCloud-Configs.ts
            - /server
