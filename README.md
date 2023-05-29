@@ -162,7 +162,7 @@ If you prefer, we have a step-by-step video tutorial ↓
 If you have deployed MineCloud more than once, **THERE MIGHT BE DANGLING SPOT INSTANCE REQUESTS THAT WILL CONSTANTLY CHARGE YOU. MAKE SURE TO CHECK YOUR [EC2 SPOT REQUESTS TAB](https://console.aws.amazon.com/ec2/home#SpotInstances:) AND CANCEL THE DANGLING SPOT REQUEST IF THERE'S ANY!!**
 
 
-## Managing the Server after Deployment
+## Manage the Server after Deployment
 After Deployment, the server can be managed by SSH terminal and SFTP clients.  
 MineCloud's working directory is  `/opt/minecloud` and the game server folder is located at `/opt/minecloud/server`.  
 Different Configuration Packages may have different file-saving locations, please refer to the Configuration Package's homepage for more details.  
@@ -172,7 +172,7 @@ The server can be connected via SSH, the easiest way to do it is by using the "C
 For useful commands, please checkout the [Useful Linux Commands](https://github.com/VeriorPies/MineCloud/wiki/FAQs-&-Troubleshooting#useful-linux-commands) section on the Wiki.   
 
 
-### Interact With the Game Server
+### Interact with the Game Server
 The game server is running in a [Screen](https://www.gnu.org/software/screen/) session. To interact with the game server:  
 - Type `sudo screen -ls` to list out the screen session, and type `sudo screen -r` to enter the session 
 - When done, use `Ctrl-a Ctrl-d` to exit the session.
