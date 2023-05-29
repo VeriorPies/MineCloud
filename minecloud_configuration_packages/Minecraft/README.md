@@ -21,7 +21,7 @@ There are some websites that collect the download links of older versions of Min
  - This is handy when we want to spin up a new server using an old server backup.
 
 ## Managing the Server after Deployment
-Please refer to the "Managing the Server after Deployment" section in the main README.md. 
+Please refer to the "Managing the Server after Deployment" section in the main [README.md](../../README.md#managing-the-server-after-deployment). 
 
 ### Changing the Java version
 Some mods might work better with specific Java versions.  
@@ -34,7 +34,7 @@ Here is some useful info for changing the installed Java version:
 - [Basic Yum Commands and how to use them](http://yum.baseurl.org/wiki/YumCommands.html)
 
 ### Server Files location
-By default, the server executable and world save location are at (`/opt/minecloud/server`).
+The server executable and world saves location are at `/opt/minecloud/server`.
 
 ## Releases
 Please check out the [Configuration Packages Releases Page](../RELEASES.md)
