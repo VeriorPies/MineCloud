@@ -45,10 +45,10 @@ If there's no existing Configuration Package for your favorite games or mods - h
     - If there's an issue with the server start-up, follow the "Manually Start/Stop the Game Server" section in the main [README.md](../README.md#manually-startstop-the-game-server) for troubleshooting.
 13. Once we have everything working, it's time to publish your configuration package!
 14. To do so:  
-    - Zip the `MineCloud-Configs.ts` file, `/advanced_configs`, and `/server` folders in `/minecloud_configs`. Rename it and copy to `minecloud_configs/<game_name>/releases/`
-    - Copy the config files into `minecloud_configs/<game_name>/dev/<config_package_name>/`
-    - Update `minecloud_configs/<game_name>/README.md` if needed
+    - Zip the `MineCloud-Configs.ts`, `/advanced_configs` and `/server` in `minecloud_configs/`. Rename and copy it to `minecloud_configuration_packages/<game_name>/releases/`
+    - Copy the config files into `minecloud_configuration_packages/<game_name>/dev/<config_package_name>/`
+    - Update `minecloud_configuration_packages/<game_name>/README.md` if needed
     - Edit `minecloud_configuration_packages/RELEASES.md` to add your configuration package download link to the list.  
-    - If it's a new game being supported, also edit the main README to add it to the support list
+    - If it's a new game being supported, also edit the main [README.md](../README.md) to add it to the support list
 
 15. You are all set now! Just commit, create a [pull request](https://github.com/VeriorPies/MineCloud/pulls) to the `origin/main` branch, and wait for it to be merged!
