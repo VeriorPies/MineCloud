@@ -8,7 +8,7 @@ MineCloud is a universal multiplayer server hosting solution based on AWS CDK (C
 - [*Terraria*](/minecloud_configuration_packages/Terraria/README.md)
 - *more to add...*
 
-*Don’t see your favorite games? Feel free to contribute to the list by following the [Create your own MineCloud Configuration Package](/minecloud_configuration_packages/CustomConfigurationPackageGuides.md) guides!*
+*Don’t see your favorite games? Feel free to contribute to the list by following the [Create and publish your own MineCloud Configuration Package](/minecloud_configuration_packages/CustomConfigurationPackageGuides.md) guides!*
 
 <br>
 <br>
