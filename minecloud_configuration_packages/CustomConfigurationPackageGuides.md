@@ -2,7 +2,7 @@
 
 ## What are MineCloud Configuration Packages?
 A **Configuration Package** is a collection of MineCloud configuration pre-sets which allow users to use it to quickly spin up a new game server. For instance, people can use the `minecraft_vanilla_1.19.4.zip` package to spin up a Minecraft server or use the `terraria_vanilla_1449.zip` package to spin up a Terraria one.   
-People can also create and publish their own configuration package for others to use!
+People can also create and publish their own configuration package for others to use.  
 
 ## How to Create and Publish a Configuration Package?
 
