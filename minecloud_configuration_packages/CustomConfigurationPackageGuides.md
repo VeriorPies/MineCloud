@@ -12,7 +12,7 @@ If there's no existing Configuration Package for your favorite games or mods - h
 2. Open additional ports that are required (e.g. which port number?, TCP or UDP?) for the game server by editing `minecloud_configs/advanced_configs/port-configs.ts`.  
 3. Deploy MineCloud by following the typical deployment workflow. A placeholder Minecraft server should be spun up.
 4. Connect to the terminal and run `sudo systemctl stop minecloud.service` to stop the placeholder Minecraft server
-    - Please check out the "Managing The Server After Deployment" section in the main [README.md](../README.md) for how to interact with the server after deployment.  
+    - Please check out the "Managing The Server After Deployment" section in the main [README.md](../README.md#managing-the-server-after-deployment) for how to interact with the server after deployment.  
 5. Set up the game server and notes down the commands and files required. We will need this for our EC2 init configs later.
 6. Prepare the `get_connection_count.sh` script:  
     - This script is to help MineCloud determine whether there are still players online.  
@@ -42,7 +42,7 @@ If there's no existing Configuration Package for your favorite games or mods - h
 11. Type `npx cdk list` and `npx cdk deploy` to deploy with the new configs.
 12. Troubleshooting if something went wrong:  
     - If the deployment failed due to EC2 initialization, consider setting `IGNORE_FAILURE_ON_INSTANCE_INIT` to `true` in `minecloud_configs/advanced_configs/other-configs.ts` to prevent rollback. 
-    - If there's an issue with the server start-up, follow the "Manually Start/Stop the Game Server" section in the main [README.md](../README.md) for troubleshooting.
+    - If there's an issue with the server start-up, follow the "Manually Start/Stop the Game Server" section in the main [README.md](../README.md#manually-startstop-the-game-server) for troubleshooting.
 13. Once we have everything working, it's time to publish your configuration package!
 14. To do so:  
     - Zip the `MineCloud-Configs.ts` file, `/advanced_configs`, and `/server` folders in `/minecloud_configs`. Rename it and copy to `minecloud_configs/<game_name>/releases/`
