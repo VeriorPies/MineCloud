@@ -163,7 +163,7 @@ If you have deployed MineCloud more than once, **THERE MIGHT BE DANGLING SPOT IN
 
 
 ## Managing the Server after Deployment
-After Deployment, the server can be managed by SSH terminal and SFTP clients. 
+After Deployment, the server can be managed by SSH terminal and SFTP clients.  
 MineCloud's working directory is  `/opt/minecloud` and the game server folder is located at `/opt/minecloud/server`.  
 Different Configuration Packages may have different file-saving locations, please refer to the Configuration Package's homepage for more details.  
 
