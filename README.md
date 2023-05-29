@@ -209,7 +209,7 @@ To make changes to the server files, connect to your EC2 instance with an SFTP c
     - Open WinSCP, paste in the server IP, click "Advanced" => "SSH/Authentication" and select the private key.  
     - Save and click "Login" to connect. Input "ec2-user" for the user name when prompted.   
     - You are all set now! Navigate to `/opt/minecloud/server` and start editing the server and world files.  
-    - When done,  run `sudo /opt/minecloud/server/start_server` to make sure the server can start properly and run `sudo systemctl start minecloud.service` to enable the MineCloud system service again.  
+    - When done,  run `sudo /opt/minecloud/server/start_server.sh` to make sure the server can start properly and run `sudo systemctl start minecloud.service` to enable the MineCloud system service again.  
 
 ## Deploy Multiple Game Servers
 - We can have multiple MineCloud game servers for a Discord server (ex: 1 Minecraft server and 1 Terraria server) 
