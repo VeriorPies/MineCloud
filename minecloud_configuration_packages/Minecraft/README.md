@@ -1,7 +1,7 @@
 # MineCloud: Minecraft Configuration Package
 
 ## Installation
-Please refer to the "How To Setup?" section in the main [README.md](../../README.md). 
+Please refer to the "How To Setup?" section in the main [README.md](../../README.md#how-to-setup). 
 
 ## Customize Deployment 
 These are some changes we can do to customize the server deployed.   
