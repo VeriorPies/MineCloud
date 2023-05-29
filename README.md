@@ -138,7 +138,7 @@ If you prefer, we have a step-by-step video tutorial ↓
    - (Optional) Follow the "Customize Deployment" section on the [Configuration Package's home page](minecloud_configuration_packages/RELEASES.md)
    - Open the terminal in the MineCloud folder and enter `npx cdk list` to make sure the build pass. You should see the stack name being printed:
      ```
-     MineCloud
+     <Stack Name>
      ```
    - Bootstrap your AWS account by running `npx cdk bootstrap aws://<AWS_ACCOUNT_ID>/<AWS_REGION>`
    - Before deploying, read through the End User License Agreement for the game (ex: [Minecraft EULA](https://www.minecraft.net/en-us/eula)) and make sure you agree to it
