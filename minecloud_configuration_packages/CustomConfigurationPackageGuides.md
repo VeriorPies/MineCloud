@@ -9,7 +9,7 @@ People can also create and publish their own configuration package for others to
 If there's no existing Configuration Package for your favorite games or mods - here're are some guides for you to create and publish one:
 
 1. Fork and clone the repository. Check out the `main` branch.
-2. Open additional ports that are required (e.g. which port number?, TCP or UDP?) for the game server by editing `minecloud_configs/advanced_configs/port-configs.ts`.  
+2. Open additional ports that are required for the game server (e.g. which port number?, TCP or UDP?) by editing `minecloud_configs/advanced_configs/port-configs.ts`.  
 3. Deploy MineCloud by following the typical deployment workflow. A placeholder Minecraft server should be spun up.
 4. Connect to the terminal and run `sudo systemctl stop minecloud.service` to stop the placeholder Minecraft server
     - Please check out the "Managing the Server after Deployment" section in the main [README.md](../README.md#managing-the-server-after-deployment) for how to interact with the server after deployment.  
