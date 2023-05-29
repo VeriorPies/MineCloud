@@ -162,7 +162,7 @@ If you prefer, we have a step-by-step video tutorial ↓
 If you have deployed MineCloud more than once, **THERE MIGHT BE DANGLING SPOT INSTANCE REQUESTS THAT WILL CONSTANTLY CHARGE YOU. MAKE SURE TO CHECK YOUR [EC2 SPOT REQUESTS TAB](https://console.aws.amazon.com/ec2/home#SpotInstances:) AND CANCEL THE DANGLING SPOT REQUEST IF THERE'S ANY!!**
 
 
-## Manage the Server after Deployment
+## Managing the Server after Deployment
 After Deployment, the server can be managed by SSH terminal and SFTP clients.  
 MineCloud's working directory is  `/opt/minecloud` and the game server folder is located at `/opt/minecloud/server`.  
 Different Configuration Packages may have different file-saving locations, please refer to the Configuration Package's homepage for more details.  
