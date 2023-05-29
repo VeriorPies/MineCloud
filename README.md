@@ -102,7 +102,7 @@ If you prefer, we have a step-by-step video tutorial ↓
 3. Unzip the configuration package (ex: `"1.19.4 Vanilla.zip"`) into the `minecloud_configs` folder in the MineCloud project folder. The folders hierarchy should now look like this:  
       ```
       - /MineCloud_root_folder
-        - /minecloud_configs <= Unzip the configuration package inside this
+        - /minecloud_configs <= Unzip the configuration package inside here
           - MineCloud-Configs.ts
           - /server
             - ...
