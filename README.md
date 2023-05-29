@@ -97,11 +97,11 @@ If you prefer, we have a step-by-step video tutorial ↓
 ### **Set up MineCloud**
 
 1. Download a [Configuration Package](minecloud_configuration_packages/RELEASES.md) for your target game.  
-2. Download and unzip the corresponding MineCloud version (`MineCloud-x.x.x.zip`) from the [MineCloud release page](https://github.com/VeriorPies/Minecloud/releases)
+2. Download and unzip the corresponding MineCloud version (E.g. `MineCloud-x.x.x.zip`) from the [MineCloud release page](https://github.com/VeriorPies/Minecloud/releases)
    -  Corresponding MineCloud versions are listed next to the configuration package on the [Configuration Packages releases page](minecloud_configuration_packages/RELEASES.md) OR can be found at the first line of the `MineCloud-Configs.ts` file in the package.
-3. Unzip the configuration package (ex: `"1.19.4 Vanilla.zip"`) into the `minecloud_configs` folder in the MineCloud project folder. The folders hierarchy should now look like this:  
+3. Unzip the configuration package (E.g. `"1.19.4 Vanilla.zip"`) into the `minecloud_configs` folder in the MineCloud project folder. The folders hierarchy should now look like this:  
       ```
-      - /MineCloud-x.x.x <= MineCloud root folder (ex: MineCloud-1.2.2)
+      - /MineCloud-x.x.x <= MineCloud root folder
         - /minecloud_configs <= Unzip the configuration package inside this folder
            - MineCloud-Configs.ts
            - /server
