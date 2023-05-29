@@ -9,13 +9,14 @@ MineCloud is a universal multiplayer server hosting solution based on AWS CDK (C
 - *more to add...*
 
 *Don’t see your favorite game? Feel free to contribute to the list by following the [Create your own MineCloud Configuration Package](/minecloud_configuration_packages/CustomConfigurationPackageGuides.md) guides!*
+
 <br>
 <br>
 
 ![ShortGif](/images/MCDemo_1080-min.gif)
 
 <p align="center">
-<b>Enjoy your hassle-free multiplayer server with your friends on Discord at almost no cost!
+<b>Enjoy your hassle-free server with your friends on Discord at almost no cost!
 </b>
 <br>
 </p>
@@ -162,12 +163,14 @@ If you have deployed MineCloud more than once, **THERE MIGHT BE DANGLING SPOT IN
 
 
 ## Managing The Server After Deployment
-The server can be managed after deployment by SSH terminal and SFTP client. 
+After Deployment, the server can be managed by SSH terminal and SFTP client. 
 MineCloud's working directory is  `/opt/minecloud` and the game server folder is located at `/opt/minecloud/server`.  
 Different Configuration Packages may have different file-saving locations, please refer to the Configuration Package's homepage for more details.  
 
 ### Access Server Terminal
-The server can be connected via SSH, the easiest way to do it is by using the "Connect" button at the top-right of the EC2 instance page on the AWS console.  
+The server can be connected via SSH, the easiest way to do it is by using the "Connect" button at the top-right of the EC2 instance page on the AWS console.   
+Checkout the [Useful Linux Commands](https://github.com/VeriorPies/MineCloud/wiki/FAQs-&-Troubleshooting#useful-linux-commands) section on the wiki for useful commands.   
+
 
 ### Interact With the Game Server
 The Game server is running in a [Screen](https://www.gnu.org/software/screen/) session. To interact with the server terminal:  
@@ -177,12 +180,12 @@ The Game server is running in a [Screen](https://www.gnu.org/software/screen/) s
 ### Manually Start/Stop the Game Server
 To manually start/stop the game server:  
  - Pause the MineCloud service first: `sudo systemctl stop minecloud.service`
- - Go to the server directory, `cd /opt/minecloud/server` and manually start the game server: `sudo ./start_server.sh` to start the game server
- - Manually stop the game server: `sudo ./stop_server.sh`
+ - Go to the server directory, by `cd /opt/minecloud/server`, and manually start the game server: `sudo ./start_server.sh` to start the game server
+ - In the server directory, manually stop the game server: `sudo ./stop_server.sh`
  - Once done, Resume the MineCloud service: `sudo systemctl start minecloud.service`
 
- Usually, we will want to do this to make sure the server can start up correctly after we've made some changes.  
- Once `./start_server.sh` and `./start_server.sh` function properly, MineCloud service can start/stop the game server on the VM start and stop.  
+ Usually, we will want to do this to make sure the server can start up correctly after we've made changes to the server files.  
+ As long as `./start_server.sh` and `./start_server.sh` function properly, MineCloud service can start/stop the game server on the VM start and stop.  
 
 
 ### Managing Server Files
@@ -207,8 +210,10 @@ To make changes to the server files, connect to your EC2 instance with an SFTP c
     - You are all set now! Navigate to `/opt/minecloud/server` and start editing the server and world files.  
     - When done,  run `sudo /opt/minecloud/server/start_server` to make sure the server can start properly and run `sudo systemctl start minecloud.service` to enable the MineCloud system service again
 
-## Discord Server
-We have a [Discord Server](https://discord.gg/fuTdbYrbZm)
+## Deploy Multiple Game Server
+- We can have multiple game servers for the same Discord server (ex: 1 Minecraft server and 1 Terraria server) 
+- Every game server need to have it's own Discord Bot and CloudFormation stack name. CloudFormation Stack name can be set via the `STACK_NAME` field in the `minecloud_configs/MineCloud-Configs.ts`. 
+- We can also have 2 version of the same game (ex: Minecraft Vanilla 1.19.4 and Minecraft Forge server 1.19.3) as long as they have different Stack name.
 
 ## Need Help?
 Common questions and troubleshooting can be found in the [FAQs & Troubleshooting page](https://github.com/VeriorPies/MineCloud/wiki/FAQs-&-Troubleshooting).  
@@ -217,3 +222,6 @@ You can also [create a question post](https://github.com/VeriorPies/MineCloud/is
 ## Support this project
 A star will be appreciated ;)  
 Also, please don't hesitate to contribute to the project if you have any good ideas!
+
+## Discord Server
+=> Join our [Discord Server](https://discord.gg/fuTdbYrbZm) <=
