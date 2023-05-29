@@ -7,7 +7,8 @@ Please follow the "How To Setup?" section in the main [README.md](../../README.m
 ## Customize Deployment 
 These are some changes we can do to customize the server deployed.   
 
-*Notes: Although it's possible to install custom mods by replacing `server.zip` and editing `./start_server.sh` before deployment, it's generally more recommend to deploy with a pre-set Configuration Package first and edit the game server later.
+*Notes:  
+Although it's possible to install custom mods by replacing `server.zip` and editing `./start_server.sh` before deployment, it's generally more recommend to deploy with a pre-set Configuration Package first and edit the game server later.
 For more details about how to make changes to the game server after deploying, please check out the "Managing the Server after Deployment" section below.*
 
 ### Vaninlla Minecraft
