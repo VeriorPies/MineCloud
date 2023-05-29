@@ -1,12 +1,14 @@
 # MineCloud: Minecraft Configuration Package
 
 ## Installation
-Please refer to the "How To Setup?" section in the main [README.md](../../README.md#how-to-setup). 
+Please follow the "How To Setup?" section in the main [README.md](../../README.md#how-to-setup). 
+
 
 ## Customize Deployment 
 These are some changes we can do to customize the server deployed.   
 
-*Notes: Although it's possible to install custom mods by replacing `server.zip` and editing `./start_server.sh` before deployment, it's generally more recommend to deploy with a pre-set Configuration Package first and make changes to the VM instance later - As it's not rare that Mods will require some custom configuration to the environment first.  
+*Notes:  
+Although it's possible to install custom mods by replacing `server.zip` and editing `./start_server.sh` before deployment, it's generally more recommend to deploy with a pre-set Configuration Package first and edit the game server later.
 For more details about how to make changes to the game server after deploying, please check out the "Managing the Server after Deployment" section below.*
 
 ### Vaninlla Minecraft
@@ -21,7 +23,7 @@ There are some websites that collect the download links of older versions of Min
  - This is handy when we want to spin up a new server using an old server backup.
 
 ## Managing the Server after Deployment
-Please refer to the "Managing the Server after Deployment" section in the main [README.md](../../README.md#managing-the-server-after-deployment). 
+Please refer to the "Managing the Server after Deployment" section in the main [README.md](../../README.md#managing-the-server-after-deployment) for server management basic. 
 
 ### Changing the Java version
 Some mods might work better with specific Java versions.  

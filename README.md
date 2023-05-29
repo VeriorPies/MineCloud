@@ -97,21 +97,19 @@ If you prefer, we have a step-by-step video tutorial ↓
 ### **Set up MineCloud**
 
 1. Download a [Configuration Package](minecloud_configuration_packages/RELEASES.md) for your target game.  
-2. Download and unzip the corresponding MineCloud version from the [MineCloud release page](https://github.com/VeriorPies/Minecloud/releases)
-   -  Corresponding MineCloud versions are listed on the [Configuration Packages download page](minecloud_configuration_packages/RELEASES.md) OR can be found at the first line of the `MineCloud-Configs.ts` file in the configuration package.
-3. Unzip the configuration package (ex: `"1.19.4 Vanilla.zip"`) into the `minecloud_configs` folder in the MineCloud project folder. The folders hierarchy should now look like this:  
+2. Download and unzip the corresponding MineCloud version (e.g. `MineCloud-x.x.x.zip`) from the [MineCloud release page](https://github.com/VeriorPies/Minecloud/releases)
+   -  Corresponding MineCloud versions are listed next to the configuration package on the [Configuration Packages releases page](minecloud_configuration_packages/RELEASES.md) OR can be found at the first line of the `MineCloud-Configs.ts` file in the package.
+3. Unzip the configuration package (e.g. `"1.19.4 Vanilla.zip"`) into the `minecloud_configs` folder in the MineCloud project folder. The folders hierarchy should now look like this:  
       ```
-      - /MineCloud_root_folder
-        - /minecloud_configs <= Unzip the configuration package inside here
-          - MineCloud-Configs.ts
-          - /server
-            - ...
-          - /advanced_configs
-            - ...
-        - /bin
-        - /lambda
-        - /lib
-        - /server_init_assets
+      - /MineCloud-x.x.x <= MineCloud root folder
+        - /minecloud_configs <= Unzip the configuration package inside this folder
+           - MineCloud-Configs.ts
+           - /server
+             - ...
+           - /advanced_configs
+             - ...
+           - README.md
+           - minecraft_example_config_pack.zip <= This is an example package, feel free to delete it
         - ...
       ```
 4. Open `minecloud_configs/MineCloud-Configs.ts`, there're some parameters we have to provide first:
