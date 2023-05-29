@@ -222,7 +222,7 @@ You can also [create a question post](https://github.com/VeriorPies/MineCloud/is
 
 ## Support this project
 A star will be appreciated ;)  
-Also, please don't hesitate to contribute to the project if you have any good ideas!
+Also, please don't hesitate to contribute to the project if you have any cool ideas!
 
 ## Discord Server
 => Join our [Discord Server](https://discord.gg/fuTdbYrbZm) <=
