@@ -163,25 +163,26 @@ If you have deployed MineCloud more than once, **THERE MIGHT BE DANGLING SPOT IN
 
 
 ## Managing The Server After Deployment
-After Deployment, the server can be managed by SSH terminal and SFTP client. 
+After Deployment, the server can be managed by SSH terminal and SFTP clients. 
 MineCloud's working directory is  `/opt/minecloud` and the game server folder is located at `/opt/minecloud/server`.  
 Different Configuration Packages may have different file-saving locations, please refer to the Configuration Package's homepage for more details.  
 
-### Access Server Terminal
+### Access the Server Terminal
 The server can be connected via SSH, the easiest way to do it is by using the "Connect" button at the top-right of the EC2 instance page on the AWS console.   
 Checkout the [Useful Linux Commands](https://github.com/VeriorPies/MineCloud/wiki/FAQs-&-Troubleshooting#useful-linux-commands) section on the wiki for useful commands.   
 
 
 ### Interact With the Game Server
-The Game server is running in a [Screen](https://www.gnu.org/software/screen/) session. To interact with the server terminal:  
+The game server is running in a [Screen](https://www.gnu.org/software/screen/) session. To interact with the game server:  
 - Type `sudo screen -ls` to list out the screen session, and type `sudo screen -r` to enter the session 
 - When done, use `Ctrl-a Ctrl-d` to exit the session.
 
 ### Manually Start/Stop the Game Server
 To manually start/stop the game server:  
  - Pause the MineCloud service first: `sudo systemctl stop minecloud.service`
- - Go to the server directory, by `cd /opt/minecloud/server`, and manually start the game server: `sudo ./start_server.sh` to start the game server
- - In the server directory, manually stop the game server: `sudo ./stop_server.sh`
+ - Go to the server directory with: `cd /opt/minecloud/server`, 
+ - Manually start the game server: `sudo ./start_server.sh` 
+ - Manually stop the game server: `sudo ./stop_server.sh`
  - Once done, Resume the MineCloud service: `sudo systemctl start minecloud.service`
 
  Usually, we will want to do this to make sure the server can start up correctly after we've made changes to the server files.  
@@ -208,12 +209,12 @@ To make changes to the server files, connect to your EC2 instance with an SFTP c
     - Open WinSCP, paste in the server IP, click "Advanced" => "SSH/Authentication" and select the private key.  
     - Save and click "Login" to connect. Input "ec2-user" for the user name when prompted.   
     - You are all set now! Navigate to `/opt/minecloud/server` and start editing the server and world files.  
-    - When done,  run `sudo /opt/minecloud/server/start_server` to make sure the server can start properly and run `sudo systemctl start minecloud.service` to enable the MineCloud system service again
+    - When done,  run `sudo /opt/minecloud/server/start_server` to make sure the server can start properly and run `sudo systemctl start minecloud.service` to enable the MineCloud system service again.  
 
-## Deploy Multiple Game Server
-- We can have multiple game servers for the same Discord server (ex: 1 Minecraft server and 1 Terraria server) 
-- Every game server need to have it's own Discord Bot and CloudFormation stack name. CloudFormation Stack name can be set via the `STACK_NAME` field in the `minecloud_configs/MineCloud-Configs.ts`. 
-- We can also have 2 version of the same game (ex: Minecraft Vanilla 1.19.4 and Minecraft Forge server 1.19.3) as long as they have different Stack name.
+## Deploy Multiple Game Servers
+- We can have multiple MineCloud game servers for a Discord server (ex: 1 Minecraft server and 1 Terraria server) 
+- Every game server needs to have its own Discord Bot and CloudFormation stack name. CloudFormation Stack name can be set via the `STACK_NAME` field in `minecloud_configs/MineCloud-Configs.ts`. 
+- We can also have 2 versions of the same game (ex: Minecraft Vanilla 1.19.4 and Minecraft Forge server 1.19.3) as long as they have different Stack names.
 
 ## Need Help?
 Common questions and troubleshooting can be found in the [FAQs & Troubleshooting page](https://github.com/VeriorPies/MineCloud/wiki/FAQs-&-Troubleshooting).  

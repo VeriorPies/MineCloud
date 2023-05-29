@@ -51,4 +51,4 @@ If there's no existing Configuration Package for your favorite games or mods - h
     - Edit `minecloud_configuration_packages/RELEASES.md` to add your configuration package download link to the list.  
     - If it's a new game being supported, also edit the main README to add it to the support list
 
-15. You are all set now! Just create a pull request to the `origin/main` branch and wait for it to be merged!
+15. You are all set now! Just commit, create a [pull request](https://github.com/VeriorPies/MineCloud/pulls) to the `origin/main` branch, and wait for it to be merged!
