@@ -109,7 +109,7 @@ If you prefer, we have a step-by-step video tutorial ↓
            - /advanced_configs
              - ...
            - README.md
-           - minecraft_example_config_pack.zip <= This is an example package, feel free to remove it
+           - minecraft_example_config_pack.zip <= This is an example package, feel free to delete it
         - ...
       ```
 4. Open `minecloud_configs/MineCloud-Configs.ts`, there're some parameters we have to provide first:
