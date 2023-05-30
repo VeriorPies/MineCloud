@@ -13,10 +13,6 @@ MineCloud is a universal multiplayer server hosting solution based on AWS CDK (C
 
 <br>  
 
-<center> <h3>=> Join our Discord Community: <a href="https://discord.gg/fuTdbYrbZm">Server Link</a> <= </h3> </center>
-<br>  
-
-
 ![ShortGif](/images/MCDemo_1080-min.gif)  
 
 <p align="center">
@@ -59,6 +55,9 @@ Please refer to [Spot Instances Pricing](https://aws.amazon.com/ec2/spot/pricing
 ## Diagram
 ![Diagram](/images/MineCloudDiagram.png)
 *For more details, please check out the [wiki page](https://github.com/VeriorPies/MineCloud/wiki/How-does-MineCloud-work%3F).* 
+
+## Discord Server
+Feeling interested in MineCloud? Feel free to join our [Discord Server](https://discord.gg/fuTdbYrbZm)!  
 
 ## How To Setup?
 
