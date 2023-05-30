@@ -16,8 +16,8 @@ If there's no existing Configuration Package for your favorite games or mods - h
 5. Set up the game server and notes down the commands and files required. We will need this for our EC2 init configs later.
 6. Prepare the `get_connection_count.sh` script:  
     - This script is to help MineCloud determine whether there are still players online.  
-    - The default `get_connection_count.sh` determine how many players are online by checking the TCP connection on port `25565`. If the game is also using TCP as the network protocol, modify the port number and the script should work.
-    - If the game is using UDP. Copy the `get_connection_count_udp_template.sh` template into the `get_connection_count.sh` file and edit the port number.  
+    - The default `get_connection_count.sh` determine how many players are online by checking the TCP connection on port `25565`. If the game is also using TCP (e.g. `Minecraft`, `Terraria`) as the network protocol, modify the port number and the script should work.
+    - If the game is using UDP (e.g. `Factorio`). Copy the `get_connection_count_udp_template.sh` template into the `get_connection_count.sh` file and edit the port number.  
     - Test out the script:  
       - On the server, type `sudo su` to switch to root user and type `source get_connection_count.sh; get_current_connection_count` to run and print out the return value of the script.  
       - Have the game client connect/disconnect to the server:  

@@ -5,6 +5,7 @@
 MineCloud is a universal multiplayer server hosting solution based on AWS CDK (Cloud Development Kit) that allows users to set up an almost free on-demand game server for a Discord community in just a few minutes.  
 *MineCloud support the following games out of the box:*  
 - [*Minecraft*](/minecloud_configuration_packages/Minecraft/README.md)
+- [*Factorio*](/minecloud_configuration_packages/Factorio/README.md)
 - [*Terraria*](/minecloud_configuration_packages/Terraria/README.md)
 - *more to add...*
 
