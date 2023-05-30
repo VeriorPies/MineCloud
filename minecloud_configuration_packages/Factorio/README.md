@@ -10,8 +10,8 @@ These are some changes we can do to customize the server deployed.
 ### Vaninlla
 #### Changing the Game Version
 The server version can be changed by replacing the `FACTORIO_SERVER_DOWNLOAD_URL` in `minecloud_configs\advanced_configs\factorio-server-download-url.ts` before deploying.  
-Other version's download link can be found at https://www.factorio.com/download/archive  
-(Note: Only version after 1.1.68 support headless server)
+Other versions' download link can be found at https://www.factorio.com/download/archive  
+(Note: Only versions after 1.1.68 support headless server)
 
 ## Managing the Server after Deployment
 Please refer to the "Managing the Server after Deployment" section in the main [README.md](../../README.md#managing-the-server-after-deployment) for server management basic. 
