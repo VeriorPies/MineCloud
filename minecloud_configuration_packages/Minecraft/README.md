@@ -36,7 +36,7 @@ Here is some useful info for changing the installed Java version:
 - [Basic Yum Commands and how to use them](http://yum.baseurl.org/wiki/YumCommands.html)
 
 ### Server Files location
-The server executable and world saves location are at `/opt/minecloud/server`.
+The server executable and world saves are located at `/opt/minecloud/server`.
 
 ## Releases
 Please check out the [Configuration Packages Releases Page](../RELEASES.md)

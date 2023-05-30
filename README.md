@@ -5,15 +5,15 @@
 MineCloud is a universal multiplayer server hosting solution based on AWS CDK (Cloud Development Kit) that allows users to set up an almost free on-demand game server for a Discord community in just a few minutes.  
 *MineCloud support the following games out of the box:*  
 - [*Minecraft*](/minecloud_configuration_packages/Minecraft/README.md)
+- [*Factorio*](/minecloud_configuration_packages/Factorio/README.md)
 - [*Terraria*](/minecloud_configuration_packages/Terraria/README.md)
 - *more to add...*
 
 *Don’t see your favorite games? Feel free to contribute to the list by following the [Create and publish your own MineCloud Configuration Package](/minecloud_configuration_packages/CustomConfigurationPackageGuides.md) guides!*
 
-<br>
-<br>
+<br>  
 
-![ShortGif](/images/MCDemo_1080-min.gif)
+![ShortGif](/images/MCDemo_1080-min.gif)  
 
 <p align="center">
 <b>Enjoy your hassle-free server with your friends on Discord at almost no cost!
@@ -25,12 +25,12 @@ MineCloud is a universal multiplayer server hosting solution based on AWS CDK (C
 
 1. Discord Bot - start, stop, and backup the server with Discord commands (The server IP address will be sent to the Discord channel after start)
 2. Auto shutdown and backup when no one is online
-3. Support varieties of games out of the Box 
+3. Support varieties of games out of the box 
 4. Easy to setup - we do our best to make the process as simple as possible :)
 5. Almost free (≈60 cents for 20 hr play/month - <ins>with a 2 CPUs & 8GB RAM server</ins>)
 6. Fully customizable - install whatever mods you like
 7. No maintenance cost - don't have time to play? Just leave it there! It cost nothing
-8. Easily add support to more games using [Configuration Packages](/minecloud_configuration_packages/CustomConfigurationPackageGuides.md) 
+8. Able to support new games by creating and publishing [Configuration Packages](/minecloud_configuration_packages/CustomConfigurationPackageGuides.md) 
 
 #### *Supported Discord Commands*
 
@@ -55,6 +55,9 @@ Please refer to [Spot Instances Pricing](https://aws.amazon.com/ec2/spot/pricing
 ## Diagram
 ![Diagram](/images/MineCloudDiagram.png)
 *For more details, please check out the [wiki page](https://github.com/VeriorPies/MineCloud/wiki/How-does-MineCloud-work%3F).* 
+
+## Discord Server
+Feeling interest in MineCloud? Feel free to join our [Discord Server](https://discord.gg/fuTdbYrbZm)!  
 
 ## How To Setup?
 
@@ -221,6 +224,3 @@ You can also [create a question post](https://github.com/VeriorPies/MineCloud/is
 ## Support this project
 A star will be appreciated ;)  
 Also, please don't hesitate to contribute to the project if you have any cool ideas!
-
-## Discord Server
-=> Join our [Discord Server](https://discord.gg/fuTdbYrbZm) <=
