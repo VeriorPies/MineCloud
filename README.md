@@ -57,7 +57,7 @@ Please refer to [Spot Instances Pricing](https://aws.amazon.com/ec2/spot/pricing
 *For more details, please check out the [wiki page](https://github.com/VeriorPies/MineCloud/wiki/How-does-MineCloud-work%3F).* 
 
 ## Discord Server
-Feeling interested in MineCloud? Feel free to join our [Discord Server](https://discord.gg/fuTdbYrbZm)!  
+Feeling interest in MineCloud? Feel free to join our [Discord Server](https://discord.gg/fuTdbYrbZm)!  
 
 ## How To Setup?
 
