@@ -2,11 +2,9 @@
 import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
 import { MineCloud } from '../lib/mine-cloud-stack';
-import {
-  AWS_ACCOUNT_ID,
-  AWS_REGION,
-  STACK_NAME
-} from '../minecloud_configs/MineCloud-Configs';
+import { STACK_NAME } from '../minecloud_configs/MineCloud-Configs';
+
+import { AWS_ACCOUNT_ID, AWS_REGION } from '../MineCloud-Service-Info';
 
 const app = new cdk.App();
 new MineCloud(app, STACK_NAME, {

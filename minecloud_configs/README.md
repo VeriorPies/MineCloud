@@ -1,19 +1,13 @@
-Please download and unzip MineCloud Configuration Package to this folder.  
-The folders hierarchy should look like this:  
+Place MineCloud Configuration Package (e.g. `minecraft_vanilla_1.19.4.zip`) in this folder and run `npm run install-minecloud-config-pack` to install it.
+
+The folders hierarchy should look like this after installation:  
 ```
-- /MineCloud_root_folder
+- /MineCloud-x.x.x
   - /minecloud_configs
     - MineCloud-Configs.ts
     - /server
       - ...
     - /advanced_configs
       - ...
-  - /bin
-  - /lambda
-  - /lib
-  - /server_init_assets
   - ...
 ```
-The pairing MineCloud version of the Configuration Package can be found in `MineCloud-Configs.ts`.
-
-An out-of-the-box Minecraft server example,  `minecraft_example_config_pack.zip`, can also be found in this folder. 
