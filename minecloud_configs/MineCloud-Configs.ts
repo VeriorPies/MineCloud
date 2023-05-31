@@ -1,5 +1,5 @@
 // ------------- CloudFormation ------------- //
-export const STACK_NAME = 'MinecraftExample';
+export const STACK_NAME = 'Terraria';
 
 // -------------- Server Executable ------------- //
 // If set to true, /minecloud_configs/server/server.zip will be deployed
