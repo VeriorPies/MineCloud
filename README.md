@@ -99,7 +99,7 @@ If you prefer, we have a step-by-step video tutorial ↓
 
 ### **Set up MineCloud**
 
-1. Pick a [Configuration Package](minecloud_configuration_packages/RELEASES.md) from your target game. Next to the Configuration Package you will see the corresponding MineCloud version (e.g. `MineCloud x.x.x`), download the  corresponding version from the [MineCloud release page](https://github.com/VeriorPies/Minecloud/releases) and unzip it.
+1. Pick a [Configuration Package](minecloud_configuration_packages/RELEASES.md) from your desired game. Next to the Configuration Package you will see the corresponding MineCloud version (e.g. `MineCloud x.x.x`), download the  corresponding version from the [MineCloud release page](https://github.com/VeriorPies/Minecloud/releases) and unzip it.
 2. Open terminal in the MineCloud project directory:
    - Install Node dependencies: `npm install`
    - Copy the downloaded ***Configuration Package*** (e.g. `"1.19.4 Vanilla.zip"`) into the `/minecloud_configs` folder.
