@@ -103,7 +103,7 @@ If you prefer, we have a step-by-step video tutorial ↓
 2. Open terminal in the MineCloud project directory:
    - Install Node dependencies: `npm install`
    - Copy the downloaded ***Configuration Package*** (e.g. `"1.19.4 Vanilla.zip"`) into the `/minecloud_configs` folder.
-   - Install Configuration Package: `npm run install-config-pack`
+   - Install Configuration Package: `npm run install-minecloud-config-pack`
       - The following message should be printed:  
         ```
         Successfully installed <Configuration Package Name> configuration package.

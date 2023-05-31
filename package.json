@@ -15,7 +15,7 @@
     "prettier-format": "prettier --config .prettierrc . --write",
     "lint": "eslint . --ext .ts",
     "lint-fix": "eslint . --ext .ts --fix",
-    "install-config-pack": "node config-pack-installer.js"
+    "install-minecloud-config-pack": "node config-pack-installer.js"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.114",
