@@ -65,7 +65,8 @@ export class DiscordInteractionsEndpointConstruct extends Construct {
         ),
         environment: {
           PUBLIC_KEY: props.discordPublicKey,
-          DISCORD_COMMAND_PROCESSOR_FUNCTION_NAME: this.discordCommandProcesser.functionName
+          DISCORD_COMMAND_PROCESSOR_FUNCTION_NAME:
+            this.discordCommandProcesser.functionName
         },
         memorySize: 1024 // To reduce cold start time
       }

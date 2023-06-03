@@ -33,15 +33,18 @@ import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
 import { Runtime } from 'aws-cdk-lib/aws-lambda';
 import path = require('path');
 import {
-  DISCORD_PUBLIC_KEY,
-  DISCORD_APP_ID,
-  DISCORD_BOT_TOKEN,
   EC2_INSTANCE_TYPE,
   MAX_PRICE,
   EC2_VOLUME,
   EC2_INIT_TIMEOUT,
   STACK_NAME
 } from '../minecloud_configs/MineCloud-Configs';
+
+import {
+  DISCORD_PUBLIC_KEY,
+  DISCORD_APP_ID,
+  DISCORD_BOT_TOKEN
+} from '../MineCloud-Service-Info';
 import { Bucket } from 'aws-cdk-lib/aws-s3';
 import { getInitConfig } from './instance-init';
 import { v4 } from 'uuid';

@@ -14,7 +14,8 @@
     "cdk": "cdk",
     "prettier-format": "prettier --config .prettierrc . --write",
     "lint": "eslint . --ext .ts",
-    "lint-fix": "eslint . --ext .ts --fix"
+    "lint-fix": "eslint . --ext .ts --fix",
+    "install-minecloud-config-pack": "node config-pack-installer.js"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.114",
@@ -39,6 +40,7 @@
     "aws-sdk": "^2.1351.0",
     "axios": "^1.3.5",
     "constructs": "^10.0.0",
+    "extract-zip": "^2.0.1",
     "source-map-support": "^0.5.21",
     "tweetnacl": "^1.0.3",
     "uuid": "^9.0.0",

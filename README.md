@@ -9,7 +9,7 @@ MineCloud is a universal multiplayer server hosting solution based on AWS CDK (C
 - [*Terraria*](/minecloud_configuration_packages/Terraria/README.md)
 - *more to add...*
 
-*Don’t see your favorite games? Feel free to contribute to the list by following the [Create and publish your own MineCloud Configuration Package](/minecloud_configuration_packages/CustomConfigurationPackageGuides.md) guides!*
+*Don’t see your favorite games? Consider contributing to the list by following the [Create and publish your own MineCloud Configuration Package](/minecloud_configuration_packages/CustomConfigurationPackageGuides.md) guides!*
 
 <br>  
 
@@ -57,7 +57,7 @@ Please refer to [Spot Instances Pricing](https://aws.amazon.com/ec2/spot/pricing
 *For more details, please check out the [wiki page](https://github.com/VeriorPies/MineCloud/wiki/How-does-MineCloud-work%3F).* 
 
 ## Discord Server
-Feeling interest in MineCloud? Feel free to join our [Discord Server](https://discord.gg/fuTdbYrbZm)!  
+Feeling interest in MineCloud? Join our [Discord Server](https://discord.gg/fuTdbYrbZm)!  
 
 ## How To Setup?
 
@@ -99,25 +99,18 @@ If you prefer, we have a step-by-step video tutorial ↓
 
 ### **Set up MineCloud**
 
-1. Download a [Configuration Package](minecloud_configuration_packages/RELEASES.md) for your target game.  
-2. Download and unzip the corresponding MineCloud version (e.g. `MineCloud-x.x.x.zip`) from the [MineCloud release page](https://github.com/VeriorPies/Minecloud/releases)
-   -  Corresponding MineCloud versions are listed next to the configuration package on the [Configuration Packages releases page](minecloud_configuration_packages/RELEASES.md) OR can be found at the first line of the `MineCloud-Configs.ts` file in the package.
-3. Unzip the configuration package (e.g. `"1.19.4 Vanilla.zip"`) into the `minecloud_configs` folder in the MineCloud project folder. The folders hierarchy should now look like this:  
-      ```
-      - /MineCloud-x.x.x <= MineCloud root folder
-        - /minecloud_configs <= Unzip the configuration package inside this folder
-           - MineCloud-Configs.ts
-           - /server
-             - ...
-           - /advanced_configs
-             - ...
-           - README.md
-           - minecraft_example_config_pack.zip <= This is an example package, feel free to delete it
-        - ...
-      ```
-4. Open `minecloud_configs/MineCloud-Configs.ts`, there're some parameters we have to provide first:
+1. Pick a [Configuration Package](minecloud_configuration_packages/RELEASES.md) from your desired game. Next to the package you will see the corresponding MineCloud version (e.g. `MineCloud x.x.x`), download the  corresponding version from the [MineCloud release page](https://github.com/VeriorPies/Minecloud/releases) and unzip it.
+2. Open terminal in the MineCloud project directory:
+   - Install Node dependencies: `npm install`
+   - Copy the downloaded ***Configuration Package*** (e.g. `"1.19.4 Vanilla.zip"`) into the `/minecloud_configs` folder.
+   - Install Configuration Package: `npm run install-minecloud-config-pack`
+      - The following message should be printed:  
+        ```
+        Successfully installed <Configuration Package Name> configuration package.
+        ```
+4. Open `MineCloud-Service-Info.ts` and fill in the following values:
    - `AWS_ACCOUNT_ID`: Click the account name at the top-right corner of your AWS console and copy the `Account ID`
-   - `AWS_REGION`: Choose a [region](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html) that's closet to you. Some example values are: `us-west-2`, `ap-northeast-1` or `eu-west-2`
+   - `AWS_REGION`: Pick a [region](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html) that's closet to you. Some example values are: `us-west-2`, `ap-northeast-1` or `eu-west-2`
    - `DISCORD_APP_ID` and `DISCORD_PUBLIC_KEY`: Go to [Discord Developer Portal](https://discord.com/developers/applications) and click "New Application" to create a new Discord APP. On the "General Information" page, you will find the App Id and Public Key.  
      &nbsp;&nbsp;&nbsp; <img width="80%"  src="images/discord-app-id-and-public-key.png" >
    - `DISCORD_BOT_TOKEN`: Go to the "Bot" page on the Discord Developer Portal, reset and copy the token
@@ -135,7 +128,6 @@ If you prefer, we have a step-by-step video tutorial ↓
      You can also optionally set up the BOT avatar here<br>
      </p>
 2. Deploy MineCloud
-   - In the MineCloud project directory, type `npm install` in the terminal to install all the dependencies
    - (Optional) Follow the "Customize Deployment" section on the [Configuration Package's home page](minecloud_configuration_packages/RELEASES.md)
    - Open the terminal in the MineCloud folder and enter `npx cdk list` to make sure the build pass. You should see the stack name being printed:
      ```

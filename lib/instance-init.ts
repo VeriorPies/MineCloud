@@ -10,9 +10,10 @@ import {
 import {
   BACKUP_INTERVAL_IN_SECONDS,
   DEPLOY_LOCAL_SERVER_EXECUTABLE,
-  DISCORD_CHANNEL_WEB_HOOK,
   MAX_BACKUP_COUNT
 } from '../minecloud_configs/MineCloud-Configs';
+import { DISCORD_CHANNEL_WEB_HOOK } from '../MineCloud-Service-Info';
+
 import { CUSTOM_INIT_CONFIG } from '../minecloud_configs/advanced_configs/custom-instance-init';
 import {
   MINECLOUD_BASE_DIR,
