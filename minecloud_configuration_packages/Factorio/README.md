@@ -4,8 +4,8 @@
 Please follow the "How To Setup?" section in the main [README.md](../../README.md#how-to-setup). 
 
 
-## Customize Deployment 
-These are some changes we can do to customize the server deployed.   
+## Custom deployment 
+These are some changes we can do to customize the server being deployed.   
 
 ### Vaninlla
 #### Changing the Game Version

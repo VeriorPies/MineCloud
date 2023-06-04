@@ -4,7 +4,7 @@
 Please follow the "How To Setup?" section in the main [README.md](../../README.md#how-to-setup). 
 
 
-## Customize Deployment 
+## Custom deployment 
 These are some changes we can do to customize the server deployed.   
 
 *Notes:  

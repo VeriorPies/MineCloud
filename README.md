@@ -2,14 +2,14 @@
 
 [![Release](https://img.shields.io/github/v/release/VeriorPies/MineCloud)](https://github.com/VeriorPies/Minecloud/releases) [![Documentation](https://img.shields.io/badge/documentation-brightgreen.svg)](https://github.com/VeriorPies/MineCloud/wiki) [![License](https://img.shields.io/badge/license-MIT-green)](https://github.com/VeriorPies/MineCloud/blob/main/LICENSE) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-blue.svg)](https://github.com/VeriorPies/MineCloud/pulls) [![Chats](https://img.shields.io/discord/1101786911846182964)](https://discord.gg/fuTdbYrbZm)
 
-MineCloud is a universal multiplayer server hosting solution based on AWS CDK (Cloud Development Kit) that allows users to set up an almost free on-demand game server for a Discord community in just a few minutes.  
-*MineCloud support the following games out of the box:*  
+MineCloud is a universal on-demand multiplayer server hosting solution based on AWS CDK (Cloud Development Kit) that allows users to set up an almost free on-demand game server for a Discord community in just a few minutes.  
+*MineCloud supports the following games out of the box:*  
 - [*Minecraft*](/minecloud_configuration_packages/Minecraft/README.md)
 - [*Factorio*](/minecloud_configuration_packages/Factorio/README.md)
 - [*Terraria*](/minecloud_configuration_packages/Terraria/README.md)
 - *more to add...*
 
-*Don’t see your favorite games? Consider contributing to the list by following the [Create and publish your own MineCloud Configuration Package](/minecloud_configuration_packages/CustomConfigurationPackageGuides.md) guides!*
+*Don’t see your favorite games? Consider contributing to the list by following the [Create and publish your own MineCloud Configuration Packages](/minecloud_configuration_packages/CustomConfigurationPackageGuides.md) guides!*
 
 <br>  
 
@@ -29,7 +29,7 @@ MineCloud is a universal multiplayer server hosting solution based on AWS CDK (C
 4. Easy to setup - we do our best to make the process as simple as possible :)
 5. Almost free (≈60 cents for 20 hr play/month - <ins>with a 2 CPUs & 8GB RAM server</ins>)
 6. Fully customizable - install whatever mods you like
-7. No maintenance cost - don't have time to play? Just leave it there! It cost nothing
+7. No maintenance cost - don't have time to play? Just leave it there! It cost almost nothing
 8. Able to support new games by creating and publishing [Configuration Packages](/minecloud_configuration_packages/CustomConfigurationPackageGuides.md) 
 
 #### *Supported Discord Commands*
@@ -57,17 +57,17 @@ Please refer to [Spot Instances Pricing](https://aws.amazon.com/ec2/spot/pricing
 *For more details, please check out the [wiki page](https://github.com/VeriorPies/MineCloud/wiki/How-does-MineCloud-work%3F).* 
 
 ## Discord Server
-Feeling interest in MineCloud? Join our [Discord Server](https://discord.gg/fuTdbYrbZm)!  
+Interested in MineCloud? Join our [Discord Server](https://discord.gg/fuTdbYrbZm)!  
 
 ## How To Setup?
 
 If you prefer, we have a step-by-step video tutorial ↓  
-[![Video Tutorial](https://img.youtube.com/vi/yb0sz8D385g/0.jpg)](https://youtu.be/yb0sz8D385g)
+[![Video Tutorial](https://img.youtube.com/vi/Z7yEkFWy09s/0.jpg)](https://youtu.be/Z7yEkFWy09s)
 
 ### **Prerequisites**
 
 1. A [Discord](https://discord.com/) account :)
-2. Node.js 18 (or above) - If haven't, go to https://nodejs.org to download and install the latest version of Node.js
+2. Node.js 18 (or above) - If haven't, go to https://nodejs.org to download and install the latest version
    - Type `node --version` in the terminal to confirm Node is properly set up. You should see something like this:
      ```
      v18.xx.x
@@ -102,45 +102,47 @@ If you prefer, we have a step-by-step video tutorial ↓
 1. Pick a [Configuration Package](minecloud_configuration_packages/RELEASES.md) from your desired game. Next to the package you will see the corresponding MineCloud version (e.g. `MineCloud x.x.x`), download the  corresponding version from the [MineCloud release page](https://github.com/VeriorPies/Minecloud/releases) and unzip it.
 2. Open terminal in the MineCloud project directory:
    - Install Node dependencies: `npm install`
-   - Copy the downloaded ***Configuration Package*** (e.g. `"1.19.4 Vanilla.zip"`) into the `/minecloud_configs` folder.
+   - Copy and paste the downloaded ***Configuration Package*** (e.g. `"1.19.4 Vanilla.zip"`) into the `/minecloud_configs` folder.
    - Install Configuration Package: `npm run install-minecloud-config-pack`
       - The following message should be printed:  
         ```
         Successfully installed <Configuration Package Name> configuration package.
         ```
-4. Open `MineCloud-Service-Info.ts` and fill in the following values:
+4. Open `MineCloud-Service-Info.ts` and fill in the following fields:
    - `AWS_ACCOUNT_ID`: Click the account name at the top-right corner of your AWS console and copy the `Account ID`
    - `AWS_REGION`: Pick a [region](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html) that's closet to you. Some example values are: `us-west-2`, `ap-northeast-1` or `eu-west-2`
    - `DISCORD_APP_ID` and `DISCORD_PUBLIC_KEY`: Go to [Discord Developer Portal](https://discord.com/developers/applications) and click "New Application" to create a new Discord APP. On the "General Information" page, you will find the App Id and Public Key.  
      &nbsp;&nbsp;&nbsp; <img width="80%"  src="images/discord-app-id-and-public-key.png" >
-   - `DISCORD_BOT_TOKEN`: Go to the "Bot" page on the Discord Developer Portal, reset and copy the token
-     - This is the Discord BOT that will handle our commands. If there's no BOT shown, click the "Add Bot" button to create a new BOT  
+   - `DISCORD_BOT_TOKEN`: Go to the "Bot" tab, reset and copy the token
+     - This is the Discord BOT that will handle our commands. If there's no BOT shown, click the "Add Bot" button to create a one   
      &nbsp;&nbsp;&nbsp; <img width="80%"  src="images/discord-bot-token.png" >
-        <p align="center">
-        You can optionally setup the BOT avatar<br>
-        </p>
+      <p align="center">
+      You can optionally setup the BOT avatar<br>
+      </p>
    - `DISCORD_CHANNEL_WEB_HOOK`:
      - Open regular Discord, go to the Discord server you want to add MineCloud to, choose a text channel, and click "Edit Channel".
-     - Go to "Integrations" => "Webhooks", click "New Webhook" to create a new Webhook then copy the Webhook URL.
+     - Go to "Integrations" => "Webhooks", click "New Webhook" to create a new Webhook then copy it.
      - This text channel is where our VM server instance will send updates to
      &nbsp;&nbsp;&nbsp; <img width="80%"  src="images/discord-channel-webhook.png" >
      <p align="center">
      You can also optionally set up the BOT avatar here<br>
      </p>
 2. Deploy MineCloud
-   - (Optional) Follow the "Customize Deployment" section on the [Configuration Package's home page](minecloud_configuration_packages/RELEASES.md)
+   - (Optional) Customize Deployment
+     - Common customizable options (e.g. VM type, disk size...etc) can be found in `minecloud_configs\MineCloud-Configs.ts`
+     - Follow the "Custom deployment" section on the [Configuration Package's home page](minecloud_configuration_packages/RELEASES.md) for games-specific customizations
    - Open the terminal in the MineCloud folder and enter `npx cdk list` to make sure the build pass. You should see the stack name being printed:
      ```
      <Stack Name>
      ```
    - Bootstrap your AWS account by running `npx cdk bootstrap aws://<AWS_ACCOUNT_ID>/<AWS_REGION>`
-   - Before deploying, read through the End User License Agreement for the game (ex: [Minecraft EULA](https://www.minecraft.net/en-us/eula)) and make sure you agree to it
+   - Before deploying, read through the End User License Agreement for the game (ex: [Minecraft EULA](https://www.minecraft.net/en-us/eula))
    - Enter `npx cdk deploy` to deploy the stack.
    - Sit back and relax, this will take like 5~10 minutes ☕.
      - When you see a "The server instance is ready" message shown up in the Discord channel, this means your game server is almost ready to connect :)
 3. Setup BOT for your Discord server
    - After MineCloud is deployed, go to your AWS [CloudFormation page](https://console.aws.amazon.com/cloudformation) (make sure to select the right AWS region)
-   - Click on the "MineCloud" stack, go to "Outputs" and copy the value of "Discord Interaction End Point Url"  
+   - Click on the deployed stack, go to "Outputs" and copy the value of "Discord Interaction End Point Url"  
      &nbsp;&nbsp;&nbsp; <img width="80%"  src="images/discord-interaction-url.png" >
    - Go back to your [Discord Developer Portal](https://discord.com/developers/applications), select the APP created, and paste the URL into the "INTERACTIONS ENDPOINT URL" field.  
      &nbsp;&nbsp;&nbsp; <img width="80%"  src="images/discord-interaction-url-dev-portal.png" >
@@ -160,9 +162,9 @@ After Deployment, the server can be managed by SSH terminals and SFTP clients.
 MineCloud's working directory is  `/opt/minecloud` and the game server folder is located at `/opt/minecloud/server`.  
 Different Configuration Packages may have different file-saving locations, please refer to the Configuration Package's homepage for more details.  
 
-### Access the Server Terminal
+### Accessing the Server Terminal
 The server can be connected via SSH, the easiest way to do it is by using the "Connect" button at the top-right of the EC2 instance page on the AWS console.   
-For useful commands, please checkout the [Useful Linux Commands](https://github.com/VeriorPies/MineCloud/wiki/FAQs-&-Troubleshooting#useful-linux-commands) section on the Wiki.   
+For useful commands, please check out the [Useful Linux Commands](https://github.com/VeriorPies/MineCloud/wiki/FAQs-&-Troubleshooting#useful-linux-commands) section on the Wiki.   
 
 
 ### Interact with the Game Server
@@ -179,7 +181,7 @@ To manually start/stop the game server:
  - Once done, Resume the MineCloud service: `sudo systemctl start minecloud.service`
 
  Usually, we will want to do this to make sure the server can start up correctly after we've made changes to the server files.  
- As long as `./start_server.sh` and `./start_server.sh` function properly, MineCloud service can start/stop the game server on the VM start and stop.  
+ As long as `./start_server.sh` and `./start_server.sh` function properly, MineCloud service can start/stop the game server when the VM start and stop.  
 
 
 ### Managing Server Files
@@ -195,7 +197,7 @@ To make changes to the server files, connect to your EC2 instance with an SFTP c
     - In `PuTTY Key Generator`, click "Save private key" to save your private key.
     - Your key pair is ready now!
 - Connect to your machine with WinSCP to edit the server files
-    - Before connecting, you will want to change the files owner first. To do so:  
+    - Before connecting, you will want to change the files' owner first. To do so:  
         - In the EC2 terminal launched in previous steps. Run `sudo su` to become root user, and run `chown -R ec2-user:ec2-user /opt/minecloud/server` to change the owner of the server files to our WinSCP login user.
         - This is a workaround for our current user permission setup. We will further address this in future releases.  
     - In the EC2 terminal, run `sudo systemctl stop minecloud.service` to pause the MineCloud system service
@@ -215,4 +217,4 @@ You can also [create a question post](https://github.com/VeriorPies/MineCloud/is
 
 ## Support this project
 A star will be appreciated ;)  
-Also, please don't hesitate to contribute to the project if you have any cool ideas!
+Also, feel free to contribute to the project if you have any thoughts!

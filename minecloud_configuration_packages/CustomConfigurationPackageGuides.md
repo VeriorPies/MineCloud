@@ -2,7 +2,7 @@
 
 ## What are MineCloud Configuration Packages?
 A **Configuration Package** is a collection of MineCloud configuration pre-sets which allow users to quickly spin up a new game server. For instance, people can use the `minecraft_vanilla_1.19.4.zip` package to spin up a Minecraft server or use the `terraria_vanilla_1449.zip` package to spin up a Terraria one.   
-People can also create and publish their own configuration package for others to use.  
+People can also create and publish their own configuration packages for others to use.  
 
 ## How to Create and Publish a Configuration Package?
 
@@ -29,7 +29,7 @@ If there's no existing Configuration Package for your favorite games or mods - h
    - Commands are made of [CDK APIs](https://docs.aws.amazon.com/cdk/api/v2/)
    - Some useful APIs are:  
      - [InitCommand](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_ec2.InitCommand.html) to execute Linux commands
-       - Checkout [this section](https://github.com/VeriorPies/MineCloud/wiki/FAQs-&-Troubleshooting#useful-linux-commands) on the wiki for useful Linux commands.
+       - Check out [this section](https://github.com/VeriorPies/MineCloud/wiki/FAQs-&-Troubleshooting#useful-linux-commands) on the wiki for useful Linux commands.
      - [InitFile.FromXXX](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_ec2.InitFile.html) to setup files
         - We can use these methods/classes to set up files from the local disk or with Web URLs.
         - Other than using this to setup files, we can also replace `minecloud_configs/server/server.zip` with a custom server file and set `DEPLOY_LOCAL_SERVER_EXECUTABLE` in `minecloud_configs/MineCloud-Configs.ts` to true. The `server.zip` will be extracted to `/opt/minecloud/server` after deployment. Commands in `custom-instance-init.ts` will be executed after the `server.zip` is extracted - this can be helpful if we need to grant execution permission to certain scripts in the `server.zip`.
@@ -52,4 +52,4 @@ If there's no existing Configuration Package for your favorite games or mods - h
     - Edit `minecloud_configuration_packages/RELEASES.md` to add your configuration package download link to the list.  
     - If it's a new game being supported, also edit the main [README.md](../README.md) to add it to the support list
 
-15. You are all set now! Just commit, create a [pull request](https://github.com/VeriorPies/MineCloud/pulls) to the `origin/main` branch, and wait for it to be merged!
+15. You are all set now! Just commit, create a [pull request](https://github.com/VeriorPies/MineCloud/pulls) to the MineCloud's `origin/main` branch, and wait for it to be merged!
