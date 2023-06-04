@@ -137,7 +137,7 @@ If you prefer, we have a step-by-step video tutorial ↓
    - Before deploying, read through the End User License Agreement for the game (ex: [Minecraft EULA](https://www.minecraft.net/en-us/eula)) and make sure you agree to it
    - Enter `npx cdk deploy` to deploy the stack.
    - Sit back and relax, this will take like 5~10 minutes ☕.
-     - When you see a "The server instance is ready" message shown up in the Discord channel, this means your Minecraft server is almost ready to connect :)
+     - When you see a "The server instance is ready" message shown up in the Discord channel, this means your game server is almost ready to connect :)
 3. Setup BOT for your Discord server
    - After MineCloud is deployed, go to your AWS [CloudFormation page](https://console.aws.amazon.com/cloudformation) (make sure to select the right AWS region)
    - Click on the "MineCloud" stack, go to "Outputs" and copy the value of "Discord Interaction End Point Url"  
