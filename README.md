@@ -136,7 +136,7 @@ If you prefer, we have a step-by-step video tutorial ↓
      <Stack Name>
      ```
    - Bootstrap your AWS account by running `npx cdk bootstrap aws://<AWS_ACCOUNT_ID>/<AWS_REGION>`
-   - Before deploying, read through the End User License Agreement for the game (ex: [Minecraft EULA](https://www.minecraft.net/en-us/eula))
+   - Before deploying, read through the End User License Agreement for the game (ex: [Minecraft EULA](https://www.minecraft.net/en-us/eula), [Factorio EULA](https://www.factorio.com/terms-of-service))
    - Enter `npx cdk deploy` to deploy the stack.
    - Sit back and relax, this will take like 5~10 minutes ☕.
      - When you see a "The server instance is ready" message shown up in the Discord channel, this means your game server is almost ready to connect :)
