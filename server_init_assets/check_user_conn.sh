@@ -32,5 +32,5 @@ then
         fi
 else
         echo "Somebody is online, do nothing!"
-        ./send_discord_message_to_webhook.sh "Hm... there're $mcCons players online now... Come and join Ow<?"
+        ./send_discord_message_to_webhook.sh "Hm... there're $mcCons or more players online now... Come and join Ow<?"
 fi
