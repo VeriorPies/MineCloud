@@ -1,6 +1,9 @@
 // ------------- CloudFormation ------------- //
 export const STACK_NAME = 'Valheim';
 
+// -------------- Discord ------------- //
+export const DISCORD_COMMAND_PREFIX = 'vh';
+
 // -------------- Server Executable ------------- //
 // If set to true, /minecloud_configs/server/server.zip will be deployed
 export const DEPLOY_LOCAL_SERVER_EXECUTABLE = false;
@@ -13,7 +16,7 @@ export const EC2_INSTANCE_TYPE = 't2.xlarge';
 // Disk size, in GB
 export const EC2_VOLUME = 8;
 // Init time out, in minutes
-export const EC2_INIT_TIMEOUT = 20;
+export const EC2_INIT_TIMEOUT = 25;
 
 // --------------- Backup Settings------------------ //
 // At most how many backups

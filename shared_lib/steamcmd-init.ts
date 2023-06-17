@@ -4,7 +4,7 @@ import {
     InitFile,
     InitPackage
 } from 'aws-cdk-lib/aws-ec2';
-import { MINECLOUD_SERVER_DIR } from '../../lib/const/minecloud-dir';
+import { MINECLOUD_SERVER_DIR } from '../lib/const/minecloud-dir';
 const STEAMCMD_DOWNLOAD_URL = 'https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz';
 const STEAM_CMD_FILE_NAME = 'steamcmd_linux.tar.gz';
 
