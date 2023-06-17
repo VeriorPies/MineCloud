@@ -2,7 +2,7 @@
 
 ## Minecraft ([home page](Minecraft/README.md))
 
- - [1.19.4 Vanilla](https://github.com/VeriorPies/MineCloud/raw/main/minecloud_configuration_packages/Minecraft/releases/minecraft_vanilla_1.19.4.zip) (MineCloud [1.2.3](https://github.com/VeriorPies/MineCloud/releases/tag/1.2.3))
+ - [1.19.4 Vanilla](https://github.com/VeriorPies/MineCloud/raw/main/minecloud_configuration_packages/Minecraft/releases/minecraft_vanilla_1.19.4.zip) (MineCloud [1.3.0](https://github.com/VeriorPies/MineCloud/releases/tag/1.3.0))
 
  ## Factorio ([home page](Factorio/README.md))
  - [1.1.80 Vanilla](https://github.com/VeriorPies/MineCloud/raw/main/minecloud_configuration_packages/Factorio/releases/factorio_vanilla_1.1.80.zip) (MineCloud [1.2.3](https://github.com/VeriorPies/MineCloud/releases/tag/1.2.3))
