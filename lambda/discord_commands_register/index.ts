@@ -4,25 +4,26 @@ import {
   Context
 } from 'aws-lambda';
 import axios from 'axios';
+import { getFullDiscordCommand } from '../shared_util';
 
 // The deployment will fail if exception was thrown.
 exports.handler = async (event: CdkCustomResourceEvent, context: Context) => {
   if (event.RequestType !== 'Delete') {
     const apiEndpoint = `https://discord.com/api/v10/applications/${process.env.APP_ID}/commands`;
-    await registerCommand('mc_start', 'Start the server', apiEndpoint);
-    await registerCommand('mc_stop', 'Stop the server', apiEndpoint);
+    await registerCommand(getFullDiscordCommand('start'), 'Start the server', apiEndpoint);
+    await registerCommand(getFullDiscordCommand('stop'), 'Stop the server', apiEndpoint);
     await registerCommand(
-      'mc_restart',
+      getFullDiscordCommand('restart'),
       'Restart the server system service',
       apiEndpoint
     );
     await registerCommand(
-      'mc_backup',
+      getFullDiscordCommand('backup'),
       'Stop the server and make a backup',
       apiEndpoint
     );
     await registerCommand(
-      'mc_backup_download',
+      getFullDiscordCommand('backup_download'),
       'Get the latest backup',
       apiEndpoint
     );

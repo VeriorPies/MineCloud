@@ -19,33 +19,12 @@ import {
   MINECLOUD_BASE_DIR,
   MINECLOUD_SERVER_DIR
 } from './const/minecloud-dir';
+import { setUpEnviromentVariable, setUpShellScript } from '../shared_lib/minecloud-utilities';
 
 const MINECLOUD_USER = 'minecloud';
 // Not the same name since cfn-init can't figure it out for some reason
 const MINECLOUD_GROUP = 'minecloud-group';
 
-function setUpShellScript(
-  targetDir: string,
-  targetFileName: string,
-  localFilePath: string
-) {
-  return [
-    InitFile.fromFileInline(`${targetDir}/${targetFileName}`, localFilePath),
-    InitCommand.shellCommand(`sudo chmod +x ${targetFileName}`, {
-      cwd: targetDir
-    }),
-    // To convert Windows's EOL to Linux
-    InitCommand.shellCommand(`sed -i 's/\r//' ${targetFileName}`, {
-      cwd: targetDir
-    })
-  ];
-}
-
-function setUpEnviromentVariable(name: string, value: string) {
-  return [
-    InitCommand.shellCommand(`echo '${name}=${value}' >> /etc/environment`)
-  ];
-}
 
 export function getInitConfig(backupBucketName: string) {
   return CloudFormationInit.fromConfigSets({

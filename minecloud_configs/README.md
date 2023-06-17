@@ -4,6 +4,7 @@ The folders hierarchy should look like this after installation:
 ```
 - /MineCloud-x.x.x
   - /minecloud_configs
+    - config-pack-info.json
     - MineCloud-Configs.ts
     - /server
       - ...

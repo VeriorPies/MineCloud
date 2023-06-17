@@ -1,6 +1,7 @@
 import { Context } from 'aws-lambda';
 import * as AWS from 'aws-sdk';
 import axios from 'axios';
+import { getFullDiscordCommand } from '../shared_util';
 
 const InstanceIds = [process.env.INSTANCE_ID!];
 const ec2_instance_region = process.env.EC2_REGION;
@@ -20,7 +21,7 @@ exports.handler = async (event: any, context: Context) => {
   const commandName = body.data.name;
   console.log('commandName: ', commandName);
 
-  if (commandName == 'mc_start') {
+  if (commandName == getFullDiscordCommand('start')) {
     try {
       const result = await ec2.startInstances({ InstanceIds }).promise();
       console.log('startInstances succeed, result: \n', result);
@@ -34,7 +35,7 @@ exports.handler = async (event: any, context: Context) => {
     }
   }
 
-  if (commandName == 'mc_stop') {
+  if (commandName == getFullDiscordCommand('stop')) {
     try {
       const result = await ec2.stopInstances({ InstanceIds }).promise();
       console.log('stopInstance suceeed, result: \n', result);
@@ -47,7 +48,7 @@ exports.handler = async (event: any, context: Context) => {
     }
   }
 
-  if (commandName == 'mc_restart') {
+  if (commandName == getFullDiscordCommand('restart')) {
     try {
       const result = await sendCommands(['sudo systemctl restart minecloud']);
       console.log('mc_restart result: ', result);
@@ -60,7 +61,7 @@ exports.handler = async (event: any, context: Context) => {
     }
   }
 
-  if (commandName == 'mc_backup') {
+  if (commandName == getFullDiscordCommand('backup')) {
     try {
       const result = await sendCommands([
         'cd /opt/minecloud/',
@@ -76,7 +77,7 @@ exports.handler = async (event: any, context: Context) => {
     }
   }
 
-  if (commandName == 'mc_backup_download') {
+  if (commandName == getFullDiscordCommand('backup_download')) {
     const s3 = new AWS.S3({ signatureVersion: 'v4' });
 
     const bucketName: string = process.env.BACKUP_BUCKET_NAME as string;
