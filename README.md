@@ -196,15 +196,16 @@ To make changes to the server files, connect to your EC2 instance with an SFTP c
     - Type `sudo nano .ssh/authorized_keys` to edit. Copy and paste in the public key from the "Public key for pasting into OpenSSH authorized_keys" field as a new line and `ctrl+x` to save the file.  
     - In `PuTTY Key Generator`, click "Save private key" to save your private key.
     - Your key pair is ready now!
-- Connect to your machine with WinSCP to edit the server files
-    - Before connecting, you will want to change the files' owner first. To do so:  
-        - In the EC2 terminal launched in previous steps. Run `sudo su` to become root user, and run `chown -R ec2-user:ec2-user /opt/minecloud/server` to change the owner of the server files to our WinSCP login user.
-        - This is a workaround for our current user permission setup. We will further address this in future releases.  
-    - In the EC2 terminal, run `sudo systemctl stop minecloud.service` to pause the MineCloud system service
-    - Open WinSCP, paste in the server IP, click "Advanced" => "SSH/Authentication" and select the private key.  
-    - Save and click "Login" to connect. Input "ec2-user" for the user name when prompted.   
-    - You are all set now! Navigate to `/opt/minecloud/server` and start editing the server and world files.  
-    - When done,  run `sudo /opt/minecloud/server/start_server.sh` to make sure the server can start properly and run `sudo systemctl start minecloud.service` to enable the MineCloud system service again.  
+      > You can also use this key to SSH into your server with PuTTY client.
+##### Transferring files via SFTP using WinSCP
+  - Before connecting, you will want to change the files' owner first. To do so:  
+      - In the EC2 terminal launched in previous steps. Run `sudo su` to become root user, and run `chown -R ec2-user:ec2-user /opt/minecloud/server` to change the owner of the server files to our WinSCP login user.
+      - This is a workaround for our current user permission setup. We will further address this in future releases.  
+  - In the EC2 terminal, run `sudo systemctl stop minecloud.service` to pause the MineCloud system service
+  - Open WinSCP, paste in the server IP, click "Advanced" => "SSH/Authentication" and select the private key.  
+  - Save and click "Login" to connect. Input "ec2-user" for the user name when prompted.   
+  - You are all set now! Navigate to `/opt/minecloud/server` and start editing the server and world files.  
+  - When done,  run `sudo /opt/minecloud/server/start_server.sh` to make sure the server can start properly and run `sudo systemctl start minecloud.service` to enable the MineCloud system service again.  
 
 #### Step-by-Step Guide for Linux
 - In your EC2 dashboard, click on `Key pairs`, click `Create key pair` on the top right corner.
@@ -225,7 +226,7 @@ ssh-keygen -y -f "name of .pem"
 - Edit the `authorized_keys` using the editor of your choice, eg.
 
 ```bash
-sudo vi .ssh/authorized_keys
+sudo nano .ssh/authorized_keys
 ```
 
 - Paste the public key at the top of `authorized_keys`. Save and exit.
@@ -240,7 +241,7 @@ ssh -i "name of .pem" <your instance's username>@<your instance's public ipv4 DN
 ```bash
 ssh -i SSH_SFTP.pem ec2-user@ec2-54-169-92-65.ap-southeast-1.compute.amazonaws.com
 ```
-#### How to transfer files via SFTP using Filezilla
+##### Transferring files via SFTP using Filezilla
 - Connect to your instance via SSH or AWS web console and type in:
 
 ```bash
