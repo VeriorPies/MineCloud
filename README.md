@@ -206,6 +206,58 @@ To make changes to the server files, connect to your EC2 instance with an SFTP c
     - You are all set now! Navigate to `/opt/minecloud/server` and start editing the server and world files.  
     - When done,  run `sudo /opt/minecloud/server/start_server.sh` to make sure the server can start properly and run `sudo systemctl start minecloud.service` to enable the MineCloud system service again.  
 
+#### Step-by-Step Guide for Linux
+- In your EC2 dashboard, click on `Key pairs`, click `Create key pair` on the top right corner.
+- Enter key pair name then click `Create key pair` , your key pair will be downloaded to your /Downloads folder.
+- Open up terminal on your local machine, navigate to the folder the key pair is stored.
+- You need to make sure the pem file can only be access by yourself or else the ssh client will refuse to establish a connection with the server, thus you need to set the following file permission.
+
+```bash
+sudo chmod 400 "name of .pem"
+```
+- Type in the following command to extract the public key from the .pem file.
+
+```bash
+ssh-keygen -y -f "name of .pem"
+```
+
+- Copy the results, now turn on your EC2 instance and connect to it via the AWS web console .
+- Edit the `authorized_keys` using the editor of your choice, eg.
+
+```bash
+sudo vi .ssh/authorized_keys
+```
+
+- Paste the public key at the top of `authorized_keys`. Save and exit.
+- After all that you can finally connect to your instance using SSH by running the command:
+
+```bash
+ssh -i "name of .pem" <your instance's username>@<your instance's public ipv4 DNS>
+```
+
+- Example:
+
+```bash
+ssh -i SSH_SFTP.pem ec2-user@ec2-54-169-92-65.ap-southeast-1.compute.amazonaws.com
+```
+#### How to transfer files via SFTP using Filezilla
+- Connect to your instance via SSH or AWS web console and type in:
+
+```bash
+sudo chown -R ec2-user:ec2-user /opt/minecloud/server
+```
+
+- Install [Filezilla Client](https://filezilla-project.org/)
+- Open Filezilla, open `Site Manager` by pressing `Ctrl + s`.
+- Click on `New Site`, type the name of your server.
+- `Protocol`: choose `SFTP - SSH File Transfer Protocol`.
+- `Host`: paste in the `Public ipv4 address` of your instance.
+- `Logon Type`: choose `Key file`.
+- `User`: type in the username of your instance, default is `ec2-user`.
+- `Key file`: select the pem file.
+- Click `Connect` and you can start transfering files!
+
+
 ## Deploy Multiple Game Servers
 - We can have multiple MineCloud game servers for a Discord server (ex: 1 Minecraft server and 1 Terraria server) 
 - Every game server needs to have its own Discord Bot and CloudFormation stack name. CloudFormation Stack name can be set via the `STACK_NAME` field in `minecloud_configs/MineCloud-Configs.ts`. 
