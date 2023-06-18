@@ -32,7 +32,7 @@ There are some websites that collect the download links of older versions of Min
 curl -OJ https://meta.fabricmc.net/v2/versions/loader/<Minecraft Version>/<Fabric Loader Version>/<Installer Version>/server/jar
 ```
 
-- Connect to the server instance using the [browser based terminal](https://github.com/AaronHo-0716/MineCloud/tree/main#accessing-the-server-terminal) or SSH, learn more at [How to connect to the server instance using SSH](../../README.md#Step-by-step-guide-for-Linux)
+- Connect to the server instance using the [browser based terminal](https://github.com/AaronHo-0716/MineCloud/tree/main#accessing-the-server-terminal) or SSH, learn more at [How to connect to the server instance using SSH](../../README.md#Step-by-Step-Guide-for-Linux)
 - Paste the curl command in the terminal and press enter.
 - Type `ls` you should see a file listed in the terminal.
 

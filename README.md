@@ -206,11 +206,11 @@ To make changes to the server files, connect to your EC2 instance with an SFTP c
     - You are all set now! Navigate to `/opt/minecloud/server` and start editing the server and world files.  
     - When done,  run `sudo /opt/minecloud/server/start_server.sh` to make sure the server can start properly and run `sudo systemctl start minecloud.service` to enable the MineCloud system service again.  
 
-#### Step by step guide for Linux
+#### Step-by-Step Guide for Linux
 - In your EC2 dashboard, click on `Key pairs`, click `Create key pair` on the top right corner.
 - Enter key pair name then click `Create key pair` , your key pair will be downloaded to your /Downloads folder.
 - Open up terminal on your local machine, navigate to the folder the key pair is stored.
-- You need to make sure the pem file can only be access by ourselves or else the ssh client will refuse to establish a connection with the server, thus you need to set the following file permission.
+- You need to make sure the pem file can only be access by yourself or else the ssh client will refuse to establish a connection with the server, thus you need to set the following file permission.
 
 ```bash
 sudo chmod 400 "name of .pem"
@@ -240,7 +240,22 @@ ssh -i "name of .pem" <your instance's username>@<your instance's public ipv4 DN
 ```bash
 ssh -i SSH_SFTP.pem ec2-user@ec2-54-169-92-65.ap-southeast-1.compute.amazonaws.com
 ```
-- End the connection by typing `exit` in the terminal.
+#### How to transfer files via SFTP using Filezilla
+- Connect to your instance via SSH or AWS web console and type in:
+
+```bash
+sudo chown -R ec2-user:ec2-user /opt/minecloud/server
+```
+
+- Install [Filezilla Client](https://filezilla-project.org/)
+- Open Filezilla, open `Site Manager` by pressing `Ctrl + s`.
+- Click on `New Site`, type the name of your server.
+- `Protocol`: choose `SFTP - SSH File Transfer Protocol`.
+- `Host`: paste in the `Public ipv4 address` of your instance.
+- `Logon Type`: choose `Key file`.
+- `User`: type in the username of your instance, default is `ec2-user`.
+- `Key file`: select the pem file.
+- Click `Connect` and you can start transfering files!
 
 
 ## Deploy Multiple Game Servers
