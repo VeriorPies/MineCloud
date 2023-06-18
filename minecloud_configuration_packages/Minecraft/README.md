@@ -50,7 +50,7 @@ mv fabric-server-mc.1.19.4-loader.0.14.21-launcher.0.11.2.jar fabric-server-load
 - Move the file to where the server's folder is located.
 
 ```bash
-sudo mv farbic-server-loader.jar ../../opt/MineCloud/server
+sudo mv farbic-server-loader.jar ../../opt/minecloud/server
 ```
 
 - Stop the current Minecraft server by running:
@@ -65,12 +65,20 @@ sudo systemctl stop minecloud.service
 sudo java -jar farbic-server-loader.jar nogui
 ```
 
-- After the server is ready, type `stop` to stop the server.
+- After the server is ready and working, type `stop` to stop the server.
 - Next we need to modify the `start_server.sh` file
 
 ```bash
 sudo vi start_server.sh
 ```
+- Modify the server start command:
+
+```bash
+/usr/bin/env sudo java -Xmx3G -Xms1024M -jar fabric-server-loader.jar nogui
+```
+> You can tweak the maximum and minimum RAM usage arguement accordingly.
+
+- Verify the server is running by executing `./start_server.sh`.
 
 ## Managing the Server after Deployment
 Please refer to the "Managing the Server after Deployment" section in the main [README.md](../../README.md#managing-the-server-after-deployment) for server management basic. 
