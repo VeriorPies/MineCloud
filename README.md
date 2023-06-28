@@ -47,8 +47,8 @@ with _20 hrs_ play / month
 - Lambda: Free tier
 - S3: 5GB free tier for first 12 months, $0.03/GB after that (default max backup count is 3)
 - Data Transfer: Free tier, unless total data transfer exceeds 100GB
-- EC2: 0.27 (`t2.large` spot price) \* 20 (hr) ≈ $0.54/month
-- **Total**: ≈ $0.60/month
+- EC2: 0.035 (`t2.large` spot price) \* 20 (hr) ≈ $0.7/month
+- **Total**: ≈ $0.7/month
 
 Please refer to [Spot Instances Pricing](https://aws.amazon.com/ec2/spot/pricing/) and [S3 Pricing](https://aws.amazon.com/s3/pricing) for more information.
 
