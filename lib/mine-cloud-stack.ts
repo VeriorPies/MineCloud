@@ -172,8 +172,8 @@ export class MineCloud extends Stack {
       }),
       templateId: `${STACK_PREFIX}_ec2_launch_template`,
       launchTemplateSpotOptions: {
-        interruptionBehavior: SpotInstanceInterruption.TERMINATE,
-        requestType: SpotRequestType.ONE_TIME,
+        interruptionBehavior: SpotInstanceInterruption.STOP,
+        requestType: SpotRequestType.PERSISTENT,
         maxPrice: MAX_PRICE
       },
       initOptions: {
