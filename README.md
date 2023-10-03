@@ -108,7 +108,7 @@ If you prefer, we have a step-by-step video tutorial ↓
         ```
         Successfully installed <Configuration Package Name> configuration package.
         ```
-4. Open `MineCloud-Service-Info.ts` and fill in the following fields:
+4. Copy `MineCloud-Service-Info.ts.sample` to `MineCloud-Service-Info.ts` and fill in the following fields:
    - `AWS_ACCOUNT_ID`: Click the account name at the top-right corner of your AWS console and copy the `Account ID`
    - `AWS_REGION`: Pick a [region](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html) that's closet to you. Some example values are: `us-west-2`, `ap-northeast-1` or `eu-west-2`
    - `DISCORD_APP_ID` and `DISCORD_PUBLIC_KEY`: Go to [Discord Developer Portal](https://discord.com/developers/applications) and click "New Application" to create a new Discord APP. On the "General Information" page, you will find the App Id and Public Key.  
@@ -134,6 +134,7 @@ If you prefer, we have a step-by-step video tutorial ↓
      - NOTE: The script will not create a Hosted Zone for you! The domain purchasing needs to be done manually and the Hosted Zone must be available in the same AWS account where you want to setup MineCloud.
      - ATTENTION: For the instance to update its own DNS record the permissions must be broader than without using a DNS name. This could be used by an attacker to takeover the DNS record.
      - `DOMAIN_NAME`: contains the domain name of an existing hosted zone.
+     - It seems that the ARecord does not get deleted when the start_service.sh script updated the IP address externally. Currently you need to delete the ARecord manually if you want to re-run cdk deploy after destroying everything.
 2. Deploy MineCloud
    - (Optional) Customize Deployment
      - Common customizable options (e.g. VM type, disk size...etc) can be found in `minecloud_configs\MineCloud-Configs.ts`

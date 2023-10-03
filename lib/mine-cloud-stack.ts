@@ -237,6 +237,7 @@ export class MineCloud extends Stack {
           zone: zone,
         });
 
+      // Add the DOMAIN_NAME as a tag to the EC2 instance to pass the value to the machine
       Tags.of(spotInstance).add('DOMAIN_NAME', DOMAIN_NAME);
     }
     
