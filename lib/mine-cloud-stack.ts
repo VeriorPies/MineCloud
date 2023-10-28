@@ -19,12 +19,15 @@ import {
   BlockDeviceVolume,
   CfnKeyPair,
   InstanceType,
+  MachineImage,
+  OperatingSystemType,
   Peer,
   Port,
   SecurityGroup,
   SpotInstanceInterruption,
   SpotRequestType,
   SubnetType,
+  UserData,
   Vpc
 } from 'aws-cdk-lib/aws-ec2';
 import { DiscordInteractionsEndpointConstruct } from './discord-interactions-endpoint-construct';
@@ -146,6 +149,26 @@ export class MineCloud extends Stack {
       );
     }
 
+    const userData = UserData.forLinux();
+    userData.addCommands(
+      // Set up CloudFormation helper scripts
+      'apt update -y',
+      'apt install python3-pip -y',
+      'install setuptools',
+      'mkdir -p /opt/aws/bin',
+      'wget https://s3.amazonaws.com/cloudformation-examples/aws-cfn-bootstrap-py3-latest.tar.gz',
+      'python3 -m easy_install --script-dir /opt/aws/bin aws-cfn-bootstrap-py3-latest.tar.gz',
+      'ln -s /root/aws-cfn-bootstrap-py3-latest/init/ubuntu/cfn-hub /etc/init.d/cfn-hub',
+      'echo "CloudFormation helper scripts setup completed"',
+      // Set up awscli
+      'apt-get install awscli'
+    );
+    // https://ubuntu.com/server/docs/cloud-images/amazon-ec2
+    const machineImage = MachineImage.fromSsmParameter(
+      '/aws/service/canonical/ubuntu/server-minimal/20.04/stable/current/amd64/hvm/ebs-gp2/ami-id',
+      {os: OperatingSystemType.LINUX, userData: userData}
+    );
+
     // Key pair for ssh-ing into EC2 instance from aws console
     const sshKeyPair = new CfnKeyPair(this, `${STACK_PREFIX}_ec2_key_pair`, {
       keyName: `${STACK_PREFIX}_ec2_key`
@@ -161,9 +184,7 @@ export class MineCloud extends Stack {
       // },
       securityGroup: securityGroup,
       instanceType: new InstanceType(EC2_INSTANCE_TYPE),
-      machineImage: new AmazonLinuxImage({
-        generation: AmazonLinuxGeneration.AMAZON_LINUX_2
-      }),
+      machineImage: machineImage,
       templateId: `${STACK_PREFIX}_ec2_launch_template`,
       launchTemplateSpotOptions: {
         interruptionBehavior: SpotInstanceInterruption.STOP,
