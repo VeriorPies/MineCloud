@@ -5,7 +5,8 @@ import {
   CustomResource,
   Duration,
   Stack,
-  StackProps
+  StackProps,
+  Tags
 } from 'aws-cdk-lib';
 import {
   Effect,
@@ -52,6 +53,11 @@ import { PORT_CONFIGS } from '../minecloud_configs/advanced_configs/port-configs
 import { IGNORE_FAILURE_ON_INSTANCE_INIT } from '../minecloud_configs/advanced_configs/other-configs';
 
 export const STACK_PREFIX = STACK_NAME;
+
+import {
+  DOMAIN_NAME
+} from '../MineCloud-Service-Info';
+import route53 = require('aws-cdk-lib/aws-route53');
 
 export class MineCloud extends Stack {
   readonly ec2Instance;
@@ -151,7 +157,7 @@ export class MineCloud extends Stack {
       keyName: `${STACK_PREFIX}_ec2_key`
     });
 
-    return new SpotInstance(this, `${STACK_PREFIX}_ec2_instance`, {
+    const spotInstance = new SpotInstance(this, `${STACK_PREFIX}_ec2_instance`, {
       vpc: defaultVPC,
       keyName: sshKeyPair.keyName,
       role: ec2Role,
@@ -187,6 +193,55 @@ export class MineCloud extends Stack {
       // (YOU'LL NEED TO MANUALLY CANCEL THE DANGLING SPOT REQUEST TO AVOID SPINNING UP ADDITIONAL EC2 INSTANCE)
       init: getInitConfig(backupBucketName)
     });
+
+    // Optional: do all the DNS related stuff only when a DOMAIN_NAME parameter is set
+    if (DOMAIN_NAME) {
+
+      // get a reference to the existing hosted zone
+      const zone = route53.HostedZone.fromLookup(this, 'Zone', { domainName: DOMAIN_NAME })
+
+      // add permission to describe tags of an EC2 instance and lookup hosted zones by DNS domain name
+      ec2Role.addToPolicy(
+        new PolicyStatement({
+          effect: Effect.ALLOW,
+          actions: [
+            'ec2:DescribeTags',
+            'route53:ListHostedZonesByName'
+          ],
+          resources: ['*']
+        })
+      );
+      // add permission to update the DNS record
+      ec2Role.addToPolicy(
+        new PolicyStatement({
+          effect: Effect.ALLOW,
+          actions: [
+            "route53:ChangeResourceRecordSets"
+          ],
+          resources: ['arn:aws:route53:::hostedzone/' + zone.hostedZoneId]
+        })
+      );
+
+      const DNS_NAME = 'minecloud' // variable to make it overridable in the future
+
+      // create a dummy record which we can update during server start
+      // TODO: https://github.com/aws/aws-cdk/issues/4155
+      // It seems as if the Arecord does not get deleted upon CDK destroy
+      // in that case we could simply re-use the old entry until the issue gets fixed
+      // is it possible that the record cannot be deleted when its value gets updated externally?
+      const aliasRecord = new route53.ARecord(this, 'MyARecord', {
+          target: { 
+            values: ['192.168.0.1'],
+          },
+          recordName: DNS_NAME + '.' + DOMAIN_NAME,
+          zone: zone,
+        });
+
+      // Add the DOMAIN_NAME as a tag to the EC2 instance to pass the value to the machine
+      Tags.of(spotInstance).add('DOMAIN_NAME', DOMAIN_NAME);
+    }
+    
+    return spotInstance;
   }
 
   setupDiscordCommands(): CustomResource {

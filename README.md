@@ -108,7 +108,7 @@ If you prefer, we have a step-by-step video tutorial ↓
         ```
         Successfully installed <Configuration Package Name> configuration package.
         ```
-4. Open `MineCloud-Service-Info.ts` and fill in the following fields:
+4. Copy `MineCloud-Service-Info.ts.sample` to `MineCloud-Service-Info.ts` and fill in the following fields:
    - `AWS_ACCOUNT_ID`: Click the account name at the top-right corner of your AWS console and copy the `Account ID`
    - `AWS_REGION`: Pick a [region](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html) that's closet to you. Some example values are: `us-west-2`, `ap-northeast-1` or `eu-west-2`
    - `DISCORD_APP_ID` and `DISCORD_PUBLIC_KEY`: Go to [Discord Developer Portal](https://discord.com/developers/applications) and click "New Application" to create a new Discord APP. On the "General Information" page, you will find the App Id and Public Key.  
@@ -127,6 +127,14 @@ If you prefer, we have a step-by-step video tutorial ↓
      <p align="center">
      You can also optionally set up the BOT avatar here<br>
      </p>
+   - (Optional) Create and update a DNS record upon boot:
+     - Users of the server can connect to the same DNS name instead of having to update the server configuration each time a new IP gets assigned.
+     - The CDK infrastructure automation script will create a DNS record under a **given** Hosted zone.
+     - The start_server.sh script will update the DNS record every time the VM starts. 
+     - NOTE: The script will not create a Hosted Zone for you! The domain purchasing needs to be done manually and the Hosted Zone must be available in the same AWS account where you want to setup MineCloud.
+     - ATTENTION: For the instance to update its own DNS record the permissions must be broader than without using a DNS name. This could be used by an attacker to takeover the DNS record.
+     - `DOMAIN_NAME`: contains the domain name of an existing hosted zone.
+     - It seems that the ARecord does not get deleted when the start_service.sh script updated the IP address externally. Currently you need to delete the ARecord manually if you want to re-run cdk deploy after destroying everything.
 2. Deploy MineCloud
    - (Optional) Customize Deployment
      - Common customizable options (e.g. VM type, disk size...etc) can be found in `minecloud_configs\MineCloud-Configs.ts`
@@ -156,6 +164,14 @@ If you prefer, we have a step-by-step video tutorial ↓
 
 If you have deployed MineCloud more than once, **THERE MIGHT BE DANGLING SPOT INSTANCE REQUESTS THAT WILL CONSTANTLY CHARGE YOU. MAKE SURE TO CHECK YOUR [EC2 SPOT REQUESTS TAB](https://console.aws.amazon.com/ec2/home#SpotInstances:) AND CANCEL THE DANGLING SPOT REQUEST IF THERE'S ANY!!**
 
+You can also run the following commands:
+```
+aws ec2 describe-spot-instance-requests --query "SpotInstanceRequests[].{id:SpotInstanceRequestId,state:State,created:CreateTime}"
+```
+and cancel the dangling requests (the ones with older timestamps):
+```
+aws ec2 cancel-spot-instance-requests --spot-instance-request-ids <id>
+```
 
 ## Managing the Server after Deployment
 After Deployment, the server can be managed by SSH terminals and SFTP clients.  
