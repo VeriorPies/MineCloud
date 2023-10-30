@@ -9,3 +9,7 @@ node_modules
 cdk.out
 
 dist
+MineCloud-Service-Info.ts
+.DS_Store
+MineCloud-Service-Info.ts.mine
+cdk.context.json
