@@ -1,0 +1,22 @@
+{
+  "targetDefaults": {
+    "build": {
+      "cache": true
+    },
+    "watch": {
+      "cache": true
+    },
+    "test": {
+      "cache": true
+    },
+    "lint": {
+      "cache": true
+    },
+    "lint-fix": {
+      "cache": true
+    }
+  },
+  "affected": {
+    "defaultBase": "main"
+  }
+}

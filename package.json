@@ -8,13 +8,13 @@
     "node": ">=18"
   },
   "scripts": {
-    "build": "tsc",
-    "watch": "tsc -w",
-    "test": "jest",
+    "build": "nx exec -- tsc",
+    "watch": "nx exec -- tsc -w",
+    "test": "nx exec -- jest",
     "cdk": "cdk",
     "prettier-format": "prettier --config .prettierrc . --write",
-    "lint": "eslint . --ext .ts",
-    "lint-fix": "eslint . --ext .ts --fix",
+    "lint": "nx exec -- eslint . --ext .ts",
+    "lint-fix": "nx exec -- eslint . --ext .ts --fix",
     "install-minecloud-config-pack": "node config-pack-installer.js"
   },
   "devDependencies": {
@@ -32,7 +32,8 @@
     "prettier": "^2.8.7",
     "ts-jest": "^29.0.5",
     "ts-node": "^10.9.1",
-    "typescript": "~4.9.5"
+    "typescript": "~4.9.5",
+    "nx": "17.0.3"
   },
   "dependencies": {
     "aws-cdk-lib": "2.72.1",
@@ -45,5 +46,8 @@
     "tweetnacl": "^1.0.3",
     "uuid": "^9.0.0",
     "uuidv4": "^6.2.13"
+  },
+  "nx": {
+    "targets": {}
   }
 }

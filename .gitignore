@@ -13,3 +13,5 @@ MineCloud-Service-Info.ts
 .DS_Store
 MineCloud-Service-Info.ts.mine
 cdk.context.json
+
+.nx/cache
