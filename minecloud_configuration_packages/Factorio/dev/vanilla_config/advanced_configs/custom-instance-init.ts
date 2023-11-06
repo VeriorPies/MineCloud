@@ -15,7 +15,7 @@ function getCustomInitConfig(): InitConfig {
     return new InitConfig([]);
   }
 
-  let configs: (InitCommand | InitFile)[] = [
+  const configs: (InitCommand | InitFile)[] = [
     InitFile.fromUrl(
       `${MINECLOUD_SERVER_DIR}/factorio_headless.tar.xz`,
       FACTORIO_SERVER_DOWNLOAD_URL
