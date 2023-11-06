@@ -11,7 +11,7 @@ import { MINECRAFT_SERVER_DOWNLOAD_URL } from './minecraft-server-download-url';
 export const CUSTOM_INIT_CONFIG: InitConfig = getCustomInitConfig();
 
 function getCustomInitConfig(): InitConfig {
-  let configs: (InitPackage | InitCommand | InitFile)[] = [
+  const configs: (InitPackage | InitCommand | InitFile)[] = [
     // Install an Amazon Java package using yum
     InitPackage.yum('java-17-amazon-corretto-headless'),
     InitCommand.shellCommand("echo 'eula=true' > eula.txt", {

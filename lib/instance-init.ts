@@ -19,12 +19,14 @@ import {
   MINECLOUD_BASE_DIR,
   MINECLOUD_SERVER_DIR
 } from './const/minecloud-dir';
-import { setUpEnviromentVariable, setUpShellScript } from '../shared_lib/minecloud-utilities';
+import {
+  setUpEnviromentVariable,
+  setUpShellScript
+} from '../shared_lib/minecloud-utilities';
 
 const MINECLOUD_USER = 'minecloud';
 // Not the same name since cfn-init can't figure it out for some reason
 const MINECLOUD_GROUP = 'minecloud-group';
-
 
 export function getInitConfig(backupBucketName: string) {
   return CloudFormationInit.fromConfigSets({

@@ -10,8 +10,16 @@ import { getFullDiscordCommand } from '../shared_util';
 exports.handler = async (event: CdkCustomResourceEvent, context: Context) => {
   if (event.RequestType !== 'Delete') {
     const apiEndpoint = `https://discord.com/api/v10/applications/${process.env.APP_ID}/commands`;
-    await registerCommand(getFullDiscordCommand('start'), 'Start the server', apiEndpoint);
-    await registerCommand(getFullDiscordCommand('stop'), 'Stop the server', apiEndpoint);
+    await registerCommand(
+      getFullDiscordCommand('start'),
+      'Start the server',
+      apiEndpoint
+    );
+    await registerCommand(
+      getFullDiscordCommand('stop'),
+      'Stop the server',
+      apiEndpoint
+    );
     await registerCommand(
       getFullDiscordCommand('restart'),
       'Restart the server system service',
