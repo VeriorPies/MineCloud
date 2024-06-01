@@ -1,2 +1,2 @@
 export const MINECRAFT_SERVER_DOWNLOAD_URL =
-  'https://piston-data.mojang.com/v1/objects/8f3112a1049751cc472ec13e397eade5336ca7ae/server.jar';
+  'https://piston-data.mojang.com/v1/objects/8dd1a28015f51b1803213892b50b7b4fc76e594d/server.jar';
