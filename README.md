@@ -152,7 +152,7 @@ If you prefer, we have a step-by-step video tutorial ↓
    - You are all set now - Type any command (ex: `/mc_restart`) in the Discord text channel to give it a try🎉!  
      &nbsp;&nbsp;&nbsp; <img width="80%"  src="images/discord-mc-start-command.gif" >
 
-### **_ONE MORE THING!!!_**
+### **⚠️⚠️⚠️ONE MORE THING!!!⚠️⚠️⚠️**
 
 If you have deployed MineCloud more than once, **THERE MIGHT BE DANGLING SPOT INSTANCE REQUESTS THAT WILL CONSTANTLY CHARGE YOU. MAKE SURE TO CHECK YOUR [EC2 SPOT REQUESTS TAB](https://console.aws.amazon.com/ec2/home#SpotInstances:) AND CANCEL THE DANGLING SPOT REQUEST IF THERE'S ANY!!**
 
