@@ -168,7 +168,7 @@ export class MineCloud extends Stack {
       securityGroup: securityGroup,
       instanceType: new InstanceType(EC2_INSTANCE_TYPE),
       machineImage: new AmazonLinuxImage({
-        generation: AmazonLinuxGeneration.AMAZON_LINUX_2
+        generation: AmazonLinuxGeneration.AMAZON_LINUX_2023
       }),
       templateId: `${STACK_PREFIX}_ec2_launch_template`,
       launchTemplateSpotOptions: {

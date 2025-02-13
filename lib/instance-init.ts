@@ -152,7 +152,17 @@ export function getInitConfig(backupBucketName: string) {
           'server_init_assets/check_user_conn.sh'
         ),
 
-        // Setup crontab scheduler, run every 30 min
+        // Setup crontab scheduler, run every 30 min.
+        // Install cronie first as it's not come with Amazon Linux 2023
+        InitCommand.shellCommand(
+          `sudo yum install cronie -y`
+        ),
+        InitCommand.shellCommand(
+          `sudo systemctl enable crond.service`
+        ),
+        InitCommand.shellCommand(
+          `sudo systemctl start crond.service`
+        ),
         InitCommand.shellCommand(
           `(crontab -l 2>/dev/null; echo "*/30 * * * * ${MINECLOUD_BASE_DIR}/check_user_conn.sh") | crontab -`
         )

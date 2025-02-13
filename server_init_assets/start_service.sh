@@ -1,7 +1,9 @@
 cd /opt/minecloud
 echo "Server started: $(date)"
 
-MY_IP=$(curl -s http://169.254.169.254/latest/meta-data/public-ipv4/)
+TOKEN=$(curl -sX PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600")
+MY_IP=$(curl -s -H "X-aws-ec2-metadata-token: $TOKEN" http://169.254.169.254/latest/meta-data/public-ipv4/)
+
 INSTANCE_ID=$(curl -s http://169.254.169.254/latest/meta-data/instance-id/)
 AZ=$(curl -s http://169.254.169.254/latest/meta-data/placement/availability-zone/)
 
