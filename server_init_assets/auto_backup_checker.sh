@@ -1,3 +1,4 @@
+#!/bin/bash
 cd /opt/minecloud/
 
 ./send_discord_message_to_webhook.sh "Doing auto backup check..."

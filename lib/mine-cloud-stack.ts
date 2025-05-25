@@ -20,12 +20,16 @@ import {
   BlockDeviceVolume,
   CfnKeyPair,
   InstanceType,
+  MachineImage,
+  OperatingSystemType,
+  KeyPair,
   Peer,
   Port,
   SecurityGroup,
   SpotInstanceInterruption,
   SpotRequestType,
   SubnetType,
+  UserData,
   Vpc
 } from 'aws-cdk-lib/aws-ec2';
 import { DiscordInteractionsEndpointConstruct } from './discord-interactions-endpoint-construct';
@@ -73,9 +77,10 @@ export class MineCloud extends Stack {
     super(scope, id, props);
 
     // setup backup S3 bucket
-    const backUpBucketName = `mc-backup-${v4()}`;
+    const backUpBucketName = `${STACK_PREFIX.toLowerCase()}-backups-${v4()}`;
     this.backupBucket = new Bucket(this, `${STACK_PREFIX}_backup_s3_bucket`, {
-      bucketName: backUpBucketName
+      // Bucket name must be at least 3 and no more than 63 characters
+      bucketName: backUpBucketName.substring(0,62)
     });
 
     // setup EC2 instance
@@ -152,6 +157,38 @@ export class MineCloud extends Stack {
       );
     }
 
+
+    const ubuntu24_04_cfn_init_user_data = UserData.forLinux();
+    
+    // In order to let CloudFormation know the instance init is completed, we will have
+    // to setup the the CFN bootstrap scripts on Ubuntu (unlike Amazon Linux images, which already come with it built-in).  
+    // This will also setup the "/opt/aws/bin/cfn-signal" script, which will be called during the CF EC2 init phase to tell
+    // CF the EC2 instance is ready.
+    // # Reference: https://repost.aws/questions/QUYnAVjOxmTm-kF7uHYwlFtg/cfn-init-issue-on-ubuntu-24-04-ami#ANoW9jUJ_CQCid_QWS419hrw
+    ubuntu24_04_cfn_init_user_data.addCommands(
+      // Install Python 3.11 virtualenv
+      // # Note: It looks like as of 05/25/2025, aws-cfn-bootstrap-py3 is still using python 3.11,
+      //         might have to update the python virtual env runtime if AWS team update their bootstrap script
+      'add-apt-repository -y ppa:deadsnakes/ppa',
+      'apt install -y python3.11 python3-pip',
+      // virtualenv set-up (pip binaries will use PATH=/opt/aws/virtualvenv/bin:...)
+      'python3.11 -m pip install virtualenv',
+      'virtualenv /opt/aws/cfn_bootstrap_virtualenv',
+      'source /opt/aws/cfn_bootstrap_virtualenv/bin/activate',
+      // Install aws-cfn-bootstrap dependencies
+      'pip install https://s3.amazonaws.com/cloudformation-examples/aws-cfn-bootstrap-py3-latest.tar.gz',
+      // Create symlink to allow CF/EC2 run scripts under "/opt/aws/bin" (otherwise we will see "/opt/aws/bin/<XXX>: No such file or directory" error)
+      'ln -s /opt/aws/cfn_bootstrap_virtualenv/bin  /opt/aws/bin'
+    );
+
+    // Get Ubuntu EC2 machine image in SSM parameter store.
+    // Noted that the image ID is difference between AWS regions.
+    // https://ubuntu.com/server/docs/cloud-images/amazon-ec2
+    const machineImage = MachineImage.fromSsmParameter(
+      '/aws/service/canonical/ubuntu/server/24.04/stable/current/amd64/hvm/ebs-gp3/ami-id',
+      {os: OperatingSystemType.LINUX, userData: ubuntu24_04_cfn_init_user_data}
+    );
+
     // Key pair for ssh-ing into EC2 instance from aws console
     const sshKeyPair = new CfnKeyPair(this, `${STACK_PREFIX}_ec2_key_pair`, {
       keyName: `${STACK_PREFIX}_ec2_key`
@@ -159,7 +196,7 @@ export class MineCloud extends Stack {
 
     const spotInstance = new SpotInstance(this, `${STACK_PREFIX}_ec2_instance`, {
       vpc: defaultVPC,
-      keyName: sshKeyPair.keyName,
+      keyPair: KeyPair.fromKeyPairName(this, 'Ec2KeyPair', sshKeyPair.keyName),
       role: ec2Role,
       // vpcSubnets: {
       //   // Place in a public subnet in-order to have a public ip address
@@ -167,9 +204,7 @@ export class MineCloud extends Stack {
       // },
       securityGroup: securityGroup,
       instanceType: new InstanceType(EC2_INSTANCE_TYPE),
-      machineImage: new AmazonLinuxImage({
-        generation: AmazonLinuxGeneration.AMAZON_LINUX_2023
-      }),
+      machineImage: machineImage,
       templateId: `${STACK_PREFIX}_ec2_launch_template`,
       launchTemplateSpotOptions: {
         interruptionBehavior: SpotInstanceInterruption.STOP,
@@ -255,7 +290,7 @@ export class MineCloud extends Stack {
       this,
       `${STACK_PREFIX}_discord_commands_register_lambda`,
       {
-        runtime: Runtime.NODEJS_18_X,
+        runtime: Runtime.NODEJS_22_X,
         handler: 'index.handler',
         entry: path.join(
           __dirname,

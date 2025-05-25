@@ -62,7 +62,7 @@ async function registerCommand(
     data: body
   };
 
-  console.log('register request: ', request);
+  console.log('register request: ', {request});
   const response = await axios(request);
-  console.log('register response: ', response.data);
+  console.log('register response: ', {response});
 }

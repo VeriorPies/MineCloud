@@ -4,6 +4,7 @@ import {
   InitConfig,
   InitFile,
   InitGroup,
+  InitPackage,
   InitUser
 } from 'aws-cdk-lib/aws-ec2';
 
@@ -79,7 +80,13 @@ export function getInitConfig(backupBucketName: string) {
 
         InitCommand.shellCommand(
           `chown -R ${MINECLOUD_USER}:${MINECLOUD_GROUP} ${MINECLOUD_BASE_DIR}`
-        )
+        ),
+
+        // Needed for backup script
+        InitCommand.shellCommand("sudo apt install zip -y"),
+        InitCommand.shellCommand(
+          `sudo snap install aws-cli --classic`
+        ),
       ]),
       setupDiscordMessaging: new InitConfig([
         ...setUpEnviromentVariable(
@@ -153,15 +160,11 @@ export function getInitConfig(backupBucketName: string) {
         ),
 
         // Setup crontab scheduler, run every 30 min.
-        // Install cronie first as it's not come with Amazon Linux 2023
         InitCommand.shellCommand(
-          `sudo yum install cronie -y`
+          `sudo systemctl enable cron`
         ),
         InitCommand.shellCommand(
-          `sudo systemctl enable crond.service`
-        ),
-        InitCommand.shellCommand(
-          `sudo systemctl start crond.service`
+          `sudo systemctl start cron`
         ),
         InitCommand.shellCommand(
           `(crontab -l 2>/dev/null; echo "*/30 * * * * ${MINECLOUD_BASE_DIR}/check_user_conn.sh") | crontab -`

@@ -1,3 +1,4 @@
+#!/bin/bash
 cd /opt/minecloud
 echo "Server started: $(date)"
 

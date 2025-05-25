@@ -13,7 +13,7 @@ export const CUSTOM_INIT_CONFIG: InitConfig = getCustomInitConfig();
 function getCustomInitConfig(): InitConfig {
   let configs: (InitPackage | InitCommand | InitFile)[] = [
     // Install an Amazon Java package using yum
-    InitPackage.yum('java-21-amazon-corretto-headless'),
+    InitCommand.shellCommand('apt install openjdk-21-jdk -y'),
     InitCommand.shellCommand("echo 'eula=true' > eula.txt", {
       cwd: MINECLOUD_SERVER_DIR
     })

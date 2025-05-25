@@ -36,7 +36,7 @@ export class DiscordInteractionsEndpointConstruct extends Construct {
       `${STACK_PREFIX}_discord_command_processor_lambda`,
       {
         functionName: `${STACK_PREFIX}_discord_command_processor_lambda`,
-        runtime: Runtime.NODEJS_18_X,
+        runtime: Runtime.NODEJS_22_X,
         handler: 'index.handler',
         entry: path.join(
           __dirname,
@@ -57,7 +57,7 @@ export class DiscordInteractionsEndpointConstruct extends Construct {
       `${STACK_PREFIX}_discord_interactions_endpoint_lambda`,
       {
         functionName: `${STACK_PREFIX}_discord_interactions_endpoint_lambda`,
-        runtime: Runtime.NODEJS_18_X,
+        runtime: Runtime.NODEJS_22_X,
         handler: 'index.handler',
         entry: path.join(
           __dirname,
