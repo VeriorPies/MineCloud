@@ -87,6 +87,11 @@ export function getInitConfig(backupBucketName: string) {
         InitCommand.shellCommand(
           `sudo snap install aws-cli --classic`
         ),
+
+        // For auto shutdown check (required for 'netstat' command)
+        InitCommand.shellCommand(
+          `sudo apt install net-tools -y`
+        )
       ]),
       setupDiscordMessaging: new InitConfig([
         ...setUpEnviromentVariable(

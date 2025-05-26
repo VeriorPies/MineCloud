@@ -78,10 +78,10 @@ export class MineCloud extends Stack {
     super(scope, id, props);
 
     // setup backup S3 bucket
-    const backUpBucketName = `${STACK_PREFIX.toLowerCase()}-backups-${v4()}`;
+    // Bucket name must be at least 3 and no more than 63 characters
+    const backUpBucketName = `${STACK_PREFIX.toLowerCase()}-backups-${v4()}`.substring(0,62);
     this.backupBucket = new Bucket(this, `${STACK_PREFIX}_backup_s3_bucket`, {
-      // Bucket name must be at least 3 and no more than 63 characters
-      bucketName: backUpBucketName.substring(0,62)
+      bucketName: backUpBucketName
     });
 
     // setup EC2 instance
