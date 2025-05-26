@@ -30,7 +30,8 @@ import {
   SpotRequestType,
   SubnetType,
   UserData,
-  Vpc
+  Vpc,
+  EbsDeviceVolumeType
 } from 'aws-cdk-lib/aws-ec2';
 import { DiscordInteractionsEndpointConstruct } from './discord-interactions-endpoint-construct';
 import * as cr from 'aws-cdk-lib/custom-resources';
@@ -218,8 +219,10 @@ export class MineCloud extends Stack {
       },
       blockDevices: [
         {
-          deviceName: '/dev/xvda',
-          volume: BlockDeviceVolume.ebs(EC2_VOLUME)
+          deviceName: '/dev/sda1',
+          volume: BlockDeviceVolume.ebs(EC2_VOLUME,  {
+            volumeType: EbsDeviceVolumeType.GP3
+          })
         }
       ],
       // Note:
